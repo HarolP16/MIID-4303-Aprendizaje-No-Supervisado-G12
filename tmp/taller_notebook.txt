@@ -1,0 +1,570 @@
+NOTEBOOK starter
+cells=49
+
+--- CELL 0 [markdown] ---
+# Caso-taller Módulo 1: ¿Dónde abrir una nueva sede?
+
+**Análisis de Componentes Principales (PCA), clasificación de ciudades y recomendación ejecutiva**
+
+Este cuaderno sigue la ruta metodológica del curso:
+
+1. Exploración y preparación de los datos.
+2. Estandarización.
+3. Cálculo del PCA.
+4. Selección e interpretación de componentes.
+5. Construcción de un índice y ranking.
+6. Análisis de sensibilidad.
+7. Selección de cinco ciudades finalistas.
+8. Limitaciones y próximos pasos.
+
+> **Nota:** los datos corresponden a 1985. El resultado funciona como un primer filtro cuantitativo y no como una recomendación definitiva para la actualidad.
+
+--- CELL 1 [markdown] ---
+## 1. Librerías
+
+Se utilizan herramientas básicas vistas en el curso: `pandas`, `numpy`, `matplotlib`, `seaborn` y `sklearn`.
+
+--- CELL 2 [code] ---
+import warnings
+warnings.filterwarnings("ignore")
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+from sklearn.preprocessing import StandardScaler
+from sklearn.decomposition import PCA
+from scipy.stats import spearmanr
+
+pd.set_option("display.max_columns", None)
+pd.set_option("display.float_format", lambda x: f"{x:,.3f}")
+sns.set_theme(style="whitegrid")
+
+--- CELL 3 [markdown] ---
+## 2. Carga de los datos
+
+El archivo `Lugares.csv` debe estar en la misma carpeta del cuaderno.  
+En Google Colab, también se puede cargar manualmente desde el computador.
+
+--- CELL 4 [code] ---
+import os
+
+archivo = "Lugares.csv"
+
+if not os.path.exists(archivo):
+    try:
+        from google.colab import files
+        print("Seleccione el archivo Lugares.csv")
+        cargados = files.upload()
+        archivo = next(iter(cargados))
+    except Exception as e:
+        raise FileNotFoundError(
+            "No se encontró Lugares.csv. Cargue el archivo en la sesión de Colab."
+        ) from e
+
+datos = pd.read_csv(archivo)
+datos.head()
+
+--- CELL 5 [markdown] ---
+## 3. Diagnóstico inicial
+
+Se revisan dimensiones, tipos de datos, valores faltantes, duplicados, estadísticas descriptivas y escalas.  
+Con nueve variables existen **36 relaciones por pares**, calculadas como \(9(9-1)/2\).
+
+--- CELL 6 [code] ---
+print("Dimensión de la base:", datos.shape)
+print("\nTipos de datos:")
+display(datos.dtypes.to_frame("tipo"))
+
+print("\nValores faltantes:")
+display(datos.isna().sum().to_frame("faltantes"))
+
+print("\nFilas duplicadas:", datos.duplicated().sum())
+
+--- CELL 7 [code] ---
+variables = datos.columns.drop("Ciudad").tolist()
+
+resumen = datos[variables].describe().T
+resumen["rango"] = resumen["max"] - resumen["min"]
+resumen["coef_variacion"] = resumen["std"] / resumen["mean"]
+
+display(resumen)
+print("Número de relaciones por pares:", len(variables) * (len(variables) - 1) // 2)
+
+--- CELL 8 [markdown] ---
+### Distribuciones
+
+Las variables tienen escalas muy diferentes. Por esta razón, aplicar PCA sobre los datos originales haría que las variables con mayor varianza numérica dominaran los componentes. Se estandarizarán antes del PCA.
+
+--- CELL 9 [code] ---
+datos[variables].hist(figsize=(16, 12), bins=20)
+plt.suptitle("Distribución de los nueve criterios", fontsize=16, y=1.02)
+plt.tight_layout()
+plt.show()
+
+--- CELL 10 [markdown] ---
+### Matriz de correlación
+
+La correlación permite identificar criterios que se mueven juntos y anticipar posibles dimensiones comunes.
+
+--- CELL 11 [code] ---
+corr = datos[variables].corr()
+
+plt.figure(figsize=(11, 8))
+sns.heatmap(corr, annot=True, fmt=".2f", cmap="coolwarm", center=0)
+plt.title("Matriz de correlación")
+plt.tight_layout()
+plt.show()
+
+--- CELL 12 [markdown] ---
+### Observaciones atípicas
+
+No se eliminan automáticamente. Primero se identifican mediante el rango intercuartílico para analizar si representan ciudades con perfiles realmente extremos.
+
+--- CELL 13 [code] ---
+def detectar_atipicos_iqr(df, columnas):
+    resultado = []
+    for col in columnas:
+        q1 = df[col].quantile(0.25)
+        q3 = df[col].quantile(0.75)
+        iqr = q3 - q1
+        inferior = q1 - 1.5 * iqr
+        superior = q3 + 1.5 * iqr
+        mascara = (df[col] < inferior) | (df[col] > superior)
+        resultado.append({
+            "variable": col,
+            "cantidad_atipicos": int(mascara.sum()),
+            "limite_inferior": inferior,
+            "limite_superior": superior
+        })
+    return pd.DataFrame(resultado)
+
+atipicos = detectar_atipicos_iqr(datos, variables)
+display(atipicos)
+
+--- CELL 14 [code] ---
+z_temporal = pd.DataFrame(
+    StandardScaler().fit_transform(datos[variables]),
+    columns=variables,
+    index=datos.index
+)
+
+datos["max_abs_z"] = z_temporal.abs().max(axis=1)
+
+display(
+    datos[["Ciudad", "max_abs_z"]]
+    .sort_values("max_abs_z", ascending=False)
+    .head(15)
+)
+
+--- CELL 15 [markdown] ---
+## 4. Preparación: dirección de los criterios
+
+En la guía se indica que:
+
+- En la mayoría de variables, un puntaje alto es mejor.
+- En **Alojamiento**, un puntaje bajo es mejor.
+- En **Crimen**, un puntaje bajo es mejor.
+
+Para que todos los criterios tengan la misma dirección empresarial, se multiplican Alojamiento y Crimen por `-1`. Esta transformación facilita la interpretación y la construcción posterior del índice.
+
+--- CELL 16 [code] ---
+datos_modelo = datos.drop(columns=["max_abs_z"]).copy()
+
+variables_invertidas = ["Alojamiento", "Crimen"]
+datos_orientados = datos_modelo[variables].copy()
+datos_orientados[variables_invertidas] = -datos_orientados[variables_invertidas]
+
+display(datos_orientados.head())
+
+--- CELL 17 [markdown] ---
+## 5. Estandarización
+
+Cada variable se centra en cero y se divide por su desviación estándar. Así todas aportan en una escala comparable.
+
+--- CELL 18 [code] ---
+escalador = StandardScaler()
+X_std = escalador.fit_transform(datos_orientados)
+
+X_std = pd.DataFrame(
+    X_std,
+    columns=variables,
+    index=datos_modelo.index
+)
+
+display(X_std.head())
+display(X_std.agg(["mean", "std"]).T)
+
+--- CELL 19 [markdown] ---
+## 6. Cálculo del PCA
+
+Se calculan los nueve componentes para estudiar la varianza explicada, el gráfico de sedimentación y el criterio de Kaiser.
+
+--- CELL 20 [code] ---
+pca_total = PCA()
+puntajes_total = pca_total.fit_transform(X_std)
+
+varianza = pca_total.explained_variance_
+proporcion = pca_total.explained_variance_ratio_
+acumulada = np.cumsum(proporcion)
+
+tabla_varianza = pd.DataFrame({
+    "Componente": [f"CP{i}" for i in range(1, len(variables) + 1)],
+    "Eigenvalue": varianza,
+    "Varianza_explicada": proporcion,
+    "Varianza_acumulada": acumulada
+})
+
+display(tabla_varianza)
+
+--- CELL 21 [code] ---
+fig, ax = plt.subplots(figsize=(10, 5))
+ax.plot(range(1, len(variables) + 1), proporcion, marker="o", label="Varianza individual")
+ax.plot(range(1, len(variables) + 1), acumulada, marker="s", label="Varianza acumulada")
+ax.axhline(0.80, linestyle="--", label="Referencia 80%")
+ax.set_xticks(range(1, len(variables) + 1))
+ax.set_xlabel("Número de componentes")
+ax.set_ylabel("Proporción de varianza")
+ax.set_title("Gráfico de sedimentación y varianza acumulada")
+ax.legend()
+plt.tight_layout()
+plt.show()
+
+--- CELL 22 [markdown] ---
+### Selección del número de componentes
+
+Se comparan tres criterios:
+
+- **Kaiser:** conservar componentes con eigenvalue mayor que 1.
+- **Varianza acumulada:** número mínimo para alcanzar al menos 80%.
+- **Interpretabilidad:** las cargas deben permitir explicar el significado empresarial de cada componente.
+
+Para el índice principal se usa el mayor número sugerido entre Kaiser y el umbral del 80%, evitando una selección mecánica basada en un solo criterio.
+
+--- CELL 23 [code] ---
+n_kaiser = int((varianza > 1).sum())
+n_80 = int(np.argmax(acumulada >= 0.80) + 1)
+n_componentes = max(n_kaiser, n_80)
+
+print("Componentes según Kaiser:", n_kaiser)
+print("Componentes para alcanzar 80%:", n_80)
+print("Componentes retenidos:", n_componentes)
+
+--- CELL 24 [markdown] ---
+## 7. Cargas e interpretación
+
+Las cargas muestran la relación entre cada variable original y los componentes. Valores absolutos altos indican mayor participación.
+
+--- CELL 25 [code] ---
+cargas = pd.DataFrame(
+    pca_total.components_.T,
+    index=variables,
+    columns=[f"CP{i}" for i in range(1, len(variables) + 1)]
+)
+
+cargas_retenidas = cargas.iloc[:, :n_componentes]
+display(cargas_retenidas.round(3))
+
+--- CELL 26 [code] ---
+plt.figure(figsize=(12, 6))
+sns.heatmap(cargas_retenidas, annot=True, fmt=".2f", cmap="coolwarm", center=0)
+plt.title("Cargas de los componentes retenidos")
+plt.tight_layout()
+plt.show()
+
+--- CELL 27 [code] ---
+for cp in cargas_retenidas.columns:
+    print(f"\n{cp} - variables con mayor carga absoluta")
+    display(
+        cargas_retenidas[[cp]]
+        .assign(abs_carga=lambda x: x[cp].abs())
+        .sort_values("abs_carga", ascending=False)
+        .head(5)
+    )
+
+--- CELL 28 [markdown] ---
+### Puntuaciones de las ciudades
+
+Se muestran las ciudades con puntuaciones altas y bajas en cada componente retenido. El signo global de un componente es arbitrario; por eso la interpretación depende de la relación entre los signos de sus cargas.
+
+--- CELL 29 [code] ---
+puntajes = pd.DataFrame(
+    puntajes_total[:, :n_componentes],
+    columns=[f"CP{i}" for i in range(1, n_componentes + 1)]
+)
+puntajes.insert(0, "Ciudad", datos_modelo["Ciudad"])
+
+for cp in puntajes.columns[1:]:
+    print(f"\nCiudades con puntuación alta en {cp}")
+    display(puntajes[["Ciudad", cp]].nlargest(5, cp))
+    print(f"Ciudades con puntuación baja en {cp}")
+    display(puntajes[["Ciudad", cp]].nsmallest(5, cp))
+
+--- CELL 30 [markdown] ---
+## 8. Construcción del índice de atractivo
+
+El PCA describe la estructura de los datos, pero no produce automáticamente un índice empresarial. Se adopta una regla explícita y reproducible:
+
+1. Se crea un referente simple de atractivo como el promedio de las nueve variables estandarizadas y orientadas.
+2. Cada componente se orienta para que su correlación con ese referente sea positiva.
+3. Los componentes retenidos se combinan usando como peso su proporción de varianza explicada dentro del conjunto retenido.
+4. El índice final se estandariza para facilitar su lectura.
+
+Los pesos por varianza reflejan la capacidad descriptiva de cada componente. No implican que esa sea la única preferencia posible del comité; por eso se evalúan escenarios alternativos.
+
+--- CELL 31 [code] ---
+benchmark = X_std.mean(axis=1)
+
+puntajes_indice = puntajes.drop(columns="Ciudad").copy()
+signos = {}
+
+for cp in puntajes_indice.columns:
+    correlacion = np.corrcoef(puntajes_indice[cp], benchmark)[0, 1]
+    signo = 1 if correlacion >= 0 else -1
+    signos[cp] = signo
+    puntajes_indice[cp] = puntajes_indice[cp] * signo
+
+pesos = proporcion[:n_componentes]
+pesos = pesos / pesos.sum()
+
+indice = puntajes_indice.to_numpy().dot(pesos)
+indice_z = (indice - indice.mean()) / indice.std(ddof=0)
+
+ranking = datos_modelo.copy()
+ranking["Indice_atractivo"] = indice_z
+ranking["Ranking"] = ranking["Indice_atractivo"].rank(method="min", ascending=False).astype(int)
+ranking = ranking.sort_values("Ranking").reset_index(drop=True)
+
+print("Orientación aplicada a los componentes:", signos)
+print("Pesos utilizados:")
+display(pd.DataFrame({
+    "Componente": puntajes_indice.columns,
+    "Peso": pesos
+}))
+
+display(ranking.head(10))
+
+--- CELL 32 [markdown] ---
+### Diez primeras y diez últimas ciudades
+
+--- CELL 33 [code] ---
+columnas_salida = ["Ranking", "Ciudad", "Indice_atractivo"] + variables
+
+print("Diez primeras:")
+display(ranking[columnas_salida].head(10))
+
+print("Diez últimas:")
+display(ranking[columnas_salida].tail(10))
+
+--- CELL 34 [markdown] ---
+## 9. Perfil de las ciudades mejor clasificadas
+
+Para interpretar fortalezas y debilidades se utilizan los puntajes estandarizados y orientados. Un valor positivo indica desempeño superior al promedio de las 329 ciudades.
+
+--- CELL 35 [code] ---
+perfiles = X_std.copy()
+perfiles.insert(0, "Ciudad", datos_modelo["Ciudad"])
+
+top10 = ranking.head(10)["Ciudad"].tolist()
+perfil_top10 = perfiles[perfiles["Ciudad"].isin(top10)].set_index("Ciudad")
+perfil_top10 = perfil_top10.loc[top10]
+
+plt.figure(figsize=(13, 7))
+sns.heatmap(perfil_top10, annot=True, fmt=".1f", cmap="coolwarm", center=0)
+plt.title("Fortalezas y debilidades relativas de las diez primeras ciudades")
+plt.xlabel("Criterio")
+plt.ylabel("Ciudad")
+plt.tight_layout()
+plt.show()
+
+--- CELL 36 [markdown] ---
+## 10. Análisis de sensibilidad
+
+Se comparan cuatro decisiones metodológicas razonables:
+
+- **Escenario principal:** componentes retenidos, ponderados por varianza.
+- **Un componente:** solo CP1.
+- **Pesos iguales:** componentes retenidos con el mismo peso.
+- **Promedio orientado:** promedio directo de las nueve variables estandarizadas.
+
+La estabilidad se mide con correlaciones de Spearman entre rankings, coincidencia del top 10 y variaciones de posición.
+
+--- CELL 37 [code] ---
+escenarios = pd.DataFrame({"Ciudad": datos_modelo["Ciudad"]})
+
+escenarios["Principal"] = indice_z
+
+cp1 = puntajes_indice.iloc[:, 0]
+escenarios["Solo_CP1"] = (cp1 - cp1.mean()) / cp1.std(ddof=0)
+
+indice_iguales = puntajes_indice.mean(axis=1)
+escenarios["PC_pesos_iguales"] = (
+    (indice_iguales - indice_iguales.mean()) / indice_iguales.std(ddof=0)
+)
+
+escenarios["Promedio_orientado"] = (
+    (benchmark - benchmark.mean()) / benchmark.std(ddof=0)
+)
+
+for col in ["Principal", "Solo_CP1", "PC_pesos_iguales", "Promedio_orientado"]:
+    escenarios[f"Rank_{col}"] = escenarios[col].rank(method="min", ascending=False)
+
+columnas_rank = [c for c in escenarios.columns if c.startswith("Rank_")]
+corr_rank = escenarios[columnas_rank].corr(method="spearman")
+display(corr_rank)
+
+plt.figure(figsize=(8, 6))
+sns.heatmap(corr_rank, annot=True, fmt=".3f", cmap="Blues", vmin=0, vmax=1)
+plt.title("Correlación de Spearman entre rankings")
+plt.tight_layout()
+plt.show()
+
+--- CELL 38 [code] ---
+def top_n_set(df, score_col, n=10):
+    return set(df.nlargest(n, score_col)["Ciudad"])
+
+top_principal = top_n_set(escenarios, "Principal", 10)
+
+coincidencias = []
+for col in ["Solo_CP1", "PC_pesos_iguales", "Promedio_orientado"]:
+    top_alt = top_n_set(escenarios, col, 10)
+    coincidencias.append({
+        "Escenario": col,
+        "Coincidencias_top10": len(top_principal.intersection(top_alt)),
+        "Porcentaje": len(top_principal.intersection(top_alt)) / 10
+    })
+
+display(pd.DataFrame(coincidencias))
+
+--- CELL 39 [code] ---
+rank_cols = [f"Rank_{x}" for x in ["Principal", "Solo_CP1", "PC_pesos_iguales", "Promedio_orientado"]]
+
+estabilidad = escenarios[["Ciudad"] + rank_cols].copy()
+estabilidad["Ranking_promedio"] = estabilidad[rank_cols].mean(axis=1)
+estabilidad["Desv_ranking"] = estabilidad[rank_cols].std(axis=1)
+estabilidad["Peor_ranking"] = estabilidad[rank_cols].max(axis=1)
+estabilidad["Mejor_ranking"] = estabilidad[rank_cols].min(axis=1)
+
+display(estabilidad.sort_values(["Ranking_promedio", "Desv_ranking"]).head(15))
+
+--- CELL 40 [markdown] ---
+## 11. Selección de cinco ciudades finalistas
+
+Las cinco finalistas se seleccionan por **robustez**, no únicamente por ocupar los cinco primeros lugares del escenario principal.
+
+Criterio utilizado:
+
+1. Bajo ranking promedio entre los cuatro escenarios.
+2. Baja variación de posición.
+3. Buen desempeño en el escenario principal.
+4. Revisión de fortalezas y debilidades para evitar una recomendación basada en una sola dimensión.
+
+--- CELL 41 [code] ---
+finalistas = (
+    estabilidad
+    .merge(
+        ranking[["Ciudad", "Ranking", "Indice_atractivo"]],
+        on="Ciudad",
+        how="left"
+    )
+    .sort_values(["Ranking_promedio", "Desv_ranking", "Ranking"])
+    .head(5)
+    .reset_index(drop=True)
+)
+
+finalistas.insert(0, "Finalista", range(1, 6))
+display(finalistas)
+
+--- CELL 42 [code] ---
+ciudades_finalistas = finalistas["Ciudad"].tolist()
+
+perfil_finalistas = perfiles[
+    perfiles["Ciudad"].isin(ciudades_finalistas)
+].set_index("Ciudad").loc[ciudades_finalistas]
+
+plt.figure(figsize=(13, 5))
+sns.heatmap(perfil_finalistas, annot=True, fmt=".1f", cmap="coolwarm", center=0)
+plt.title("Perfil relativo de las cinco ciudades finalistas")
+plt.xlabel("Criterio")
+plt.ylabel("Ciudad")
+plt.tight_layout()
+plt.show()
+
+--- CELL 43 [markdown] ---
+### Fortalezas y debilidades automáticas
+
+Para cada ciudad se reportan los tres criterios con mayor desempeño relativo y los dos con menor desempeño relativo. Esta tabla sirve como apoyo para redactar la recomendación ejecutiva.
+
+--- CELL 44 [code] ---
+resumen_finalistas = []
+
+for ciudad in ciudades_finalistas:
+    fila = perfil_finalistas.loc[ciudad].sort_values(ascending=False)
+    fortalezas = ", ".join([f"{v} ({fila[v]:.2f})" for v in fila.head(3).index])
+    debilidades = ", ".join([f"{v} ({fila[v]:.2f})" for v in fila.tail(2).index])
+
+    info = finalistas[finalistas["Ciudad"] == ciudad].iloc[0]
+    resumen_finalistas.append({
+        "Ciudad": ciudad,
+        "Ranking_principal": int(info["Ranking"]),
+        "Ranking_promedio": round(info["Ranking_promedio"], 2),
+        "Desviación_ranking": round(info["Desv_ranking"], 2),
+        "Fortalezas_relativas": fortalezas,
+        "Debilidades_relativas": debilidades
+    })
+
+resumen_finalistas = pd.DataFrame(resumen_finalistas)
+display(resumen_finalistas)
+
+--- CELL 45 [markdown] ---
+## 12. Exportación de resultados
+
+Se generan archivos para respaldar la presentación:
+
+- Ranking completo de las 329 ciudades.
+- Tabla de finalistas.
+- Cargas de los componentes.
+- Varianza explicada.
+- Resultados del análisis de sensibilidad.
+
+--- CELL 46 [code] ---
+ranking.to_csv("ranking_completo_ciudades.csv", index=False)
+resumen_finalistas.to_csv("cinco_ciudades_finalistas.csv", index=False)
+cargas_retenidas.to_csv("cargas_componentes_retenidos.csv")
+tabla_varianza.to_csv("varianza_explicada_pca.csv", index=False)
+estabilidad.to_csv("sensibilidad_rankings.csv", index=False)
+
+print("Archivos generados correctamente.")
+
+--- CELL 47 [markdown] ---
+## 13. Conclusión para completar después de ejecutar
+
+Una vez ejecutado el cuaderno, el equipo debe redactar una conclusión propia con esta estructura:
+
+> Recomendamos que **[cinco ciudades]** avancen a la fase de due diligence. La selección combina el ranking principal construido con PCA y la estabilidad observada bajo escenarios alternativos. Las ciudades finalistas presentan fortalezas relativas en **[criterios]**, aunque existen trade-offs en **[criterios]**. La recomendación debe interpretarse como un primer filtro, porque los datos corresponden a 1985 y no incluyen variables actuales como salarios, disponibilidad de talento, costos inmobiliarios, incentivos tributarios, conectividad digital ni riesgos climáticos recientes.
+
+### Información que debe actualizarse en due diligence
+
+- Disponibilidad y costo actual del talento.
+- Costos de oficinas, vivienda y servicios.
+- Conectividad aérea, vial y digital.
+- Seguridad y calidad de vida actual.
+- Incentivos tributarios y regulatorios.
+- Capacidad de expansión.
+- Riesgos ambientales y climáticos.
+- Aceptación de traslado por parte de empleados y familias.
+
+### Decisión solicitada al comité
+
+Autorizar la evaluación cualitativa y financiera de las cinco ciudades finalistas antes de seleccionar la sede definitiva.
+
+--- CELL 48 [markdown] ---
+## 14. Consideraciones metodológicas
+
+- El PCA revela estructura estadística, pero no define por sí solo qué ciudad es “mejor”.
+- La orientación de Alojamiento y Crimen es una decisión previa al modelo.
+- Los pesos del índice son una decisión empresarial apoyada por el análisis.
+- Las observaciones extremas se conservaron porque pueden representar perfiles urbanos reales.
+- La robustez se evaluó comparando varias reglas razonables.
+- Las conclusiones deben presentarse como evidencia histórica y no como recomendación vigente.

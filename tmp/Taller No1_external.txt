@@ -1,0 +1,183 @@
+PDF: C:\Users\harol\OneDrive\Escritorio\MIIA\MIID 4303 - Aprendizaje No Supervisado\Sem1\Taller No1.pdf
+pages=7
+
+--- PAGE 1 ---
+Paso1. Guía caso-taller: Dónde abrir una nueva sede?  Análisis de componentes principales (PCA), clasiﬁcación de ciudades y recomendación ejecutiva El problema Una empresa evalúa abrir una nueva sede con capacidad para aproximadamente 500 empleados. La ubicación afectará su capacidad para atraer y retener talento, sus costos de operación y la calidad de vida de los empleados que deban trasladarse con sus familias. El comité ejecutivo ha identiﬁcado 329 ciudades candidatas, pero no puede realizar una evaluación exhaustiva de todas ellas. Las visitas, los estudios del mercado laboral e inmobiliario, la revisión de incentivos y las negociaciones con autoridades locales se reservarán para un grupo reducido de ﬁnalistas. Su ﬁrma consultora ha sido contratada para construir un primer ﬁltro cuantitativo y recomendar cinco ciudades que deberían avanzar a una fase de due diligence. Desde el primer minuto de su presentación deberán responder: ¿Qué cinco ciudades deberían avanzar y qué evidencia justiﬁca su selección? El PCA les permitirá identiﬁcar las principales dimensiones que diferencian a las ciudades. Sin embargo, no genera automáticamente un índice de atractivo ni determina qué ciudades deben ser seleccionadas. Su equipo deberá justiﬁcar la transición entre:  la estructura estadística encontrada en los datos;  la construcción del ranking;  la recomendación empresarial. Los datos Trabajarán con el archivo
+
+--- PAGE 2 ---
+que contiene información sobre 329 ciudades. 
+Los datos provienen del Almanaque Caliﬁcado de Lugares. En este Almanaque Boyer 
+y Savageau evaluaron cada ciudad según nueve criterios: 
+ Clima y terreno 
+ Alojamiento 
+ Cuidado de la salud y el medio ambiente 
+ Crimen 
+ Transporte 
+ Educación 
+ Artes 
+ Recreación 
+ Economía 
+Para la mayoría de las variables, un puntaje más alto representa una mejor 
+evaluación. Hay dos excepciones: 
+ en Alojamiento, un puntaje menor es mejor; 
+ en Crimen, un puntaje menor es mejor. 
+Esta diferencia de dirección es relevante para la interpretación de los componentes y 
+para la construcción del ranking. Su equipo deberá decidir cómo tratarla y justiﬁcar 
+su decisión. 
+Los datos corresponden a 1985. Por tanto, el resultado no debe presentarse como 
+una recomendación deﬁnitiva sobre las mejores ciudades en la actualidad. El análisis 
+servirá como un primer ﬁltro y deberá indicar qué información necesita actualizarse 
+durante la fase de due diligence. 
+El encargo 
+Su equipo deberá entregar dos resultados: 
+1. Un ranking de las 329 ciudades, construido con una metodología rigurosa, 
+reproducible y comprensible. 
+2. Una selección de cinco ciudades ﬁnalistas que deberían avanzar a la fase 
+de due diligence, acompañada de:
+
+--- PAGE 3 ---
+ los criterios utilizados para seleccionarlas; 
+ sus principales fortalezas y debilidades; 
+ los trade-oƯs de la recomendación; 
+ las limitaciones del análisis. 
+El ranking será un insumo para la decisión, pero las cinco primeras ciudades no 
+tienen que ser automáticamente las cinco ﬁnalistas. Cualquier criterio adicional 
+deberá ser explícito y estar respaldado por los datos. 
+Los productos de la entrega 
+El equipo entregará dos productos conectados entre sí y cada uno en su respectivo 
+link designados como "entrega caliﬁcada por el personal" (en estos podrá consultar la 
+rúbrica): 
+1. Cuaderno de análisis (4% de la caliﬁcación) 
+El cuaderno será el soporte técnico completo y reproducible de la recomendación. 
+Deberá documentar: 
+ la exploración y preparación de los datos; 
+ las decisiones tomadas antes y durante el PCA; 
+ la selección e interpretación de los componentes; 
+ la construcción del índice y del ranking; 
+ el análisis de sensibilidad; 
+ la selección de las cinco ciudades ﬁnalistas; 
+ las limitaciones y los próximos pasos. 
+Cada decisión deberá estar acompañada de una breve justiﬁcación. No basta con 
+mostrar código o resultados. 
+El cuaderno deberá permitir que un lector técnicamente competente: 
+ reproduzca el análisis; 
+ entienda cómo se construyó el ranking; 
+ identiﬁque qué decisiones afectaron el resultado; 
+ veriﬁque las cifras utilizadas en la presentación.
+
+--- PAGE 4 ---
+2. Presentación ejecutiva (12% de la caliﬁcación) 
+La presentación estará dirigida al comité ejecutivo de la empresa. 
+Su propósito no es explicar el cuaderno ni describir paso a paso cómo se realizó el 
+análisis. Su propósito es comunicar una recomendación clara y respaldada por 
+evidencia. 
+Desde los primeros 60–90 segundos deberá responder: 
+¿Qué cinco ciudades deberían avanzar a la fase de due diligence y por qué? 
+La presentación deberá incluir: 
+ la recomendación de cinco ciudades; 
+ los principales argumentos que la respaldan; 
+ las fortalezas y debilidades de las ﬁnalistas; 
+ los trade-oƯs de la selección; 
+ la robustez de la recomendación; 
+ las principales limitaciones; 
+ los próximos pasos y la decisión solicitada al comité. 
+Todas las cifras, tablas y gráﬁcas utilizadas en la presentación deberán estar 
+soportadas en el cuaderno. 
+El cuaderno contiene el análisis completo. La presentación selecciona 
+únicamente la evidencia necesaria para que el comité pueda tomar una decisión. 
+Guía recomendada de análisis 
+La siguiente guía propone una ruta para desarrollar el análisis y construir los dos 
+productos de la entrega. No constituye una receta única: cada equipo podrá tomar 
+decisiones metodológicas diferentes, siempre que sean técnicamente correctas, 
+estén claramente documentadas y sean coherentes con la pregunta de negocio. 
+El análisis deberá mostrar cómo se pasa de la exploración de la estructura estadística 
+de los datos a la construcción de un índice y, ﬁnalmente, a una recomendación 
+empresarial. 
+Paso 1. Exploración de los datos
+
+--- PAGE 5 ---
+Se recomienda comenzar con un diagnóstico general de la base de datos que incluya 
+estadísticas descriptivas, distribuciones, datos faltantes, observaciones atípicas y la 
+matriz de correlación. 
+El análisis debería considerar preguntas como: 
+ ¿Cuántas relaciones por pares existen entre nueve variables? 
+ ¿Qué variables presentan escalas muy diferentes? 
+ ¿Qué consecuencias tendría aplicar PCA sin estandarizar? 
+ ¿Qué criterios están más correlacionados y qué hipótesis podrían explicar 
+esas relaciones? 
+Las observaciones atípicas no deberían eliminarse sin analizar previamente qué 
+representan y cómo afectan los resultados. 
+Paso 2. Cálculo de los componentes principales 
+Las variables deberán estandarizarse antes de calcular el PCA, salvo que se presente 
+una justiﬁcación sólida para proceder de otra manera. 
+El cálculo puede realizarse mediante álgebra lineal o con sklearn. 
+El número de componentes retenidos deberá justiﬁcarse mediante criterios como: 
+ gráﬁco de sedimentación; 
+ criterio de Kaiser; 
+ proporción de varianza explicada; 
+ interpretabilidad de los componentes. 
+No se espera la aplicación mecánica de una regla. El equipo deberá diferenciar entre 
+los componentes útiles para describir los datos y aquellos que resulten pertinentes 
+para construir el ranking. 
+Paso 3. Interpretación de los componentes 
+La interpretación deberá apoyarse en las cargas de los componentes y en las 
+puntuaciones de las ciudades. 
+Se espera identiﬁcar: 
+ qué variables se mueven en la misma dirección; 
+ qué variables se contraponen;
+
+--- PAGE 6 ---
+ qué dimensión parece representar cada componente; 
+ qué ciudades presentan puntuaciones altas y bajas. 
+Cada componente retenido deberá recibir un nombre que reﬂeje prudentemente lo 
+que mide. 
+Deberá prestarse especial atención a Alojamiento y Crimen. El equipo tendrá que 
+decidir si conviene cambiar su dirección antes del PCA o mantenerlas en su forma 
+original y reinterpretar los resultados. 
+El signo global de un componente es arbitrario. Lo relevante es la relación entre los 
+signos de las variables y la interpretación que se construya a partir de ellos. 
+Paso 4. Construcción del índice y del ranking 
+El PCA deberá utilizarse como insumo para construir un índice de atractivo relativo y 
+ordenar las 329 ciudades. 
+La metodología deberá explicar: 
+ qué componentes se utilizaron; 
+ cómo se orientaron sus puntuaciones; 
+ cómo se combinaron; 
+ qué pesos se asignaron; 
+ por qué esa regla es coherente con el problema empresarial. 
+La proporción de varianza explicada describe la estructura de los datos, pero no 
+representa automáticamente la importancia que el comité debería otorgar a cada 
+dimensión. 
+El cuaderno deberá incluir el ranking completo, las diez primeras ciudades y las diez 
+últimas. Los resultados deberán contrastarse con la interpretación de los 
+componentes para veriﬁcar qué está midiendo realmente el índice. 
+Paso 5. Evaluación de la robustez y selección de las ﬁnalistas 
+La estabilidad del resultado deberá evaluarse frente a por lo menos dos decisiones 
+metodológicas razonables. Por ejemplo: 
+ modiﬁcar la dirección de Alojamiento y Crimen; 
+ utilizar uno o varios componentes;
+
+--- PAGE 7 ---
+ cambiar los pesos del índice; 
+ incluir o excluir observaciones extremas. 
+Los cambios podrán cuantiﬁcarse mediante correlaciones entre rankings, variaciones 
+de posición o coincidencias entre las ciudades mejor clasiﬁcadas. 
+También deberán identiﬁcarse las ciudades atípicas y analizarse las características 
+que explican su posición. 
+A partir de esta evidencia, el equipo seleccionará exactamente cinco ciudades para 
+avanzar a la fase de due diligence. Estas no tienen que corresponder 
+automáticamente a los cinco primeros lugares del ranking, pero cualquier criterio 
+adicional deberá ser explícito y estar respaldado por el análisis. 
+Paso 6. Formulación de la recomendación 
+La recomendación deberá responder, como mínimo: 
+ ¿Qué cinco ciudades deberían avanzar y por qué? 
+ ¿Cuáles son sus principales fortalezas y debilidades? 
+ ¿Qué trade-oƯs implica la selección? 
+ ¿Qué tan estable es la recomendación? 
+ ¿Qué limitaciones deben conocer los directivos? 
+ ¿Qué información deberá recopilarse durante la fase de due diligence? 
+ ¿Qué decisión concreta se solicita al comité? 
+La presentación deberá distinguir claramente entre: 
+1. la estructura estadística revelada por el PCA; 
+2. las decisiones utilizadas para construir el índice; 
+3. la recomendación empresarial ﬁnal.

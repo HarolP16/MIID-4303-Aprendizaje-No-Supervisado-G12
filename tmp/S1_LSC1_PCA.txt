@@ -1,0 +1,862 @@
+NOTEBOOK Files/home/jovyan/work/S1_LSC1_PCA.ipynb
+cells=57
+
+--- CELL 0 [markdown] ---
+<div >
+<img src = "figs/ans_banner_1920x200.png" />
+</div>
+
+--- CELL 1 [markdown] ---
+#  Análisis de Componentes Principales. Fundamentos Teóricos.
+
+--- CELL 2 [markdown] ---
+Este *cuaderno* trata sobre el Análisis de Componentes Principales y sobre la manera en que se puede utilizar para reducir la dimensionalidad de datos. El objetivo del *cuaderno* es que aprenda que son los componentes principales, que reconozca las características y el funcionamiento del algoritmo de componentes principales, y a construir e implementar este algoritmo.
+
+**NO** es necesario editar el archivo o hacer una entrega. Sin embargo, los ejemplos contienen celdas con código ejecutable (`en gris`), que podrá modificar  libremente. Esta puede ser una buena forma de aprender nuevas funcionalidades del *cuaderno*, o experimentar variaciones en los códigos de ejemplo.
+
+--- CELL 3 [markdown] ---
+## Introducción
+
+Los grandes conjuntos de datos son cada vez más comunes y, a menudo, difíciles de interpretar. Para abordar este reto, es clave contar con métodos que permitan reducir drásticamente su dimensionalidad, conservando al mismo tiempo la mayor cantidad posible de información.
+
+El análisis de componentes principales, o PCA por sus siglas en inglés, es una técnica de aprendizaje no supervisado que facilita esta tarea. La idea central del análisis de componentes principales es reducir la dimensionalidad de un conjunto de datos en el que hay una gran cantidad de variables interrelacionadas, conservando al mismo tiempo la mayor cantidad posible de la variación presente en el conjunto de datos. Esta reducción se logra transformando las variables originales en un nuevo conjunto de variables, los componentes principales, que no están correlacionados y que se ordenan de manera que los primeros retengan la mayor parte de la variación presente en todas las variables originales.
+
+PCA se refiere entonces al proceso por el cual los componentes principales son calculados, y el uso de estos componentes para entender los datos. PCA forma parte del aprendizaje no supervisado, ya que implica un conjunto de variables $X_1, \dots, X_k$ y no una respuesta asociada $Y$. PCA es fundamentalmente un algoritmo de reducción de dimensionalidad, pero también puede ser útil como herramienta de visualización, filtrado de ruido, extracción e ingeniería de características, y mucho más.
+
+Para entender de manera intuitiva el comportamiento del Análisis de Componentes Principales (PCA), es útil examinarlo a través de un conjunto de datos bidimensional. A continuación, consideremos un ejemplo con 200 observaciones:
+
+--- CELL 4 [code] ---
+#Cargamos las librerías a utilizar
+import numpy as np
+import matplotlib.pyplot as plt
+plt.style.use('seaborn-whitegrid')
+
+rng = np.random.RandomState(1)
+X = np.dot(rng.rand(2, 2), rng.randn(2, 200)).T
+plt.scatter(X[:, 0], X[:, 1])
+plt.axis('equal');
+[OUTPUT]
+<Figure size 640x480 with 1 Axes>
+
+--- CELL 5 [markdown] ---
+A simple vista, es evidente que existe una relación casi lineal entre las variables x e y. Esto parece ser similar a la regresión lineal, sin embargo el contexto del problema aquí es ligeramente diferente: en lugar de intentar predecir los valores de y a partir de los valores de x, el problema de aprendizaje no supervisado intenta aprender sobre la relación entre las variables x e y.
+
+
+En el análisis de componentes principales, esta relación se cuantifica encontrando una lista de los ejes principales en los datos y utilizando estos ejes para describir el conjunto de datos. Usando el estimador PCA de [Scikit-Learn](https://scikit-learn.org/), podemos calcularlo de la siguiente manera:
+
+--- CELL 6 [code] ---
+from sklearn.decomposition import PCA
+pca = PCA(n_components=2)
+pca.fit(X)
+[OUTPUT]
+PCA(n_components=2)
+
+--- CELL 7 [markdown] ---
+Ese estimador "aprende" los componentes,
+
+--- CELL 8 [code] ---
+print(pca.components_)
+[OUTPUT]
+[[-0.94446029 -0.32862557]
+ [-0.32862557  0.94446029]]
+
+
+--- CELL 9 [markdown] ---
+y la varianza explicada,
+
+--- CELL 10 [code] ---
+print(pca.explained_variance_)
+[OUTPUT]
+[0.7625315 0.0184779]
+
+
+--- CELL 11 [markdown] ---
+Para comprender mejor qué significan estos números, visualicémoslos como vectores sobre los datos originales, utilizando los componentes para definir la dirección del vector y la varianza explicada para definir la longitud cuadrada del vector:
+
+--- CELL 12 [code] ---
+def draw_vector(v0, v1, ax=None):
+    ax = ax or plt.gca()
+    arrowprops=dict(arrowstyle='->', linewidth=2, shrinkA=0, shrinkB=0)
+    ax.annotate('', v1, v0, arrowprops=arrowprops)
+
+# plot data
+plt.scatter(X[:, 0], X[:, 1], alpha=0.2)
+for length, vector in zip(pca.explained_variance_, pca.components_):
+    v = vector * 3 * np.sqrt(length)
+    draw_vector(pca.mean_, pca.mean_ + v)
+plt.axis('equal');
+[OUTPUT]
+<Figure size 640x480 with 1 Axes>
+
+--- CELL 13 [markdown] ---
+Estos vectores representan los ejes principales de los datos originales, y la longitud de cada vector indica cuán "importante" es ese eje para describir la distribución de los datos, más precisamente, es una medida de la varianza de los datos cuando se proyectan sobre ese eje. La proyección de cada punto de datos sobre los ejes principales son los componentes principales de los datos.
+
+Podemos entonces graficar los datos originales junto a esta proyección:
+
+--- CELL 14 [code] ---
+rng = np.random.RandomState(1)
+X = np.dot(rng.rand(2, 2), rng.randn(2, 200)).T
+pca = PCA(n_components=2, whiten=True)
+pca.fit(X)
+
+fig, ax = plt.subplots(1, 2, figsize=(16, 6))
+fig.subplots_adjust(left=0.0625, right=0.95, wspace=0.1)
+
+# plot data
+ax[0].scatter(X[:, 0], X[:, 1], alpha=0.2)
+for length, vector in zip(pca.explained_variance_, pca.components_):
+    v = vector * 3 * np.sqrt(length)
+    draw_vector(pca.mean_, pca.mean_ + v, ax=ax[0])
+ax[0].axis('equal');
+ax[0].set(xlabel='x', ylabel='y', title='Datos Originales')
+
+# plot principal components
+X_pca = pca.transform(X)
+ax[1].scatter(X_pca[:, 0], X_pca[:, 1], alpha=0.2)
+draw_vector([0, 0], [0, 3], ax=ax[1])
+draw_vector([0, 0], [3, 0], ax=ax[1])
+ax[1].axis('equal')
+ax[1].set(xlabel='componente 1', ylabel='componente 2',
+          title='Componentes Principales',
+          xlim=(-5, 5), ylim=(-3, 3.1))
+[OUTPUT]
+[Text(0.5, 0, 'componente 1'),
+ Text(0, 0.5, 'componente 2'),
+ Text(0.5, 1.0, 'Componentes Principales'),
+ (-5.0, 5.0),
+ (-3.0, 3.1)]
+<Figure size 1600x600 with 2 Axes>
+
+--- CELL 15 [markdown] ---
+Cuando representamos visualmente estos componentes principales junto a los datos originales, lo que hacemos es crear una comparación visual entre la distribución original de los datos y la nueva representación derivada a través del PCA.  En el primer gráfico, vemos los datos originales en un sistema de coordenadas estándar, donde cada punto representa una observación individual con sus respectivos valores de las variables x e y. Tenemos también los vectores que representan los componentes principales. 
+
+El segundo gráfico muestra los datos proyectados, que son los componentes principales. Estos no están en el mismo espacio de características original sino en un nuevo sistema de coordenadas definido por los componentes principales. Estos ejes representan las nuevas direcciones en las que los datos tienen la mayor varianza. Los puntos en este gráfico son proyecciones de los datos originales sobre estos nuevos ejes.
+
+Esta transformación de los ejes de datos a ejes principales constituye una transformación afín, que implica una traslación, rotación y escalamiento uniforme.
+
+Aunque encontrar componentes principales pueda parecer una curiosidad matemática, en realidad tiene aplicaciones muy importnate en el mundo del aprendizaje de máquinas.
+
+--- CELL 16 [markdown] ---
+## PCA como Reducción de Dimensionalidad
+
+¿Cómo está relacionado entonces el concepto de PCA con la reducción de dimensionalidad? El Análisis de Componentes Principales (PCA) desempeña un papel crucial en la reducción de dimensionalidad. Este proceso implica simplificar la complejidad de los datos al eliminar las direcciones menos significativas. Esto se logra 'anulando' uno o más de los componentes principales menos importantes, aquellos que contribuyen mínimamente a la varianza total. De esta manera, se proyectan los datos en un espacio de menor dimensión mientras se conserva la máxima cantidad de información relevante.
+
+Veamos un ejemplo práctico de cómo el PCA se emplea como una herramienta de transformación y reducción de dimensionalidad:
+
+--- CELL 17 [code] ---
+pca = PCA(n_components=1)
+pca.fit(X)
+X_pca = pca.transform(X)
+print("forma original:   ", X.shape)
+print("forma transformada:", X_pca.shape)
+[OUTPUT]
+forma original:    (200, 2)
+forma transformada: (200, 1)
+
+
+--- CELL 18 [markdown] ---
+Los datos transformados han sido reducidos a una sola dimensión. Para entender el efecto de esta reducción de dimensionalidad, podemos realizar la transformación inversa de estos datos reducidos y representarlos junto con los datos originales:
+
+--- CELL 19 [code] ---
+X_new = pca.inverse_transform(X_pca)
+plt.scatter(X[:, 0], X[:, 1], alpha=0.2)
+plt.scatter(X_new[:, 0], X_new[:, 1], alpha=0.8)
+plt.axis('equal');
+[OUTPUT]
+<Figure size 640x480 with 1 Axes>
+
+--- CELL 20 [markdown] ---
+Los puntos claros representan los datos originales, mientras que los puntos oscuros son la versión proyectada. Esto ilustra claramente qué significa una reducción de dimensionalidad mediante PCA: la información a lo largo del eje o ejes menos importantes se elimina, dejando solo el(los) componente(s) de los datos con la mayor varianza. La fracción de varianza que se elimina (proporcional a la dispersión de los puntos alrededor de la línea formada en la figura anterior) es aproximadamente una medida de cuánta "información" se descarta en esta reducción de dimensionalidad.
+
+Este conjunto de datos de dimensión reducida resulta, en muchos casos, suficientemente informativo para capturar las relaciones más importantes entre los datos. A pesar de que el número de características se ha reducido en un 50%, las relaciones esenciales entre los puntos de datos se mantienen en gran medida. Esto demuestra la eficacia del PCA para preservar la estructura fundamental de los datos incluso cuando se reduce su complejidad.
+
+
+Para entender mejor cómo funciona esta técnica, es importante profundizar en el concepto de los componentes principales.
+
+--- CELL 21 [markdown] ---
+## ¿Qué son los componentes principales?
+
+
+
+La utilidad de la reducción de dimensionalidad puede no ser obvia en dos dimensiones, pero se vuelve mucho más clara cuando tenemos datos altamente dimensionales.
+
+Supongamos que tenemos $ n $ observaciones, cada una con $ k $ variables o atributos, representadas por $ X_1, X_2, \dots, X_k $. Por ejemplo, consideremos los gastos individuales promedio de las 38 ciudades relevadas por la [Encuesta Nacional de Presupuestos de los Hogares (ENPH) de Colombia](https://www.dane.gov.co/index.php/estadisticas-por-tema/pobreza-y-condiciones-de-vida/encuesta-nacional-de-presupuestos-de-los-hogares-enph) del DANE en 2017, que mide 12 categorías de gastos. Aquí, $ n $ serían las 38 ciudades y $ k $ las 12 variables asociadas al gasto.
+
+Una forma de examinar las relaciones entre estas variables sería mediante diagramas de dispersión para las $ n $ observaciones, examinando dos variables por vez. Sin embargo, con 12 variables, tendríamos que examinar 66 gráficas $\left(\binom{12}{2} = \frac{12 \times 11}{2} = 66\right)$.
+
+Si $ k $ es muy grande, como suele ser en estas aplicaciones, sería impracticable examinar todas las gráficas. Además, este método puede no ser muy informativo, ya que cada gráfico contiene solo una pequeña porción de toda la información disponible.
+
+Necesitamos entonces un método que nos permita encontrar una representación de baja dimensionalidad que contenga la mayor información posible. Siguiendo el ejemplo, buscaríamos representar estos datos de manera que capturemos la esencia de las 38 ciudades en un espacio reducido.
+
+Intuitivamente, el PCA plantea que cada observación se encuentra en un espacio $ k $-dimensional, pero no todas estas dimensiones son igualmente informativas. Por lo tanto, el PCA busca representar, o mejor dicho, proyectar, los datos originales a un espacio de menor dimensión de forma tal de retener la mayor cantidad de información posible. Estas nuevas dimensiones, encontradas por el PCA y llamadas componentes, son combinaciones lineales de las variables originales. El primer componente entonces tomará la forma:
+
+$$
+f_1 = \delta_{11} X_1 + \delta_{12} X_2 + \dots + \delta_{1k} X_k
+$$
+
+donde $ f_1 $ denota el primer componente principal y los $ \delta_{ij} $ son conocidos como pesos o *loadings* del primer componente principal. Esta ecuación claramente muestra  que el primer componente principal es una combinación lineal de las variables originales. 
+
+Dado que solo contamos datos sobre  $ X_1, X_2, \dots, X_k $, surge la pregunta: ¿Cómo se calculan estos 
+$\delta$'s que me permiten constuir los componentes?
+
+--- CELL 22 [markdown] ---
+## Cálculo de los componentes
+
+### Cálculo del primer componente
+
+
+Formalmente, supongamos que $X$ es una matriz $n \times k$ que contiene los datos de $n$ observaciones y $k$ variables, cada una centrada para tener media cero. La matriz $X$ tiene asociada una matriz de covarianza $S = \text{Var}(X)$, que es una matriz cuadrada de orden $k$.
+
+El objetivo del primer componente principal es encontrar la combinación lineal de las variables originales que maximice la varianza, preservando así la mayor cantidad de información posible. Esto se logra mediante el índice $f_1$, definido como:
+
+
+\begin{align}
+f_1 &= X \delta'_1 \\
+    &= \delta_{11} X_1+ \delta_{12} X_2 + \dots + \delta_{1k} X_k
+\end{align}
+
+donde $\delta_1$ es un vector de $k$ números reales $(\delta_1 = \delta_{11}, \dots, \delta_{1k})$. El desafío es seleccionar $\delta_1$ óptimamente, ya que este índice será la "mejor" combinación lineal de $X_1, X_2, \dots, X_k$.
+
+Definimos como "mejor" a aquella combinación lineal que maximiza la varianza. Dicho de otra forma, vamos a buscar maximizar la varianza de forma tal que podamos reproducir de la mejor manera posible la variabilidad (información) original de las variables $x_j$.
+
+Notando que
+
+\begin{align}
+Var(f_1) &= Var(X \delta'_1) \\
+       &= \delta_1 Var(X ) \delta'_1 \\
+       &= \delta_1 S \delta'_1 
+\end{align}
+
+el problema se reduce a elegir $\delta_1$ de forma que maximice $Var(X \delta_1)$. Maximizar $\delta_1 S \delta'_1$ tiene como solución trivial llevar $\delta_1$ a infinito $(\delta_1 \rightarrow \infty)$.
+
+
+
+Para evitar la solución trivial de $\delta_1$ tendiendo a infinito, añadimos una restricción adicional que normaliza $\delta_1$:
+
+\begin{align}
+\delta_1\delta'_1=1
+\end{align}
+
+Esto restringe a que la suma del cuadrado de los  pesos o *loadings* sean igual a uno, ya que si lo restringimos a que sea un número arbitrariamente grande esto podría resultar en una varianza arbitrariamente grande. 
+
+El problema entonces queda definido como:
+
+\begin{align}
+\underset{\delta_1}{max}\,\, \delta_1 S \delta'_1 \\ 
+\text{sujeto a}  \\ 
+\delta_1 \delta'_1 = 1 
+\end{align}
+
+El Lagrangiano asociado es:
+
+\begin{align}
+\mathcal{L} = \delta_1 S \delta'_1 + \lambda_1 (1-\delta_1\delta'_1)
+\end{align}
+
+y maximizamos esta expresión de la forma habitual derivando respecto a $\delta_1$ e igualando a cero:
+
+\begin{align}
+\frac{\partial \mathcal{L}}{\partial \delta_1}=S \delta'_1 - \lambda_1 \delta'_1 =0
+\end{align}
+
+Reordenando: 
+
+\begin{align}
+S \delta'_1 = \lambda_1 \delta'_1
+\end{align}
+
+En el óptimo, $\delta_1$ es el eigenvector correspondiente al eigenvalor $\lambda$. Pre multiplicando la ecuación anterior por $\delta_1$ y usando la restricción $\delta_1\delta'_1=1$:
+
+\begin{align}
+\delta_1 S \delta'_1 = \lambda_1 
+\end{align}
+
+para maximizar $\delta_1 S \delta'_1$ debemos elegir $\lambda_1$ igual al máximo eigenvalor de $S$ y $\delta_1$ igual al eigenvalor correspondiente. Notando además que $\delta_1 S \delta'_1=Var(X \delta'_1)$, el problema de encontrar la mejor combinación lineal que reproduce la variabilidad en $X$ se reduce a encontrar el mayor eigenvalor de $S$ y su correspondiente eigenvector.
+
+--- CELL 23 [markdown] ---
+#### Ejemplo cálculo primer componente
+
+Ilustremos en detalle el cálculo del primer componente principal en `Python` utilizando los datos mencionados anteriormente de la  
+[Encuesta Nacional de Presupuestos de los Hogares (ENPH) de Colombia](https://www.dane.gov.co/index.php/estadisticas-por-tema/pobreza-y-condiciones-de-vida/encuesta-nacional-de-presupuestos-de-los-hogares-enph), realizada por el DANE en 2017. El archivo `gasto_col_2017_norm_all.csv` disponible en la carpeta `data`, contiene los gastos individuales promedios estandarizados en las 12 divisiones que releva el DANE para 38 ciudades colombianas.
+
+--- CELL 24 [code] ---
+#Cargamos las librerías a utilizar
+import numpy as np
+import pandas as pd
+
+
+# Cargamos y visualizamos la primeras observaciones de los datos
+gasto = pd.read_csv('data/gasto_col_2017_norm_all.csv')
+gasto = gasto.set_index("Ciudad")
+gasto.head()
+[OUTPUT]
+                 Alimentos y bebidas no alcohólicas  \
+Ciudad                                                
+Arauca                                    -0.893243   
+Armenia                                    1.411143   
+Barrancabermeja                           -1.145930   
+Barranquilla                              -0.183745   
+Bogotá                                     1.355724   
+
+                 Bebidas alcohólicas y tabaco  Prendas de vestir y calzado  \
+Ciudad                                                                       
+Arauca                              -1.491704                    -1.212847   
+Armenia                             -0.317263                     1.339782   
+Barrancabermeja                      0.551373                    -0.644432   
+Barranquilla                        -0.774835                    -0.837466   
+Bogotá                               0.255023                     1.774131   
+
+                 Alojamiento, agua, electricidad, gas y otros combustibles  \
+Ciudad                                                                       
+Arauca                                                   -0.187501           
+Armenia                                                   0.137351           
+Barrancabermeja                                           1.074275           
+Barranquilla                                              0.785821           
+Bogotá                                                    2.718554           
+
+                 Muebles, artículos para el hogar y para la conservación ordinaria del hogar  \
+Ciudad                                                                                         
+Arauca                                                   -0.765951                             
+Armenia                                                   1.208855                             
+Barrancabermeja                                          -0.491341                             
+Barranquilla                                              0.114857                             
+Bogotá                                                    2.523217                             
+
+                    Salud  Transporte  Información y comunicación  \
+Ciudad                                                              
+Arauca          -0.125062   -1.344088                   -0.438465   
+Armenia          0.434314    0.691669                    0.965570   
+Barrancabermeja -0.752697   -0.093582                    0.292479   
+Barranquilla    -0.859420    0.275332                    0.132708   
+Bogotá           2.745217    2.313395                    2.381936   
+
+                 Recreación y cultura  Educación  Restaurantes y hoteles  \
+Ciudad                                                                     
+Arauca                      -0.757958  -1.028321               -0.413888   
+Armenia                      1.631818   0.528711                0.552798   
+Barrancabermeja             -0.566821   0.966586               -0.519878   
+Barranquilla                -0.651846   0.503810                0.101591   
+Bogotá                       2.830021   3.943969                2.210651   
+
+                 Bienes y servicios diversos  
+Ciudad                                        
+Arauca                             -0.778491  
+Armenia                             1.380602  
+Barrancabermeja                    -0.693592  
+Barranquilla                       -0.368188  
+Bogotá                              3.572333  
+
+--- CELL 25 [markdown] ---
+La matriz de varianzas es:
+
+--- CELL 26 [code] ---
+S = gasto.cov()
+S
+[OUTPUT]
+                                                    Alimentos y bebidas no alcohólicas  \
+Alimentos y bebidas no alcohólicas                                            1.000000   
+Bebidas alcohólicas y tabaco                                                 -0.109692   
+Prendas de vestir y calzado                                                   0.495619   
+Alojamiento, agua, electricidad, gas y otros co...                            0.582737   
+Muebles, artículos para el hogar y para la cons...                            0.495742   
+Salud                                                                         0.471145   
+Transporte                                                                    0.608363   
+Información y comunicación                                                    0.571717   
+Recreación y cultura                                                          0.573661   
+Educación                                                                     0.312434   
+Restaurantes y hoteles                                                        0.597362   
+Bienes y servicios diversos                                                   0.567729   
+
+                                                    Bebidas alcohólicas y tabaco  \
+Alimentos y bebidas no alcohólicas                                     -0.109692   
+Bebidas alcohólicas y tabaco                                            1.000000   
+Prendas de vestir y calzado                                             0.306479   
+Alojamiento, agua, electricidad, gas y otros co...                      0.123159   
+Muebles, artículos para el hogar y para la cons...                      0.160313   
+Salud                                                                   0.217241   
+Transporte                                                              0.061755   
+Información y comunicación                                              0.097980   
+Recreación y cultura                                                    0.114252   
+Educación                                                               0.391655   
+Restaurantes y hoteles                                                  0.272012   
+Bienes y servicios diversos                                             0.112145   
+
+                                                    Prendas de vestir y calzado  \
+Alimentos y bebidas no alcohólicas                                     0.495619   
+Bebidas alcohólicas y tabaco                                           0.306479   
+Prendas de vestir y calzado                                            1.000000   
+Alojamiento, agua, electricidad, gas y otros co...                     0.585451   
+Muebles, artículos para el hogar y para la cons...                     0.727421   
+Salud                                                                  0.662653   
+Transporte                                                             0.715641   
+Información y comunicación                                             0.762142   
+Recreación y cultura                                                   0.809477   
+Educación                                                              0.516538   
+Restaurantes y hoteles                                                 0.614922   
+Bienes y servicios diversos                                            0.752943   
+
+                                                    Alojamiento, agua, electricidad, gas y otros combustibles  \
+Alimentos y bebidas no alcohólicas                                                           0.582737           
+Bebidas alcohólicas y tabaco                                                                 0.123159           
+Prendas de vestir y calzado                                                                  0.585451           
+Alojamiento, agua, electricidad, gas y otros co...                                           1.000000           
+Muebles, artículos para el hogar y para la cons...                                           0.713916           
+Salud                                                                                        0.636513           
+Transporte                                                                                   0.845582           
+Información y comunicación                                                                   0.902452           
+Recreación y cultura                                                                         0.723503           
+Educación                                                                                    0.715976           
+Restaurantes y hoteles                                                                       0.752515           
+Bienes y servicios diversos                                                                  0.700189           
+
+                                                    Muebles, artículos para el hogar y para la conservación ordinaria del hogar  \
+Alimentos y bebidas no alcohólicas                                                           0.495742                             
+Bebidas alcohólicas y tabaco                                                                 0.160313                             
+Prendas de vestir y calzado                                                                  0.727421                             
+Alojamiento, agua, electricidad, gas y otros co...                                           0.713916                             
+Muebles, artículos para el hogar y para la cons...                                           1.000000                             
+Salud                                                                                        0.831954                             
+Transporte                                                                                   0.711275                             
+Información y comunicación                                                                   0.817359                             
+Recreación y cultura                                                                         0.852655                             
+Educación                                                                                    0.730507                             
+Restaurantes y hoteles                                                                       0.717116                             
+Bienes y servicios diversos                                                                  0.906378                             
+
+                                                       Salud  Transporte  \
+Alimentos y bebidas no alcohólicas                  0.471145    0.608363   
+Bebidas alcohólicas y tabaco                        0.217241    0.061755   
+Prendas de vestir y calzado                         0.662653    0.715641   
+Alojamiento, agua, electricidad, gas y otros co...  0.636513    0.845582   
+Muebles, artículos para el hogar y para la cons...  0.831954    0.711275   
+Salud                                               1.000000    0.687662   
+Transporte                                          0.687662    1.000000   
+Información y comunicación                          0.756753    0.876501   
+Recreación y cultura                                0.759222    0.753856   
+Educación                                           0.644640    0.541518   
+Restaurantes y hoteles                              0.575923    0.609104   
+Bienes y servicios diversos                         0.862940    0.744365   
+
+                                                    Información y comunicación  \
+Alimentos y bebidas no alcohólicas                                    0.571717   
+Bebidas alcohólicas y tabaco                                          0.097980   
+Prendas de vestir y calzado                                           0.762142   
+Alojamiento, agua, electricidad, gas y otros co...                    0.902452   
+Muebles, artículos para el hogar y para la cons...                    0.817359   
+Salud                                                                 0.756753   
+Transporte                                                            0.876501   
+Información y comunicación                                            1.000000   
+Recreación y cultura                                                  0.820075   
+Educación                                                             0.661615   
+Restaurantes y hoteles                                                0.723408   
+Bienes y servicios diversos                                           0.811954   
+
+                                                    Recreación y cultura  \
+Alimentos y bebidas no alcohólicas                              0.573661   
+Bebidas alcohólicas y tabaco                                    0.114252   
+Prendas de vestir y calzado                                     0.809477   
+Alojamiento, agua, electricidad, gas y otros co...              0.723503   
+Muebles, artículos para el hogar y para la cons...              0.852655   
+Salud                                                           0.759222   
+Transporte                                                      0.753856   
+Información y comunicación                                      0.820075   
+Recreación y cultura                                            1.000000   
+Educación                                                       0.728247   
+Restaurantes y hoteles                                          0.663229   
+Bienes y servicios diversos                                     0.901303   
+
+                                                    Educación  \
+Alimentos y bebidas no alcohólicas                   0.312434   
+Bebidas alcohólicas y tabaco                         0.391655   
+Prendas de vestir y calzado                          0.516538   
+Alojamiento, agua, electricidad, gas y otros co...   0.715976   
+Muebles, artículos para el hogar y para la cons...   0.730507   
+Salud                                                0.644640   
+Transporte                                           0.541518   
+Información y comunicación                           0.661615   
+Recreación y cultura                                 0.728247   
+Educación                                            1.000000   
+Restaurantes y hoteles                               0.607793   
+Bienes y servicios diversos                          0.756648   
+
+                                                    Restaurantes y hoteles  \
+Alimentos y bebidas no alcohólicas                                0.597362   
+Bebidas alcohólicas y tabaco                                      0.272012   
+Prendas de vestir y calzado                                       0.614922   
+Alojamiento, agua, electricidad, gas y otros co...                0.752515   
+Muebles, artículos para el hogar y para la cons...                0.717116   
+Salud                                                             0.575923   
+Transporte                                                        0.609104   
+Información y comunicación                                        0.723408   
+Recreación y cultura                                              0.663229   
+Educación                                                         0.607793   
+Restaurantes y hoteles                                            1.000000   
+Bienes y servicios diversos                                       0.678442   
+
+                                                    Bienes y servicios diversos  
+Alimentos y bebidas no alcohólicas                                     0.567729  
+Bebidas alcohólicas y tabaco                                           0.112145  
+Prendas de vestir y calzado                                            0.752943  
+Alojamiento, agua, electricidad, gas y otros co...                     0.700189  
+Muebles, artículos para el hogar y para la cons...                     0.906378  
+Salud                                                                  0.862940  
+Transporte                                                             0.744365  
+Información y comunicación                                             0.811954  
+Recreación y cultura                                                   0.901303  
+Educación                                                              0.756648  
+Restaurantes y hoteles                                                 0.678442  
+Bienes y servicios diversos                                            1.000000  
+
+--- CELL 27 [markdown] ---
+Los valores propios son las raíces de la ecuación:
+
+$$|S-\lambda I| =0 $$
+
+y los obtenemos en `Python` con:
+
+--- CELL 28 [code] ---
+eig_val, eig_vec = np.linalg.eig(S)
+eig_val
+[OUTPUT]
+array([8.04161786, 1.24800433, 0.69064927, 0.56682795, 0.47481665,
+       0.31851504, 0.29033023, 0.03105681, 0.04900975, 0.111482  ,
+       0.09836909, 0.07932102])
+
+--- CELL 29 [markdown] ---
+El máximo eigenvalor es el primero y el eigenvector  asociado a este eigenvalor nos dará los pesos o *loadings* del primer componente principal:
+
+--- CELL 30 [code] ---
+eig_vec=eig_vec.T
+eig_vec[[0]].round(2)
+[OUTPUT]
+array([[0.23, 0.07, 0.29, 0.31, 0.32, 0.3 , 0.3 , 0.33, 0.32, 0.28, 0.28,
+        0.33]])
+
+--- CELL 31 [markdown] ---
+Por lo tanto, el primer componente principal es:
+
+\begin{align}
+f_1 =  0.23 \times \text{Alimentos y bebidas no alcohólicas} + 0.07 \times \text{Bebidas alcohólicas y tabaco} + \dots + 0.33 \times \text{Bienes y servicios diversos}
+\end{align}
+
+Calculando este componente para cada una de las ciudades tenemos entonces un índice que reduce las tres variables en una:
+
+--- CELL 32 [code] ---
+f1=gasto.dot(eig_vec[[0]].T) #calculamos f1
+f1.columns = ['CP1'] #nombramos la columna del primer componente como CP1
+f1.head()
+[OUTPUT]
+                      CP1
+Ciudad                   
+Arauca          -2.465760
+Armenia          3.062761
+Barrancabermeja -0.687593
+Barranquilla    -0.359423
+Bogotá           8.604254
+
+--- CELL 33 [markdown] ---
+Si ordenamos las ciudades según esta nueva variable construida (PCA), se puede notar que las ciudades quedan prácticamente ordenadas por su ingreso. El primer componente principal entonces esta proyectando sobre una medida relacionada al poder de gasto de las ciudades.
+
+--- CELL 34 [code] ---
+f1.sort_values(by='CP1', ascending=False).head()
+[OUTPUT]
+                         CP1
+Ciudad                      
+Bogotá              8.604254
+Medellín y A.M.     4.429535
+Manizales y A.M.    4.134911
+Tunja               3.806251
+Bucaramanga y A.M.  3.747163
+
+--- CELL 35 [markdown] ---
+### Cálculo del segundo componente principal
+
+Luego de calcular el primer componente principal $f_1$, podemos encontrar también el segundo componente principal, $f_2$:
+
+\begin{align}
+f_2 &= X \delta'_2 \\ 
+    &= \delta_{21} X_1+ \delta_{22} X_2 + \dots + \delta_{2k} X_k
+\end{align}
+
+El segundo componente principal, será la combinación lineal que tiene la máxima varianza de todas las combinaciones lineales ortogonales a $f_1$. En otras palabras, responde a la pregunta: ¿Cuál es la mejor combinación lineal de las variables $X_1,X_2,\dots,X_k$ no correlacionada al primer componente principal? Intuitivamente, esta es la "segunda mejor" combinación lineal de $X_1,X_2,\dots,X_k$, que no esta contenida en el primer componente. 
+
+
+
+El cálculo del segundo componente entonces responde al siguiente problema:
+
+\begin{align}
+\underset{\delta_2}{max}\,\, \delta_2 S \delta'_2 \\
+\text{sujeto a}   \\
+\delta_2 \delta'_2 &= 1  
+y \\ 
+\delta_2 \delta'_1 &=0 \\ \nonumber
+\end{align}
+
+
+Donde el objetivo a maximizar y la primera restricción son similares al del problema del primer componente. La diferencia surge en la segunda restricción donde imponemos que $\delta_1 \delta'_2  =0$ lo que asegura que los componentes no estén correlacionados (que sean ortogonales). Escribiendo el Lagrangiano,
+
+\begin{align}
+\mathcal{L} = \delta_2 S \delta'_2 + \lambda_2 (1-\delta_2\delta'_2 + \lambda_{21} (0-\delta_1 \delta'_2)
+\end{align}
+
+y maximizaremos esta expresión de la forma habitual derivando respecto a $\delta_2$ e igualando a cero:
+
+\begin{align}
+\frac{\partial \mathcal{L}}{\partial \delta_2}= -2 S \delta'_2 - \lambda_2 2 \delta'_2 - \lambda_{21}\delta'_1=0
+\end{align}
+
+Pre multiplicando por $\delta_1$
+
+
+\begin{align}
+     -2 \delta_1 S \delta'_2 - \lambda_2 2 \delta_1 \delta'_2 - \lambda_{21}\delta_1 \delta'_1 = 0
+\end{align}
+
+Notemos que $\delta_1 \delta'_1 =1$ por lo tanto $\lambda_{21}=0$, y que $\delta_1 \delta'_2 =0$. Usando estas  ecuaciones tenemos:
+
+
+\begin{align}
+ S \delta'_2 &= \lambda_2 \delta'_2 \\
+\delta_2  S \delta'_2 &= \lambda_2 
+\end{align}
+
+
+De forma que $\delta_2$ es un eigenvector de $S$, y puesto que queremos maximizar la varianza, deberíamos elegir el eigenvector asociado al eigenvalue mas grande, pero este ya lo utilizamos para el primer componente. Entonces $\delta_2$  es el eigenvector asociado al segundo eigenvalue mas grande.
+
+
+
+Siguiendo esta lógica, por inducción es posible seguir calculando componentes cada uno ortogonal entre si y decrecientes en importancia. En general, para una matriz $X$ con  $n$ observaciones y $k$ variables tiene al menos el mínimo entre el número de observaciones menos 1 $(n-1)$ y el número de variables $(k)$, i.e.  $min(n-1,k)$, componentes principales distintos.
+
+--- CELL 36 [markdown] ---
+#### Ejemplo cálculo PCA (cont.)
+
+Continuando con el ejemplo anterior, el segundo componente principal es aquel que esta asociado al segundo eigenvalue mayor, que es 1.24.
+
+--- CELL 37 [code] ---
+eig_val
+[OUTPUT]
+array([8.04161786, 1.24800433, 0.69064927, 0.56682795, 0.47481665,
+       0.31851504, 0.29033023, 0.03105681, 0.04900975, 0.111482  ,
+       0.09836909, 0.07932102])
+
+--- CELL 38 [markdown] ---
+El eigenvector asociado a este eigenvalue:
+
+--- CELL 39 [code] ---
+eig_vec[[1]]
+[OUTPUT]
+array([[ 0.41437165, -0.80733806, -0.09214338,  0.08698263, -0.04041083,
+        -0.07335521,  0.18556878,  0.10101598,  0.03214793, -0.32333552,
+        -0.05470794,  0.01478763]])
+
+--- CELL 40 [markdown] ---
+El segundo componente principal es:
+
+\begin{align}
+f_2 =  -0.46 \times \text{Alimentos y bebidas no alcohólicas} + (-0.35) \times \text{Bebidas alcohólicas y tabaco} + \dots + 0.31 \times \text{Bienes y servicios diversos}
+\end{align}
+
+Calculando este para cada una de las ciudades tenemos entonces un índice que reduce las tres variables en una:
+
+--- CELL 41 [code] ---
+f2=gasto.dot(eig_vec[[1]].T) #calculamos f2
+f2.columns = ['CP2'] #nombramos la columna del primer componente como CP2
+f2.sort_values(by='CP2', ascending=False).head()
+[OUTPUT]
+                         CP2
+Ciudad                      
+Rionegro            1.590442
+Mitú                1.317832
+Bucaramanga y A.M.  1.064920
+Pereira y A.M.      1.028697
+Arauca              0.995292
+
+--- CELL 42 [markdown] ---
+## Cálculo de componentes principales con el paquete  `PCA`
+
+
+Ahora, vamos a realizar el cálculo de los componentes pricipales utilizando el paquete [pca](https://pypi.org/project/pca/) disponible en `PyPI`. Esta biblioteca es una herramienta de análisis de componentes principales que proporciona una interfaz fácil de usar y expande las capacidades que tiene la clase  [PCA](https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html)  de la librería [scikit-learn](https://scikit-learn.org/stable/) 
+
+
+
+Entonces iniciemos importando la librería:
+
+--- CELL 43 [code] ---
+# Carguemos el paquete
+from pca import pca
+
+--- CELL 44 [markdown] ---
+Con el paquete [pca](https://pypi.org/project/pca/)  importado, el siguiente paso es inicializar un objeto PCA. La biblioteca `pca` proporciona una clase `pca` que podemos utilizar para este propósito. Una vez que tengamos nuestro objeto PCA, podemos ajustarlo a nuestros datos.
+
+A diferencia de la biblioteca scikit-learn](https://scikit-learn.org/stable/) 
+, el paquete [pca](https://pypi.org/project/pca/)  combina los pasos de ajuste y transformación en una sola función, lo que simplifica el proceso. Además, este paquete proporciona visualizaciones integradas que nos permiten ver fácilmente los resultados del PCA.
+
+Vamos a inicializar nuestro objeto PCA y ajustarlo a nuestros datos.
+
+--- CELL 45 [code] ---
+# Inicializamos el objeto PCA
+model = pca(n_components=2)
+
+--- CELL 46 [code] ---
+# Ajustamos el PCA a nuestros datos 
+gasto_pca = model.fit_transform(gasto, verbose=False)
+
+--- CELL 47 [markdown] ---
+El método nos retorna un diccionario con multiples componentes. Por ahora nos interesan particularmente los *loadings*
+
+--- CELL 48 [code] ---
+gasto_pca['loadings']
+[OUTPUT]
+     Alimentos y bebidas no alcohólicas  Bebidas alcohólicas y tabaco  \
+PC1                            0.229523                      0.075000   
+PC2                           -0.414372                      0.807338   
+
+     Prendas de vestir y calzado  \
+PC1                     0.290238   
+PC2                     0.092143   
+
+     Alojamiento, agua, electricidad, gas y otros combustibles  \
+PC1                                           0.307090           
+PC2                                          -0.086983           
+
+     Muebles, artículos para el hogar y para la conservación ordinaria del hogar  \
+PC1                                           0.322190                             
+PC2                                           0.040411                             
+
+        Salud  Transporte  Información y comunicación  Recreación y cultura  \
+PC1  0.299419    0.304631                    0.328533              0.324178   
+PC2  0.073355   -0.185569                   -0.101016             -0.032148   
+
+     Educación  Restaurantes y hoteles  Bienes y servicios diversos  
+PC1   0.275263                0.283823                     0.327937  
+PC2   0.323336                0.054708                    -0.014788  
+
+--- CELL 49 [markdown] ---
+y los componentes principales.
+
+--- CELL 50 [code] ---
+gasto_pca['PC']
+[OUTPUT]
+                            PC1       PC2
+Arauca                -2.465760 -0.995292
+Armenia                3.062761 -0.746234
+Barrancabermeja       -0.687593  0.992482
+Barranquilla          -0.359423 -0.622977
+Bogotá                 8.604254  0.456917
+Bucaramanga y A.M.     3.747163 -1.064920
+Buenaventura          -2.177006  0.124911
+Cali                   3.356678  0.302655
+Cartagena             -0.401153  0.012728
+Cúcuta y A.M.         -0.939191 -0.925839
+Florencia             -2.444097 -0.077411
+Ibagué                 0.728506 -0.886609
+Inírida               -2.296187  3.840714
+Leticia               -2.910621 -0.294022
+Manizales y A.M.       4.134911 -0.174609
+Medellín y A.M.        4.429535 -0.304620
+Mitú                  -3.876915 -1.317832
+Mocoa                 -1.346317  2.011299
+Montería              -1.916648  0.370743
+Neiva                  1.365610 -0.054708
+Pasto                  1.281469 -0.667128
+Pereira y A.M.         1.390810 -1.028697
+Popayán                0.007878  0.149165
+Puerto Carreño        -2.379953 -0.415733
+Quibdó                -3.460953 -0.740763
+Riohacha              -1.786795  0.119186
+Rionegro               1.063487 -1.590442
+San Andrés             2.191196  0.173490
+San José del Guaviare -0.755714  1.162708
+Santa Marta           -2.853781 -0.581124
+Sincelejo             -1.535392  0.364872
+Soledad               -3.713433 -0.717987
+Tumaco                -2.701492 -0.481271
+Tunja                  3.806251 -0.544469
+Valledupar            -1.868589  1.046082
+Villavicencio          2.998115  0.042717
+Yopal                  2.262353  3.234179
+Yumbo                 -1.553966 -0.172161
+
+--- CELL 51 [markdown] ---
+Notemos que son numericamente iguales a los encontrados anteriormente, aunque no necesariamente coincide el signo (estudiaremos por qué sucede esto en el próximo cuaderno).
+
+La biblioteca `pca` proporciona varias funcionalidades extras. Entre ellas la función `biplot` que nos permite visualizar fácilmente los componentes principales y los *loadings* en un sólo gráfico.  Este tipo de gráfico nos muestra tanto las puntuaciones de las observaciones (en este caso, las ciudades) como los vectores de carga de las variables (características de los gastos) en el mismo espacio de representación. Esto es útil porque te permite ver la relación entre las observaciones, cómo se relacionan con las dimensiones del PCA, y cómo las variables contribuyen a estas dimensiones.
+
+Creemos un biplot de nuestros resultados:
+
+--- CELL 52 [code] ---
+import matplotlib 
+
+# Creamos el biplot
+fig, ax = model.biplot(legend=False, color_arrow="red", arrowdict={'color_text':"black"})
+[OUTPUT]
+[pca] >Plot PC1 vs PC2 with loadings.
+
+<Figure size 2500x1500 with 1 Axes>
+
+--- CELL 53 [markdown] ---
+El biplot mostrado ilustra los dos primeros componentes principales: PC1 y PC2, representados en los ejes x e y, respectivamente. Las flechas indican los *loadings* de las variables en estos componentes, donde la dirección y longitud de cada flecha revelan cómo contribuye cada variable a los componentes principales.
+
+Cada punto en el biplot simboliza una ciudad. La cercanía entre los puntos refleja similitudes en los perfiles de gasto de dichas ciudades. Además, la posición relativa de un punto respecto a los ejes principales nos muestra cómo las características específicas de cada componente influyen en las ciudades.
+
+Las flechas representan variables de gasto. Aquellas que apuntan en la misma dirección sugieren una correlación positiva entre las variables. La longitud de cada flecha mide la magnitud de la influencia de esa variable sobre las ciudades a través de las componentes principales. Por defecto, la gráfica destaca el *loading* mas grande de la variable, por ejemplo,  para **Bebidas alcohólicas y tabaco** destaca el *loading* de 0.807338 en el segundo componente, y para **Prendas de vestir y calzado** el *loading* de 0.290238 en el primer componente.
+
+
+El biplot es una herramienta poderosa para interpretar un PCA ya que integra información tanto de las observaciones como de las variables en un único gráfico visual. Esto facilita la comprensión de la estructura subyacente de los datos y el modo en que las variables contribuyen a la variabilidad explicada por los componentes principales.
+
+Finalmente, es importante destacar que la interpretación de un biplot puede resultar compleja, especialmente con conjuntos de datos de alta dimensionalidad. No obstante, sigue siendo una herramienta valiosa para la exploración inicial de datos y la visualización de las dinámicas subyacentes en los mismos.
+
+--- CELL 54 [markdown] ---
+# Referencias
+
+
+-   Ahumada, H. A., Gabrielli, M. F., Herrera Gomez, M. H., & Sosa
+    Escudero, W. (2018). Una nueva econometría: Automatización, big
+    data, econometría espacial y estructural.
+
+-   DANE (29 de Septiembre de 2020). Encuesta nacional de presupuestos
+    de los hogares (ENPH). Anexos: 32 ciudades y 6 ciudades intermedias.
+    <https://www.dane.gov.co/files/investigaciones/boletines/enph/ciudades-enph-2017.xls>
+
+-   Deisenroth, M. P., Faisal, A. A., & Ong, C. S. (2020). Mathematics
+    for machine learning. Cambridge University Press.
+
+-   James, G., Witten, D., Hastie, T., & Tibshirani, R. (2013). An
+    introduction to statistical learning (Vol. 112, p. 18). New York:
+    springer.
+
+-   Murphy, K. P. (2012). Machine learning: a probabilistic perspective.
+    MIT press.
+
+-   Peña, D. (2002). Análisis de datos multivariantes (Vol. 24). Madrid:
+    McGraw-hill.
+    
+-   VanderPlas, J. (2016). Python data science handbook: Essential tools for working with data. " O'Reilly Media, Inc.".
+
+--- CELL 55 [markdown] ---
+# Información de Sesión
+
+--- CELL 56 [code] ---
+import session_info
+
+
+session_info.show(html=False)
+[OUTPUT]
+-----
+matplotlib          3.5.3
+numpy               1.21.6
+pandas              1.3.5
+pca                 2.0.3
+session_info        1.0.0
+sklearn             1.0.2
+-----
+IPython             7.34.0
+jupyter_client      7.4.9
+jupyter_core        4.12.0
+jupyterlab          2.1.1
+notebook            6.0.3
+-----
+Python 3.7.6 | packaged by conda-forge | (default, Mar 23 2020, 23:03:20) [GCC 7.3.0]
+Linux-6.5.0-1020-aws-x86_64-with-debian-buster-sid
+-----
+Session information updated at 2024-08-01 13:31

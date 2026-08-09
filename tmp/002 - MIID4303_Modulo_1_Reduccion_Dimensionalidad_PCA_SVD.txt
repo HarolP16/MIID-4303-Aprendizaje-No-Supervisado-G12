@@ -1,0 +1,332 @@
+PPTX: 002 - MIID4303_Modulo_1_Reduccion_Dimensionalidad_PCA_SVD.pptx
+slides=18
+
+--- SLIDE 1 ---
+MIAD
+MAESTRÍA EN INTELIGENCIA ANALÍTICA DE DATOS
+MÓDULO 1 · VIDEO INTRODUCTORIO
+Reducción de
+dimensionalidad
+Cómo representar datos complejos en menos dimensiones conservando la mayor información posible.
+X
+→
+j dimensiones
+PCA · SVD
+Guía visual de estudio
+
+--- SLIDE 2 ---
+Ruta de aprendizaje
+Del problema de muchas variables a una representación compacta e interpretable.
+1
+Dimensionalidad
+Qué significan n y k en una matriz de datos.
+2
+Problema
+Por qué muchas variables dificultan visualizar y aprender.
+3
+Estructura
+Cómo atributos distintos pueden resumirse en factores.
+4
+PCA
+Combinaciones lineales que maximizan la varianza.
+5
+SVD
+Factorización matricial y recuperación con pocos valores singulares.
+RESULTADO ESPERADO
+Comprender por qué PCA y SVD permiten conservar información útil usando menos dimensiones.
+2
+
+--- SLIDE 3 ---
+¿Qué entendemos por dimensionalidad?
+La dimensión del problema está asociada al número de variables o atributos observados.
+Matriz de datos
+X
+n × k
+n observaciones
+k variables
+EN ESTE CURSO
+Cuando hablamos de dimensionalidad, nos concentramos en k: el número de columnas o atributos.
+EJEMPLO
+Si k = 2, observamos dos atributos por cada casa: área construida y número de habitaciones.
+PREGUNTA CENTRAL
+¿Cómo representar los datos en una dimensión menor sin perder la información esencial?
+3
+
+--- SLIDE 4 ---
+Ejemplo inicial: casas con dos atributos
+Con dos variables todavía es posible inspeccionar los datos visualmente.
+Área construida vs. número de habitaciones
+Área construida
+Habitaciones
+2
+variables
+La relación puede verse en un único diagrama de dispersión.
+INTERPRETACIÓN
+A medida que aumenta el área, suele aumentar el número de habitaciones.
+4
+
+--- SLIDE 5 ---
+Cuando k crece, visualizar deja de ser viable
+El número de pares de variables aumenta rápidamente.
+5 variables
+10
+diagramas
+20 variables
+190
+diagramas
+Matriz de gráficos
+PROBLEMA
+Revisar 190 gráficos no solo es lento: también dificulta encontrar patrones globales y comunicar resultados.
+5
+
+--- SLIDE 6 ---
+Las variables pueden contener información redundante
+Varios atributos pueden resumirse mediante factores más generales.
+1
+Área construida
+2
+Habitaciones
+3
+Baños
+4
+Escuelas cercanas
+5
+Tasa de delito
+FACTOR 1
+Tamaño de la casa
+FACTOR 2
+Ubicación
+PREGUNTA AUTOMÁTICA
+¿Podemos construir estos factores sin definirlos manualmente?
+RESPUESTA DEL CURSO
+Sí. PCA y SVD buscan representaciones más compactas a partir de la estructura de los datos.
+6
+
+--- SLIDE 7 ---
+¿Qué busca la reducción de dimensionalidad?
+Menos dimensiones, pero conservando la estructura informativa de los datos.
+1
+Reducir complejidad
+Trabajar con menos variables o factores.
+2
+Mantener interpretabilidad
+Construir dimensiones que puedan explicarse.
+3
+Minimizar pérdida
+Conservar la mayor información posible.
+4
+Facilitar análisis
+Visualizar, comparar y comunicar mejor.
+PRINCIPIO
+La mejor representación reducida no es la que elimina más variables, sino la que conserva la información útil con el menor número de dimensiones.
+7
+
+--- SLIDE 8 ---
+PCA: construir componentes que maximicen la varianza
+El análisis de componentes principales crea combinaciones lineales de las variables originales.
+Componente principal
+PC₁ = δ₁X₁ + δ₂X₂ + ... + δₖXₖ
+Los pesos δ indican cuánto aporta cada variable al componente.
+OBJETIVO
+Encontrar los pesos que maximizan la varianza, para preservar la mayor información posible.
+Idea geométrica
+dirección de mayor variación
+8
+
+--- SLIDE 9 ---
+Interpretar un componente a partir de sus pesos
+Los pesos altos revelan qué variables definen el significado del factor.
+Peso relativo en el componente
+Área
+86%
+Habitaciones
+80%
+Baños
+72%
+Escuelas
+18%
+Delito
+10%
+Interpretación
+El componente captura principalmente atributos asociados al tamaño de la vivienda.
+CUIDADO
+Un componente no recibe un nombre automáticamente. La interpretación surge al revisar los pesos de las variables.
+9
+
+--- SLIDE 10 ---
+SVD: factorizar la matriz original
+La descomposición en valores singulares expresa X como el producto de tres matrices.
+X = U · S · Vᵀ
+U
+direcciones en observaciones
+×
+S
+valores singulares
+×
+Vᵀ
+direcciones en variables
+INTUICIÓN
+Si conservamos solo los valores singulares más importantes, podemos aproximar X usando muchos menos elementos.
+10
+
+--- SLIDE 11 ---
+SVD en imágenes: menos valores, más compresión
+Una imagen en escala de grises puede representarse como una matriz de intensidades.
+2 valores
+Muy poca información
+5 valores
+La figura comienza a verse
+18 valores
+Más del 99% recuperado
+LECTURA
+Aumentar el número de valores singulares mejora la reconstrucción, pero reduce el nivel de compresión.
+11
+
+--- SLIDE 12 ---
+PCA y SVD: dos caminos hacia una representación compacta
+Ambas técnicas reducen dimensión, pero parten de formulaciones distintas.
+Aspecto
+PCA
+SVD
+Idea central
+Combinaciones lineales
+Factorización matricial
+Criterio
+Maximizar varianza
+Conservar valores singulares principales
+Salida
+Componentes
+Matrices U, S y Vᵀ
+Interpretación
+Pesos por variable
+Importancia de valores singulares
+Ejemplo del video
+Factores de vivienda
+Compresión de imagen
+12
+
+--- SLIDE 13 ---
+Proceso general para reducir dimensionalidad
+Una secuencia simple para aplicar las técnicas correctamente.
+1
+Definir X
+Observaciones × variables
+2
+Revisar k
+Identificar alta dimensionalidad
+3
+Preparar
+Escalas y estructura de datos
+4
+Aplicar
+PCA o SVD
+5
+Seleccionar j
+Número de componentes o valores
+6
+Interpretar
+Información preservada y significado
+DECISIÓN CLAVE
+El número reducido j debe equilibrar compresión e información conservada.
+13
+
+--- SLIDE 14 ---
+Errores comunes al interpretar reducción de dimensión
+Reducir no significa eliminar información sin criterio.
+ERROR 1
+Confundir n con k
+La dimensionalidad se refiere al número de variables, no al número de observaciones.
+ERROR 2
+Reducir demasiado
+Usar muy pocos componentes puede perder estructura importante.
+ERROR 3
+No interpretar pesos
+En PCA, los pesos ayudan a explicar qué representa cada componente.
+ERROR 4
+Asumir que más siempre es mejor
+Más componentes recuperan información, pero reducen la compresión.
+PARA RECORDAR
+El objetivo no es alcanzar la menor dimensión posible, sino encontrar la menor dimensión que todavía preserve información suficiente.
+14
+
+--- SLIDE 15 ---
+Quiz de repaso · Parte 1
+Selecciona la opción correcta antes de revisar las respuestas.
+1. En una matriz n × k, ¿qué representa k?
+A. Observaciones  B. Variables  C. Errores  D. Clústeres
+R: B
+2. ¿Cuántos pares de variables hay con 5 atributos?
+A. 5  B. 8  C. 10  D. 25
+R: C
+3. ¿Qué busca PCA?
+A. Minimizar n  B. Maximizar varianza  C. Crear etiquetas  D. Eliminar filas
+R: B
+4. ¿Qué matriz contiene los valores singulares?
+A. U  B. X  C. V  D. S
+R: D
+5. ¿Qué ocurre al usar muy pocos valores singulares?
+A. Se pierde información  B. Aumenta k  C. Se crean etiquetas  D. No cambia nada
+R: A
+15
+
+--- SLIDE 16 ---
+Quiz de repaso · Parte 2
+Comprueba comprensión conceptual e interpretación.
+6. ¿Por qué 20 variables dificultan el análisis visual?
+A. Generan 190 pares  B. No tienen filas  C. Eliminan varianza  D. No admiten matrices
+R: A
+7. Si área, habitaciones y baños tienen pesos altos, el factor puede representar:
+A. Delito  B. Ubicación  C. Tamaño  D. Tiempo
+R: C
+8. ¿Qué técnica factoriza X en U, S y Vᵀ?
+A. PCA  B. SVD  C. Clustering  D. Regresión
+R: B
+9. En el ejemplo, 18 valores singulares permiten:
+A. Perder el panda  B. Recuperar >99%  C. Crear 18 casas  D. Aumentar variables
+R: B
+10. La mejor reducción equilibra:
+A. Filas y columnas  B. Compresión e información  C. Etiquetas y errores  D. Riesgo y crédito
+R: B
+16
+
+--- SLIDE 17 ---
+Mini taller práctico
+Construye una representación conceptual reducida para un conjunto de viviendas.
+ENUNCIADO
+Una base contiene: área, habitaciones, baños, escuelas cercanas y tasa de delito. Propón cómo podrían resumirse en dos factores.
+Paso 1 · Agrupar
+Identifica variables que describen una misma característica.
+Paso 2 · Nombrar
+Propón un nombre interpretable para cada factor.
+Paso 3 · Justificar
+Explica qué variables deberían recibir mayor peso.
+SOLUCIÓN ESPERADA
+Factor 1: tamaño (área, habitaciones, baños). Factor 2: ubicación (escuelas y delito). PCA podría construirlos automáticamente mediante pesos.
+17
+
+--- SLIDE 18 ---
+Resumen visual y checklist final
+Lo esencial del video en una sola página.
+X n×k
+Datos originales
+k grande
+Alta dimensión
+PCA / SVD
+Reducción
+j < k
+Representación compacta
+Interpretar
+Información preservada
+✓
+Entiendo qué representan n y k.
+✓
+Puedo explicar por qué 20 variables generan 190 pares.
+✓
+Sé describir la idea de PCA.
+✓
+Reconozco la factorización X = U·S·Vᵀ.
+✓
+Puedo explicar el equilibrio entre compresión e información.
+IDEA DE CIERRE
+Reducir dimensionalidad significa encontrar una representación más simple que conserve la estructura esencial de los datos.
+18

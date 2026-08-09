@@ -1,0 +1,289 @@
+PPTX: 001 - MIID4303_Modulo_1_Introduccion_Aprendizaje_No_Supervisado.pptx
+slides=16
+
+--- SLIDE 1 ---
+MIAD · Módulo introductorio
+Introducción al
+Aprendizaje No Supervisado
+De “predecir una respuesta” a descubrir patrones sin etiquetas
+Sin respuesta
+Similitud
+Grupos
+Decisión
+Guía visual basada en la transcripción del video del curso
+
+--- SLIDE 2 ---
+Ruta de aprendizaje
+Qué debes comprender al terminar esta guía
+1
+Contexto
+Crédito y riesgo
+2
+Diferencia
+Con / sin respuesta
+3
+Problema
+Trabajo “a ciegas”
+4
+Solución
+Agrupar por similitud
+5
+Valor
+Escalar a muchas variables
+Idea central
+El aprendizaje no supervisado permite explorar estructuras y grupos cuando no existe una variable de respuesta observada que “supervise” el análisis.
+2
+
+--- SLIDE 3 ---
+El caso que motiva el tema
+Una entidad crediticia necesita clasificar clientes
+Información disponible
+Para cada cliente existe un vector de características xᵢ con variables como:
+
+• Ingreso
+• Puntaje crediticio
+• Educación
+• Otras características
+Pregunta de negocio
+¿La persona debería recibir o no el crédito?
+
+La organización quiere tomar una decisión a partir de los datos disponibles.
+Dos escenarios
+1. Existe una respuesta histórica.
+2. No existe una respuesta asociada.
+
+La diferencia entre ambos escenarios define el tipo de aprendizaje.
+xᵢ = [ingreso, puntaje, educación, …]
+3
+
+--- SLIDE 4 ---
+Escenario 1: aprendizaje supervisado
+Los datos incluyen predictores y una respuesta observada
+Características xᵢ
+Ingreso, puntaje, educación
+Respuesta yᵢ
+Crédito sí / no
+Entrenar f(x)
+Relacionar x con y
+Nuevo cliente
+Ingresar sus datos
+Predicción
+Aprobar / negar
+Qué “supervisa” el análisis
+La respuesta observada permite medir si el modelo aprende la relación correcta entre predictores y resultado.
+Objetivo
+Predecir la respuesta de observaciones futuras a partir de sus características.
+4
+
+--- SLIDE 5 ---
+Escenario 2: aprendizaje no supervisado
+Existe xᵢ, pero no hay una respuesta yᵢ asociada
+Datos disponibles
+xᵢ
+Predictores o características
+NO existe yᵢ
+“Trabajamos a ciegas”
+No es posible entrenar un modelo para predecir una respuesta que no existe. El análisis debe orientarse a descubrir estructura, similitudes o agrupaciones presentes en los datos.
+Definición operativa
+Es no supervisado porque ninguna variable de respuesta observada guía o supervisa el análisis.
+5
+
+--- SLIDE 6 ---
+Supervisado vs. no supervisado
+La diferencia decisiva es la presencia de una respuesta observada
+Criterio
+Supervisado
+No supervisado
+Datos
+x + y
+Solo x
+Pregunta
+¿Qué resultado ocurrirá?
+¿Qué estructura existe?
+Objetivo
+Predecir
+Explorar / agrupar
+Ejemplo
+Aprobar o negar crédito
+Descubrir grupos de riesgo
+Validación
+Comparar predicción con y
+Coherencia, separación e interpretación
+6
+
+--- SLIDE 7 ---
+Una tarea posible: análisis de clústeres
+Agrupar observaciones según la similitud de sus características
+Ingreso
+Puntaje crediticio
+Grupo A
+Grupo B
+Supuesto exploratorio
+Podrían existir dos grupos distintos: clientes de mayor y menor riesgo.
+Clave metodológica
+Los grupos se forman sin observar una etiqueta previa de “riesgo”.
+Agrupar por similitud
+7
+
+--- SLIDE 8 ---
+¿Por qué es valioso?
+La inspección visual deja de ser suficiente cuando crece la dimensionalidad
+1
+2 variables
+La visualización directa puede revelar grupos con relativa facilidad.
+2
+3 o más variables
+La estructura ya no puede inspeccionarse completamente en un gráfico simple.
+3
+Alta dimensión
+Los algoritmos permiten explorar relaciones que no son visibles a simple vista.
+Conclusión
+El aprendizaje no supervisado aporta herramientas para descubrir patrones en contextos donde la intuición visual ya no alcanza.
+8
+
+--- SLIDE 9 ---
+Panorama del curso
+Familias de problemas que se estudiarán
+Reducción de dimensión
+Representar datos complejos con menos componentes.
+Clustering
+Identificar agrupaciones por similitud.
+Sistemas de recomendación
+Sugerir elementos a partir de patrones de interacción.
+Análisis geográfico
+Explorar estructuras y puntos calientes en el espacio.
+Una pregunta común conecta todos los temas:
+¿Qué estructura útil puede extraerse de datos sin etiquetas?
+9
+
+--- SLIDE 10 ---
+Errores comunes
+Qué debes evitar al interpretar problemas no supervisados
+Inventar una etiqueta
+El algoritmo no conoce “riesgo alto” o “riesgo bajo” de antemano. Esa interpretación surge después.
+Confundir grupo con verdad
+Un clúster es una estructura analítica; no necesariamente representa una categoría real o definitiva.
+Ignorar el contexto
+La similitud matemática debe traducirse a una interpretación útil para el problema.
+Creer que todo se ve
+Con muchas variables, la inspección visual deja de ser suficiente.
+10
+
+--- SLIDE 11 ---
+Cómo usar esto en una entrega
+Estructura mínima para explicar un problema no supervisado
+1
+Problema
+Explique qué decisión o comprensión busca la organización.
+2
+Datos
+Liste las características disponibles y confirme que no hay variable respuesta.
+3
+Método
+Justifique por qué una técnica no supervisada es pertinente.
+4
+Resultado
+Muestre la estructura encontrada: grupos, componentes o patrones.
+5
+Interpretación
+Traduzca el resultado al contexto sin exagerar conclusiones.
+11
+
+--- SLIDE 12 ---
+Quiz de repaso · Parte 1
+Selecciona la opción correcta antes de revisar la respuesta
+1. ¿Qué elemento diferencia principalmente ambos tipos de aprendizaje?
+A. El número de variables
+B. La presencia de una respuesta observada
+C. El tamaño de la muestra
+D. El software utilizado
+R: B
+2. ¿Qué representa xᵢ en el ejemplo?
+A. La decisión final
+B. El error del modelo
+C. El vector de características del cliente
+D. La etiqueta de riesgo
+R: C
+3. En el escenario no supervisado, ¿qué no está disponible?
+A. Los predictores
+B. Los clientes
+C. Una variable de respuesta
+D. Los datos numéricos
+R: C
+4. ¿Qué tarea se propone como ejemplo no supervisado?
+A. Regresión lineal
+B. Clasificación con etiqueta
+C. Agrupar clientes por similitud
+D. Pronosticar ventas
+R: C
+5. ¿Por qué la visualización tiene límites?
+A. Porque nunca sirve
+B. Porque más de dos variables dificultan la inspección directa
+C. Porque los datos siempre son categóricos
+D. Porque no existen gráficos
+R: B
+12
+
+--- SLIDE 13 ---
+Quiz de repaso · Parte 2
+Preguntas aplicadas e interpretativas
+6. Sin respuesta observada, el objetivo principal es…
+Descubrir estructura útil en los datos.
+7. ¿Puede llamarse “alto riesgo” a un grupo automáticamente?
+No. La interpretación requiere evidencia contextual.
+8. ¿Qué variables usa el ejemplo del video?
+Ingreso y puntaje crediticio.
+9. ¿Qué supervisa un modelo supervisado?
+La respuesta observada asociada a cada vector xᵢ.
+10. ¿Qué aporta el clustering?
+Agrupa observaciones según similitud de características.
+13
+
+--- SLIDE 14 ---
+Mini taller práctico
+Diseña el planteamiento de un análisis no supervisado
+Enunciado
+Una cooperativa dispone de datos de sus clientes: ingresos, nivel de endeudamiento, antigüedad y número de productos financieros. No tiene una etiqueta previa de “tipo de cliente”.
+
+Propón un análisis para identificar perfiles.
+Actividades
+1. Identifica xᵢ.
+2. Explica por qué no es supervisado.
+3. Formula una pregunta de agrupación.
+4. Indica cómo interpretarías los grupos.
+5. Señala una precaución.
+Solución esperada
+xᵢ contiene las cuatro características. No existe yᵢ. Puede buscarse si emergen perfiles homogéneos. Luego se describen los grupos según sus promedios o patrones, sin asumir que representan categorías “verdaderas”.
+14
+
+--- SLIDE 15 ---
+Resumen visual
+Lo esencial del video en una sola página
+Datos
+xᵢ: características
+Falta
+No existe yᵢ
+Reto
+No se puede predecir una respuesta
+Oportunidad
+Descubrir estructura
+Ejemplo
+Clústeres de clientes
+Valor
+Escalar a alta dimensión
+Aprendizaje no supervisado = extraer información útil sin una variable de respuesta observada
+15
+
+--- SLIDE 16 ---
+Checklist de estudio
+Marca cada afirmación cuando puedas explicarla con tus propias palabras
+Diferencio aprendizaje supervisado y no supervisado.
+Identifico qué representa xᵢ y cuándo existe yᵢ.
+Puedo explicar por qué el análisis no supervisado trabaja “sin supervisión”.
+Comprendo la idea de agrupar por similitud.
+Sé por qué dos variables pueden visualizarse y muchas variables no.
+Puedo interpretar un clúster sin convertirlo en una verdad absoluta.
+Relaciono el tema con reducción de dimensión, clustering, recomendación y análisis geográfico.
+Frase de cierre
+Cuando no hay etiquetas, la pregunta cambia: no buscamos predecir; buscamos descubrir.
+16

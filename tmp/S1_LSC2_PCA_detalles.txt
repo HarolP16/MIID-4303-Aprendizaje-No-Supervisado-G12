@@ -1,0 +1,397 @@
+NOTEBOOK Files/home/jovyan/work/S1_LSC2_PCA_detalles.ipynb
+cells=31
+
+--- CELL 0 [markdown] ---
+<div >
+<img src = "figs/ans_banner_1920x200.png" />
+</div>
+
+--- CELL 1 [markdown] ---
+# Análisis de Componentes Principales. Detalles sobre su Implementación.
+
+--- CELL 2 [markdown] ---
+En este *cuaderno* profundizará en el estudido el análisis de componentes principales y aprenderá algunos aspectos relevantes sobre su implementación
+
+**NO** es necesario editar el archivo o hacer una entrega. Los ejemplos contienen celdas con código ejecutable (`en gris`), que podrá modificar libremente. Esta puede ser una buena forma de aprender nuevas funcionalidades del *cuaderno*, o experimentar variaciones en los códigos de ejemplo.
+
+--- CELL 3 [markdown] ---
+## Escalar las variables
+
+En los ejemplos del cuaderno de *Fundamentos Teóricos* utilizamos datos que estaban estandarizados, es decir, centrados para tener media cero y escalados para tener varianza uno.  Desde un punto estrictamente matemático no hay nada intrínsecamente incorrecto en hacer combinaciones lineales de variables con diferentes unidades de medida. Sin embargo, cuando usamos PCA buscamos maximizar varianza y la varianza se ve afectada por las unidades de medida. Esto implica que los componentes principales basados en la matriz de covarianza $S$ van a cambiar si las unidades de medida de una o más variables cambian. Para que esto no suceda, es práctica habitual  estandarizar las variables. Es decir, cada valor de la matriz de datos $X$ es centrado y dividido por la desviación estándar:
+
+\begin{align}
+z_{ij} = \frac{x_{ij}-\bar{x_j}}{s_j}
+\end{align}
+
+donde $\bar{x_j}$ es la media y ${s_j}$ es el desvío estándar de la columna $j$. Entonces, la matriz de datos iniciales $X$ es remplazada por la matriz de datos estandarizados $Z$. 
+
+Al estandarizar la matriz de datos, la matriz de covarianza $S$ es simplemente la matriz de correlación de los datos originales, lo que en la literatura se lo conoce como la matriz de correlación de PCA.
+
+Esto contrasta con otras técnicas de aprendizaje supervisado como la regresión lineal, donde escalar las variables no tiene ningún efecto. Si multiplicamos una variable por $\frac{1}{\alpha}$, los coeficientes estarán multiplicados por $\alpha$, no teniendo un efecto en el modelo obtenido.
+
+Para ilustrar cómo se estandariza en `Python`, vamos a utilizar los datos de la  Encuesta Nacional de Presupuestos de los Hogares (ENPH) de Colombia, realizada por el DANE en 2017. Los datos contienen información sobre el gastos promedio en distintos rubros para 38 ciudades colombianas.
+
+--- CELL 4 [code] ---
+#Cargamos las librerias a utilizar
+import pandas as pd
+import numpy as np
+
+# Cargamos y visualizamos la primeras observaciones de los datos
+X = pd.read_csv('data/gasto_col_2017.csv')
+X = X.set_index("Ciudad")
+X.head()
+[OUTPUT]
+                 Alimentos y bebidas no alcohólicas  \
+Ciudad                                                
+Arauca                                    76.532496   
+Armenia                                  104.227192   
+Barrancabermeja                           73.495641   
+Barranquilla                              85.059421   
+Bogotá                                   103.561150   
+
+                 Bebidas alcohólicas y tabaco  Prendas de vestir y calzado  \
+Ciudad                                                                       
+Arauca                              11.983778                    21.065229   
+Armenia                             18.610392                    39.651621   
+Barrancabermeja                     23.511551                    25.204020   
+Barranquilla                        16.028608                    23.798484   
+Bogotá                              21.839434                    42.814236   
+
+                 Alojamiento, agua, electricidad, gas y otros combustibles  \
+Ciudad                                                                       
+Arauca                                                  158.952746           
+Armenia                                                 174.252141           
+Barrancabermeja                                         218.377925           
+Barranquilla                                            204.792777           
+Bogotá                                                  295.817640           
+
+                 Muebles, artículos para el hogar y para la conservación ordinaria del hogar  \
+Ciudad                                                                                         
+Arauca                                                   15.040745                             
+Armenia                                                  26.524739                             
+Barrancabermeja                                          16.637673                             
+Barranquilla                                             20.162867                             
+Bogotá                                                   34.168082                             
+
+                     Salud  Transporte  Información y comunicación  \
+Ciudad                                                               
+Arauca           11.793285   20.656260                   20.404561   
+Armenia          14.846364   71.426343                   30.486730   
+Barrancabermeja   8.367648   51.842837                   25.653363   
+Barranquilla      7.785154   61.043240                   24.506067   
+Bogotá           27.459289  111.870806                   40.657457   
+
+                 Recreación y cultura   Educación  Restaurantes y hoteles  \
+Ciudad                                                                      
+Arauca                      11.523317   24.240347               44.130546   
+Armenia                     28.148628   58.902919               62.735795   
+Barrancabermeja             12.853022   68.650880               42.090619   
+Barranquilla                12.261522   58.348581               54.051667   
+Bogotá                      36.484350  134.933249               94.643529   
+
+                 Bienes y servicios diversos  
+Ciudad                                        
+Arauca                             55.110519  
+Armenia                           145.317221  
+Barrancabermeja                    58.657609  
+Barranquilla                       72.252969  
+Bogotá                            236.887545  
+
+--- CELL 5 [code] ---
+# Estandarizamos los datos
+mu = X.mean()
+sigma = X.std()
+Z = (X - mu)/sigma
+Z.head()
+[OUTPUT]
+                 Alimentos y bebidas no alcohólicas  \
+Ciudad                                                
+Arauca                                    -0.893243   
+Armenia                                    1.411143   
+Barrancabermeja                           -1.145930   
+Barranquilla                              -0.183745   
+Bogotá                                     1.355724   
+
+                 Bebidas alcohólicas y tabaco  Prendas de vestir y calzado  \
+Ciudad                                                                       
+Arauca                              -1.491704                    -1.212847   
+Armenia                             -0.317263                     1.339782   
+Barrancabermeja                      0.551373                    -0.644432   
+Barranquilla                        -0.774835                    -0.837466   
+Bogotá                               0.255023                     1.774131   
+
+                 Alojamiento, agua, electricidad, gas y otros combustibles  \
+Ciudad                                                                       
+Arauca                                                   -0.187501           
+Armenia                                                   0.137351           
+Barrancabermeja                                           1.074275           
+Barranquilla                                              0.785821           
+Bogotá                                                    2.718554           
+
+                 Muebles, artículos para el hogar y para la conservación ordinaria del hogar  \
+Ciudad                                                                                         
+Arauca                                                   -0.765951                             
+Armenia                                                   1.208855                             
+Barrancabermeja                                          -0.491341                             
+Barranquilla                                              0.114857                             
+Bogotá                                                    2.523217                             
+
+                    Salud  Transporte  Información y comunicación  \
+Ciudad                                                              
+Arauca          -0.125062   -1.344088                   -0.438465   
+Armenia          0.434314    0.691669                    0.965570   
+Barrancabermeja -0.752697   -0.093582                    0.292479   
+Barranquilla    -0.859420    0.275332                    0.132708   
+Bogotá           2.745217    2.313395                    2.381936   
+
+                 Recreación y cultura  Educación  Restaurantes y hoteles  \
+Ciudad                                                                     
+Arauca                      -0.757958  -1.028321               -0.413888   
+Armenia                      1.631818   0.528711                0.552798   
+Barrancabermeja             -0.566821   0.966586               -0.519878   
+Barranquilla                -0.651846   0.503810                0.101591   
+Bogotá                       2.830021   3.943969                2.210651   
+
+                 Bienes y servicios diversos  
+Ciudad                                        
+Arauca                             -0.778491  
+Armenia                             1.380602  
+Barrancabermeja                    -0.693592  
+Barranquilla                       -0.368188  
+Bogotá                              3.572333  
+
+--- CELL 6 [markdown] ---
+Te invito a comparar estos resultados con los de los datos utilizados en el *cuaderno* de *Fundamentos Teóricos*.
+
+--- CELL 7 [markdown] ---
+## Descomposición espectral o eigendecomposición
+
+La descomposición espectral, también conocida como eigendecomposición, es un componente crucial en el análisis de componentes principales (PCA). Esta técnica de descomposición de matrices permite identificar los valores propios y los vectores propios de la matriz de covarianza de los datos, elementos esenciales para comprender la distribución de la varianza en conjuntos de datos multidimensionales. Descomponer una matriz en este contexto implica hallar un producto de matrices que reproduzca la matriz original. En la eigendecomposición, esto se logra descomponiendo la matriz en el producto de sus eigenvectores y eigenvalores. Los eigenvectores delinean las direcciones de máxima varianza en los datos, mientras que los eigenvalores señalan la magnitud de esta varianza.
+
+Veamos cómo se usan los eigenvectores y eigenvalores para descomponer una matriz. Tomando los eigenvectores de una matriz $A_{m\times m}$ podemos concatenarlos y colocarlos en una matriz $P$. Entonces $P$ será una matriz cuyas columnas son los eigenvectores de $A$:
+
+\begin{align}
+A= P\Lambda P'
+\end{align}
+
+donde $\Lambda =diag(\lambda)$ es una matriz diagonal de los eigenvalores.
+
+Es importante mencionar que esta descomposición es aplicable únicamente a matrices cuadradas, como lo es la matriz de covarianza, lo que limita su uso a este tipo de matrices.
+
+Para ilustrar en `Python` la descomposición usaremos una versión abreviada de 3 variables del ejemplo del *cuaderno* de *Fundamentos Teóricos*:
+
+--- CELL 8 [code] ---
+gasto = pd.read_csv('data/gasto_col_2017_norm.csv')
+gasto = gasto.set_index("Ciudad")
+S = gasto.cov()
+S
+[OUTPUT]
+               Salud  Transporte  Educación
+Salud       1.000000    0.687662   0.644640
+Transporte  0.687662    1.000000   0.541518
+Educación   0.644640    0.541518   1.000000
+
+--- CELL 9 [markdown] ---
+Notemos que la matriz S es una matriz cuadrada:
+
+--- CELL 10 [code] ---
+S.shape
+[OUTPUT]
+(3, 3)
+
+--- CELL 11 [markdown] ---
+obtenemos los eigenvalues y los eigenvectores:
+
+--- CELL 12 [code] ---
+eig_val, eig_vec = np.linalg.eig(S)
+eig_val
+[OUTPUT]
+array([2.25116235, 0.28709315, 0.4617445 ])
+
+--- CELL 13 [markdown] ---
+creamos la matriz $\Lambda =diag(\lambda)$:
+
+--- CELL 14 [code] ---
+eig_val_diag = np.diag(eig_val)
+eig_val
+[OUTPUT]
+array([2.25116235, 0.28709315, 0.4617445 ])
+
+--- CELL 15 [markdown] ---
+y reconstrumios $S$:
+
+--- CELL 16 [code] ---
+eig_vec.dot(eig_val_diag).dot(eig_vec.T)
+[OUTPUT]
+array([[1.        , 0.68766221, 0.64463975],
+       [0.68766221, 1.        , 0.54151775],
+       [0.64463975, 0.54151775, 1.        ]])
+
+--- CELL 17 [markdown] ---
+Recobrando de esta forma la matriz $S$ original.
+
+--- CELL 18 [markdown] ---
+## Proporción de Varianza Explicada
+
+
+Una propiedad muy útil del procedimiento del cálculo de componentes principales es que la variabilidad total de $X$ es la suma de los $k$ eigenvalores de $V(X)=S$. Para demostrarlo supongamos que $\lambda_1,\dots,\lambda_k$ son los eigenvalores de $V(X)=S$, ordenados de mayor a menor, y que $p_1 , \dots , p_K$ son los eigenvectores correspondientes. Adicionalmente llamemos $P$ a la matriz cuyas columnas son estos eigenvectores.
+
+Supongamos también que $f_j= X \delta'_j$ es el $j-ésimo$ componente principal, entonces
+
+\begin{align}
+V (f_j ) &= \delta_j S \delta'_j  \\\
+         &= p_j P\Lambda P' p'_j  \\\
+         &= \lambda_j
+\end{align}
+
+Donde la segunda igualdad se desprende de la descomposición espectral. 
+
+Este resultado nos dices que la varianza del $j-ésimo$ componente principal es el $j-ésimo$ eigenvalor ordenado de S.
+
+Usando este resultado podemos ver que la varianza total de $X$ va a ser la suma de las varianza de las variables $x_j$:
+
+\begin{align}
+tr(\Sigma) = tr(P \Lambda P')= tr(PP' \Lambda ) = \sum_{j=1}^k \lambda_j= \sum_{j=1}^k V(f_j)
+\end{align}
+
+
+Este resultado nos permite preguntarnos: ¿Cuánta información perdimos por proyectar los datos en unos cuantos componentes principales? Esto es, ¿cuánto de la varianza esta contenida en los primeros componentes principales? Usando la ecuación anterior podemos ver la proporción de varianza contenida en cada componente principal:
+
+\begin{align}
+\frac{\lambda_k}{\sum_{j=1}^k \lambda_j}
+\end{align}
+
+Continuando con el ejemplo, podemos calcular la proporción de varianza contenida en cada componente principal:
+
+--- CELL 19 [code] ---
+np.sort(eig_val)[::-1]/sum(eig_val)
+[OUTPUT]
+array([0.75038745, 0.15391483, 0.09569772])
+
+--- CELL 20 [markdown] ---
+Asi podemos ver en este ejemplo:
+
+- El primer componente principal explica el 75% del total de la varianza.
+
+- El segundo componente principal explica el 15.4% del total de la varianza.
+
+- El tercer componente principal explica el 9.6% del total de la varianza.
+
+Finalmente notemos que la suma da 100%. Lo invito a replicar y comparar estos resultados con los datos que utilizados para la ilustración de la estandarización al inicio de este *cuaderno*.
+
+--- CELL 21 [markdown] ---
+## ¿Cuántos componentes principales debemos seleccionar?
+
+
+En el *cuaderno* de *Fundamentos Teóricos* mencionamos que una matriz $X$ de dimensión $n \times k$ tiene en general  $min(n-1,k)$ componentes principales distintos.  En la práctica generalmente no estamos interesados en todos los componentes, sino más bien quedarnos con los primeros que nos permitan visualizar o interpretar datos. En efecto, nos gustaría quedarnos con el mínimo numero que nos permita una buena comprensión de los datos. Por ejemplo, en el ejemplo anterior los dos primeros componentes explican mas del 90% del total de la varianza. Es decir, en este caso, con dos componentes logramos una buena representación de los datos.
+
+La pregunta natural que surge aquí es si hay una forma establecida para determinar el número de componentes principales a utilizar. Desafortunadamente, no existe una forma objetiva aceptada en la literatura de responderla. Sin embargo, hay tres enfoques simples que pueden servir de guía para decidir el número de componentes principales relevantes.
+
+Estos son:
+
+- Examen visual de un gráfico de sedimentación (scree plot).
+- Proporción de varianza explicada.
+- Criterio de Kaiser.
+
+--- CELL 22 [markdown] ---
+### Examen visual de un gráfico de sedimentación (scree plot)
+
+Un enfoque ampliamente utilizado consiste en elegir el número de componentes principales examinando un diagrama de sedimentación o scree plot por su nombre en inglés. La gráfica de abajo muestra un scree plot, en el cual el panel A resume la proporción de varianza explicada por cada componente principal, y el panel B como suma acumulada.
+
+![](figs/plot_S1_LSC2_1.png)
+
+--- CELL 23 [markdown] ---
+Examinando visualmente la gráfica buscaremos un punto donde la proporción de varianza explicada para cada componente principal cae. Esta caída se conoce a menudo como  sedimento o codo del gráfico. La idea de sedimento proviene de comparar la línea en el panel A con la ladera de una montaña, en la que, si cayesen rocas, abría un punto donde estas comenzarían a detenerse o a sedimentarse.
+
+Por ejemplo, en base al gráfico anterior podemos decir que luego del tercer componente principal hay un codo o un área de sedimentación. Siguiendo entonces este criterio nos quedaríamos con 3 componentes principales para representar nuestro conjunto de datos, lo que explica el 83% de la varianza. Notemos que después del tercer componente los componentes explican menos del 7% de los datos.
+
+Sin embargo, este tipo de análisis visual es inherentemente *ad hoc*. Desafortunadamente, no existe una forma objetiva bien aceptada de decidir cuántos componentes principales son suficientes.
+
+--- CELL 24 [markdown] ---
+### Proporción de varianza explicada
+
+Otro enfoque a menudo utilizado en la práctica, es imponer un umbral a priori y elegir los componentes principales en base a esta. Por ejemplo podríamos definir un umbral del 90%, lo que en el ejemplo anterior nos resultaría en 5 componentes principales. Mientras que si fuese el 70% tendríamos 2 componentes principales.
+
+El umbral a definir dependerá de la aplicación, el contexto, y el conjunto de los datos. Típicamente  se utilizan umbrales entre el 70% y el 90%.
+
+--- CELL 25 [markdown] ---
+### Criterio de Kaiser
+
+El criterio de Kaiser es otro enfoque ampliamente utilizado para evaluar el número máximo de componentes principales. Este sugiere que solo se retengan los componentes principales cuyos eigenvalores sean mayores a 1. La idea es que se retengan aquellos componentes cuyos eigenvalues sean superiores a la media de los eigenvalues:
+
+\begin{align}
+\lambda_h> \frac{\sum_j^k \lambda_j}{k}
+\end{align}
+
+Dado que los datos están estandarizados tenemos que $\sum_j^k \lambda_j=k$, por lo que es equivalente a buscar los eigenvalues mayores a uno.
+
+--- CELL 26 [markdown] ---
+### Consideraciones  finales sobre el número de componentes a elegir
+
+Es importante reiterar que no existe una forma objetiva aceptada para seleccionar el número de componentes a utilizar. De hecho la cuestión esta intrínsecamente mal definida y todo va a depender del área, contexto, y los datos donde se utilizan.
+
+En la práctica de  aprendizaje no supervisado, tendemos a examinar los primeros componentes principales en búsqueda de patrones interesantes en los datos. Si no se encuentran, es poco probable que el resto de los componentes sean de interés. Por el contrario, si los primeros son interesantes se continua hasta que no haya mas patrones. Esto es un enfoque completamente subjetivo y refleja el hecho de que utilizamos PCA como una herramientas de análisis no supervisado.
+
+Por otro lado, si utilizamos los componentes principales como insumos en aprendizaje supervisado, por ejemplo los utilizamos como regresores en una regresión lineal, entonces existe una forma simple y objetiva de determinar el número de componentes principales usar, ya que se utilizaría validación cruzada para seleccionar el número óptimo. 
+
+En síntesis, al contrastar las dificultades que se presentan al seleccionar el número de componentes en el aprendizaje no supervisado con los que se presentan en el supervisado, refleja  el hecho de que el análisis supervisado tiende a estar más claramente definido y evaluado que los no supervisados.
+
+--- CELL 27 [markdown] ---
+## Unicidad de los componentes principales
+
+
+Antes de finalizar es necesario hacer la advertencia de que los "loadings" de los componentes principales ($\delta_{ij}=\delta_{i1},\dots, \delta_{ik}$) son únicos excepto por un cambio de signo. Esto implica que dependiendo la implementación podemos obtener en dos librerías resultados distintos. Los *loadings* serán los mismos pero los signos pueden diferir. Los signos pueden diferir porque cada peso especifica una dirección en el espacio k-dimensional y el cambio de signo no tiene efecto sobre la dirección.
+
+--- CELL 28 [markdown] ---
+# Referencias
+
+
+-   Ahumada, H. A., Gabrielli, M. F., Herrera Gomez, M. H., & Sosa
+    Escudero, W. (2018). Una nueva econometría: Automatización, big
+    data, econometría espacial y estructural.
+
+-   DANE (29 de Septiembre de 2020). Encuesta nacional de presupuestos
+    de los hogares (ENPH). Anexos: 32 ciudades y 6 ciudades intermedias.
+    <https://www.dane.gov.co/files/investigaciones/boletines/enph/ciudades-enph-2017.xls>
+
+-   Deisenroth, M. P., Faisal, A. A., & Ong, C. S. (2020). Mathematics
+    for machine learning. Cambridge University Press.
+    
+-   Hartmann, K., Krois, J., Waske, B. (2018): E-Learning Project SOGA: Statistics and Geospatial Data Analysis. Department of Earth Sciences, Freie Universitaet Berlin.    
+
+-   James, G., Witten, D., Hastie, T., & Tibshirani, R. (2013). An
+    introduction to statistical learning (Vol. 112, p. 18). New York:
+    springer.
+
+-   Jolliffe, I. T., & Cadima, J. (2016). Principal component analysis: a review and recent developments. Philosophical transactions. Series A, Mathematical, physical, and engineering sciences, 374(2065), 20150202. https://doi.org/10.1098/rsta.2015.0202
+
+-   Murphy, K. P. (2012). Machine learning: a probabilistic perspective.
+    MIT press.
+
+-   Peña, D. (2002). Análisis de datos multivariantes (Vol. 24). Madrid:
+    McGraw-hill.
+
+--- CELL 29 [markdown] ---
+# Información de Sesión
+
+--- CELL 30 [code] ---
+import session_info
+
+
+session_info.show(html=False)
+[OUTPUT]
+-----
+numpy               1.21.6
+pandas              1.3.5
+session_info        1.0.0
+-----
+IPython             7.34.0
+jupyter_client      7.4.9
+jupyter_core        4.12.0
+jupyterlab          2.1.1
+notebook            6.0.3
+-----
+Python 3.7.6 | packaged by conda-forge | (default, Mar 23 2020, 23:03:20) [GCC 7.3.0]
+Linux-6.5.0-1020-aws-x86_64-with-debian-buster-sid
+-----
+Session information updated at 2024-08-01 13:31

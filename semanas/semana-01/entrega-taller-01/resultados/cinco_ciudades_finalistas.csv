@@ -1,0 +1,6 @@
+Ciudad,Ranking_principal,Ranking_promedio,Peor_ranking,Fortalezas_relativas,Debilidades_relativas
+"New-York,NY",1,1.0,1,Artes (11.56 z); Cuidado de la salud y el medio ambiente (6.65 z); Transporte (3.05 z),Alojamiento (-2.10 z); Crimen (-4.31 z)
+"Chicago,IL",2,2.2,3,Artes (4.68 z); Cuidado de la salud y el medio ambiente (4.57 z); Transporte (2.44 z),Economía (-0.30 z); Alojamiento (-1.08 z)
+"Washington,DC-MD-VA",3,3.8,6,Artes (4.00 z); Cuidado de la salud y el medio ambiente (3.17 z); Transporte (2.78 z),Crimen (-1.00 z); Alojamiento (-2.26 z)
+"Boston,MA",4,4.0,5,Cuidado de la salud y el medio ambiente (4.11 z); Artes (3.86 z); Educación (2.07 z),Crimen (-0.71 z); Alojamiento (-1.37 z)
+"San-Francisco,CA",5,4.8,6,Recreación (3.41 z); Clima y Terreno (3.08 z); Transporte (2.82 z),Crimen (-1.84 z); Alojamiento (-3.70 z)

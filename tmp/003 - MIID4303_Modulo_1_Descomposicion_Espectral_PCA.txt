@@ -1,0 +1,335 @@
+PPTX: 003 - MIID4303_Modulo_1_Descomposicion_Espectral_PCA.pptx
+slides=16
+
+--- SLIDE 1 ---
+MÓDULO 1
+Descomposición espectral
+y PCA
+Cómo la varianza, los vectores propios y los valores propios construyen los componentes principales
+MIID 4303 · Aprendizaje No Supervisado
+Guía visual basada en la transcripción del video
+XᵀX
+P Λ Pᵀ
+direcciones
+varianza
+nuevos ejes
+(componentes)
+
+--- SLIDE 2 ---
+Ruta de aprendizaje
+Del dato centrado a los componentes principales
+1
+Organizar X
+N observaciones × K características
+2
+Centrar
+Restar la media de cada columna
+3
+Formar XᵀX
+Resumir variación conjunta
+4
+Descomponer
+XᵀX = PΛPᵀ
+5
+Interpretar
+P = direcciones; Λ = varianza
+6
+Conectar con PCA
+Ordenar componentes por información
+Idea central
+PCA no aparece “de la nada”: surge al estudiar cómo se distribuye la varianza de los datos centrados. La descomposición espectral revela las direcciones principales y cuánta información aporta cada una.
+2
+
+--- SLIDE 3 ---
+Punto de partida: la matriz de datos
+Cada fila es una observación; cada columna es una característica
+Estructura de X
+• Dimensión: N × K
+• N: número de observaciones
+• K: número de características
+• Supuesto habitual del video: N > K
+• Rango de X: K (columnas linealmente independientes)
+Matriz X
+x₁₁
+x₁₂
+…
+x₁K
+x₂₁
+x₂₂
+…
+x₂K
+⋮
+⋮
+⋱
+⋮
+xN₁
+xN₂
+…
+xNK
+K columnas = características
+N filas = observaciones
+N > K y rango(X)=K
+3
+
+--- SLIDE 4 ---
+Paso 1: centrar los datos
+Restar la media de cada columna para estudiar variación alrededor del centro
+x̃ᵢⱼ = xᵢⱼ − x̄ⱼ
+¿Qué logra el centrado?
+• Cada característica queda con media cero.
+• La variación se mide respecto al promedio.
+• Evita que la ubicación absoluta domine el análisis.
+• Prepara la construcción de la matriz de covariación.
+Antes
+Después
+Para recordar
+El video llama X a la matriz ya centrada.
+4
+
+--- SLIDE 5 ---
+Paso 2: construir XᵀX
+Una matriz K × K que resume cómo varían conjuntamente las características
+XᵀX
+K × K
+Diagonal
+Suma de cuadrados de cada característica centrada. Mide cuánta variación individual existe en cada variable.
+Fuera de la diagonal
+Suma de productos cruzados entre características distintas. Resume cómo se mueven conjuntamente.
+Propiedad clave
+XᵀX es simétrica. Esa simetría permite aplicar la descomposición espectral.
+Aclaración técnica del video
+XᵀX todavía no es la matriz de covarianzas: para obtenerla hay que dividir por el número de observaciones. Aun así, contiene la misma estructura y relaciones entre variables.
+5
+
+--- SLIDE 6 ---
+Anatomía de XᵀX
+Qué representa cada zona de la matriz
+Σx̃²
+Σx̃ᵢx̃ⱼ
+Σx̃ᵢx̃ⱼ
+Σx̃ᵢx̃ⱼ
+Σx̃ᵢx̃ⱼ
+Σx̃²
+Σx̃ᵢx̃ⱼ
+Σx̃ᵢx̃ⱼ
+Σx̃ᵢx̃ⱼ
+Σx̃ᵢx̃ⱼ
+Σx̃²
+Σx̃ᵢx̃ⱼ
+Σx̃ᵢx̃ⱼ
+Σx̃ᵢx̃ⱼ
+Σx̃ᵢx̃ⱼ
+Σx̃²
+Diagonal = variación propia
+Cuanto mayor sea la suma de cuadrados, mayor es la dispersión de esa característica.
+Fuera de la diagonal = relación
+Valores positivos o negativos indican cómo dos características cambian conjuntamente.
+Simetría
+El elemento (i,j) coincide con (j,i).
+6
+
+--- SLIDE 7 ---
+Paso 3: descomposición espectral
+Separar direcciones e importancia de la varianza
+XᵀX = P Λ Pᵀ
+P · Vectores propios
+Cada columna de P contiene una dirección especial de los datos. En PCA, esas direcciones se convierten en nuevos ejes o componentes principales.
+Λ · Valores propios
+Matriz diagonal. Cada valor propio mide cuánta varianza explica la dirección correspondiente.
+Pᵀ · Reexpresión
+La traspuesta de P completa la reconstrucción de la matriz simétrica en el nuevo sistema de ejes.
+Lectura conceptual
+La descomposición espectral transforma una estructura compleja de covariación en pares “dirección + cantidad de varianza”.
+7
+
+--- SLIDE 8 ---
+¿Qué significa P?
+Los vectores propios son los nuevos ejes de los datos
+PC1
+PC2
+Componente principal 1
+Dirección que captura la mayor variación posible de los datos.
+Componente principal 2
+Dirección ortogonal a la primera que captura la mayor variación restante.
+Interpretación
+Las columnas de P “apuntan” hacia las direcciones dominantes de la nube de datos.
+8
+
+--- SLIDE 9 ---
+¿Qué significa Λ?
+Cada valor propio cuantifica la varianza explicada por su componente
+λ1
+52%
+λ2
+24%
+λ3
+13%
+λ4
+7%
+λ5
+4%
+Valores propios grandes
+Componentes más informativos: explican una porción mayor de la varianza total.
+Valores propios pequeños
+Componentes menos informativos: suelen ser candidatos a omitirse en una reducción de dimensión.
+Regla de lectura
+Ordenar λ de mayor a menor permite priorizar componentes.
+9
+
+--- SLIDE 10 ---
+Conexión directa con PCA
+La descomposición espectral construye el sistema de componentes principales
+Datos centrados
+X
+Variación conjunta
+XᵀX
+Descomposición
+PΛPᵀ
+Direcciones
+P
+Importancia
+Λ
+PCA
+Componentes ordenados
+P responde “¿en qué dirección?”
+Cada vector propio define un eje nuevo en el espacio de características.
+Λ responde “¿cuánta información?”
+Cada valor propio indica la varianza explicada por ese eje.
+Resultado
+PCA conserva primero las direcciones con valores propios más grandes.
+10
+
+--- SLIDE 11 ---
+Chequeo de dimensiones
+Una forma rápida de validar que las operaciones son coherentes
+X
+N × K
+Xᵀ
+K × N
+XᵀX
+K × K
+P
+K × K
+Λ
+K × K
+Pᵀ
+K × K
+Validación del producto
+(K × N)(N × K) = K × K
+
+Por eso XᵀX es cuadrada y puede descomponerse espectralmente.
+Supuesto del video
+N > K y rango(X)=K aseguran que las K columnas aportan direcciones independientes.
+Error común
+Confundir XᵀX con XXᵀ: sus dimensiones y su interpretación cambian.
+11
+
+--- SLIDE 12 ---
+Errores comunes y cómo corregirlos
+Puntos que suelen generar confusión en quices y sustentaciones
+No centrar X
+Los componentes pueden reflejar ubicación absoluta, no variación alrededor de la media.
+Llamar covarianza a XᵀX sin dividir
+Es proporcional a la covarianza, pero no es exactamente la matriz de covarianzas.
+Confundir P con Λ
+P contiene direcciones; Λ contiene cantidades de varianza.
+Asumir que todo componente es igual de útil
+Los valores propios permiten ordenar la relevancia.
+Perder de vista la simetría
+La descomposición espectral se aplica aquí porque XᵀX es simétrica.
+Confundir PCA con SVD
+El video prepara la transición: PCA vía XᵀX; SVD trabaja directamente sobre X.
+12
+
+--- SLIDE 13 ---
+Ejemplo guiado
+Dos características: área y número de habitaciones
+Datos centrados
+Casa A: (-2, -1)
+Casa B: (-1,  0)
+Casa C: ( 1,  0)
+Casa D: ( 2,  1)
+
+La nube se alinea aproximadamente en una dirección diagonal.
+PC1
+Lectura de P
+El primer vector propio apuntará cerca de la diagonal dominante.
+Lectura de Λ
+El primer valor propio será mayor, porque esa dirección concentra más variación.
+Conclusión
+PCA podría resumir estos datos con un solo componente.
+13
+
+--- SLIDE 14 ---
+Quiz de repaso
+Cinco preguntas clave del video
+1
+¿Por qué se centran las columnas de X?
+Para medir la variación respecto a la media.
+2
+¿Qué dimensión tiene XᵀX?
+K × K.
+3
+¿Qué contienen las columnas de P?
+Vectores propios: nuevos ejes o componentes.
+4
+¿Qué indica cada valor propio?
+La varianza explicada por su componente.
+5
+¿Por qué es posible la descomposición espectral?
+Porque XᵀX es simétrica.
+Pista de memoria
+P = posiciones/direcciones · Λ = cantidad de varianza.
+14
+
+--- SLIDE 15 ---
+Mini taller práctico
+Explica el proceso sin hacer cálculos largos
+Enunciado
+Una base tiene N = 500 clientes y K = 4 características numéricas. Se desea aplicar PCA.
+
+1. Indica las dimensiones de X, Xᵀ y XᵀX.
+2. Explica por qué hay que centrar.
+3. Interpreta P y Λ.
+4. Explica cómo decidir qué componentes conservar.
+Solución esperada
+• X: 500 × 4
+• Xᵀ: 4 × 500
+• XᵀX: 4 × 4
+• Centrar: media cero por columna
+• P: direcciones principales
+• Λ: varianza explicada
+• Conservar primero los λ más grandes
+Cómo comunicarlo
+“Construimos una representación de menor dimensión seleccionando las direcciones que concentran la mayor parte de la variación de los datos.”
+
+Evita decir que PCA “predice” una respuesta: es una técnica no supervisada.
+15
+
+--- SLIDE 16 ---
+Resumen visual de cierre
+La cadena conceptual que debes recordar
+1
+Centrar
+x̃ᵢⱼ = xᵢⱼ − x̄ⱼ
+2
+Construir
+XᵀX
+3
+Descomponer
+PΛPᵀ
+4
+Interpretar
+P = ejes · Λ = varianza
+5
+Reducir
+Conservar componentes informativos
+Idea clave
+La varianza es la “información” que PCA busca preservar.
+Puente matemático
+La descomposición espectral convierte covariación en direcciones y magnitudes.
+Siguiente paso
+SVD generaliza la idea y trabaja directamente sobre X.
+Checklist final
+☐ Sé centrar datos  ☐ Reconozco XᵀX  ☐ Distingo P de Λ  ☐ Interpreto varianza explicada  ☐ Relaciono espectral con PCA
+16
