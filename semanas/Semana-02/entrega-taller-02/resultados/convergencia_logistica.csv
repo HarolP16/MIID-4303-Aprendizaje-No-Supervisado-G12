@@ -1,0 +1,13 @@
+usuario,K,iteraciones,convergio
+George W Bush,10,28,True
+George W Bush,25,28,True
+George W Bush,50,25,True
+George W Bush,100,52,True
+George W Bush,250,166,True
+George W Bush,500,234,True
+Serena Williams,10,37,True
+Serena Williams,25,166,True
+Serena Williams,50,347,True
+Serena Williams,100,357,True
+Serena Williams,250,362,True
+Serena Williams,500,366,True

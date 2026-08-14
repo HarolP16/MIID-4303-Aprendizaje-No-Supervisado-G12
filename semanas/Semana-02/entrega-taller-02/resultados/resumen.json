@@ -1,0 +1,23 @@
+{
+  "n_imagenes": 2588,
+  "n_personas": 42,
+  "alto": 62,
+  "ancho": 47,
+  "pixeles_por_rostro": 2914,
+  "n_train": 2070,
+  "n_test": 518,
+  "persona_mas_fotografiada": "George W Bush",
+  "max_imagenes_persona": 530,
+  "porcentaje_base_persona_mas_fotografiada": 20.479134466769708,
+  "K_para_varianza": {
+    "0.8": 38,
+    "0.9": 100,
+    "0.95": 196
+  },
+  "metodologia": {
+    "estandarizacion": "No: todos los píxeles comparten escala de intensidad; escalar por píxel amplificaría regiones de baja varianza.",
+    "anti_leakage": "Media, SVD y regresión logística aprendidas solo en train.",
+    "svd": "randomized_svd con 500 componentes, n_iter=7 y random_state=10101."
+  },
+  "tiempo_segundos": 56.98392639996018
+}
