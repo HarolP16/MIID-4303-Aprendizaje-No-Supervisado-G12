@@ -1,0 +1,101 @@
+﻿factor,lado,rank,artistID,artist_name,loading
+1,positivo,1,289,Britney Spears,0.3108066916465759
+1,positivo,2,89,Lady Gaga,0.2950080335140228
+1,positivo,3,288,Rihanna,0.2617480456829071
+1,positivo,4,292,Christina Aguilera,0.2296706885099411
+1,positivo,5,300,Katy Perry,0.22718557715415955
+1,positivo,6,295,Beyoncé,0.1992758959531784
+1,positivo,7,67,Madonna,0.19068391621112823
+1,positivo,8,466,Ke$ha,0.1855476200580597
+1,positivo,9,333,Avril Lavigne,0.1818435937166214
+1,positivo,10,461,Miley Cyrus,0.15348957479000092
+1,negativo,1,16364,Out of Ether,-2.733852640796064e-13
+1,negativo,2,18615,YEFFI,-4.844420627451648e-14
+1,negativo,3,16497,pinkroom,-2.325125599597199e-14
+1,negativo,4,21,Artista sconosciuto,-1.3178391856233634e-14
+1,negativo,5,12876,Matt Darey,0.0
+1,negativo,6,18735,Wiseblood,0.0
+1,negativo,7,15799,Justus Köhncke,0.0
+1,negativo,8,18686,ismail kılıçaslan,0.0
+1,negativo,9,79,Fiction Factory,0.0
+1,negativo,10,7721,"Nakaido ""Chabo"" Reichi",0.0
+2,positivo,1,227,The Beatles,0.303293377161026
+2,positivo,2,154,Radiohead,0.2316301316022873
+2,positivo,3,190,Muse,0.22364020347595215
+2,positivo,4,65,Coldplay,0.16724881529808044
+2,positivo,5,229,The Killers,0.1602078676223755
+2,positivo,6,207,Arctic Monkeys,0.15891914069652557
+2,positivo,7,163,Pink Floyd,0.1553211212158203
+2,positivo,8,72,Depeche Mode,0.15503524243831635
+2,positivo,9,533,Oasis,0.13523772358894348
+2,positivo,10,228,Kings of Leon,0.12821407616138458
+2,negativo,1,289,Britney Spears,-0.11454492062330246
+2,negativo,2,288,Rihanna,-0.09885828197002411
+2,negativo,3,292,Christina Aguilera,-0.09210579842329025
+2,negativo,4,295,Beyoncé,-0.07429563999176025
+2,negativo,5,466,Ke$ha,-0.07312921434640884
+2,negativo,6,461,Miley Cyrus,-0.06387093663215637
+2,negativo,7,300,Katy Perry,-0.06029096618294716
+2,negativo,8,257,Mariah Carey,-0.05985445901751518
+2,negativo,9,701,Shakira,-0.05902806296944618
+2,negativo,10,299,Jennifer Lopez,-0.05575915798544884
+3,positivo,1,707,Metallica,0.2250855267047882
+3,positivo,2,917,Iron Maiden,0.2174256443977356
+3,positivo,3,706,AC/DC,0.16388806700706482
+3,positivo,4,1369,Black Sabbath,0.163727805018425
+3,positivo,5,498,Paramore,0.15753963589668274
+3,positivo,6,918,Megadeth,0.14663352072238922
+3,positivo,7,1412,Led Zeppelin,0.14590094983577728
+3,positivo,8,1249,Guns N' Roses,0.13811266422271729
+3,positivo,9,198,System of a Down,0.11412958055734634
+3,positivo,10,377,Linkin Park,0.11220858246088028
+3,negativo,1,154,Radiohead,-0.18058153986930847
+3,negativo,2,72,Depeche Mode,-0.11625280976295471
+3,negativo,3,65,Coldplay,-0.10879728198051453
+3,negativo,4,67,Madonna,-0.10721738636493683
+3,negativo,5,229,The Killers,-0.09706656634807587
+3,negativo,6,207,Arctic Monkeys,-0.09584824740886688
+3,negativo,7,1090,Franz Ferdinand,-0.08887054771184921
+3,negativo,8,1098,Björk,-0.08695952594280243
+3,negativo,9,55,Kylie Minogue,-0.0819886326789856
+3,negativo,10,429,The Smiths,-0.08144653588533401
+4,positivo,1,498,Paramore,0.28699031472206116
+4,positivo,2,486,30 Seconds to Mars,0.16353678703308105
+4,positivo,3,333,Avril Lavigne,0.13328221440315247
+4,positivo,4,209,My Chemical Romance,0.13193242251873016
+4,positivo,5,190,Muse,0.12870702147483826
+4,positivo,6,377,Linkin Park,0.12429796159267426
+4,positivo,7,230,Green Day,0.12296019494533539
+4,positivo,8,229,The Killers,0.11713415384292603
+4,positivo,9,344,Taylor Swift,0.10387973487377167
+4,positivo,10,1246,Panic! At the Disco,0.10055304318666458
+4,negativo,1,67,Madonna,-0.19546906650066376
+4,negativo,2,163,Pink Floyd,-0.172832652926445
+4,negativo,3,1412,Led Zeppelin,-0.1589841991662979
+4,negativo,4,1369,Black Sabbath,-0.1384885460138321
+4,negativo,5,917,Iron Maiden,-0.13385704159736633
+4,negativo,6,72,Depeche Mode,-0.13363417983055115
+4,negativo,7,959,Queen,-0.12592211365699768
+4,negativo,8,157,Michael Jackson,-0.12359542399644852
+4,negativo,9,55,Kylie Minogue,-0.12060476094484329
+4,negativo,10,706,AC/DC,-0.114792600274086
+5,positivo,1,72,Depeche Mode,0.40464311838150024
+5,positivo,2,377,Linkin Park,0.16656064987182617
+5,positivo,3,67,Madonna,0.15331557393074036
+5,positivo,4,51,Duran Duran,0.1460038423538208
+5,positivo,5,159,The Cure,0.1331160068511963
+5,positivo,6,378,Evanescence,0.12373539060354233
+5,positivo,7,1001,Pet Shop Boys,0.12291426211595535
+5,positivo,8,486,30 Seconds to Mars,0.11965755373239517
+5,positivo,9,187,a-ha,0.11547812074422836
+5,positivo,10,173,Placebo,0.11169160902500153
+5,negativo,1,227,The Beatles,-0.2632634937763214
+5,negativo,2,207,Arctic Monkeys,-0.13929840922355652
+5,negativo,3,424,The Strokes,-0.12479634582996368
+5,negativo,4,1412,Led Zeppelin,-0.10623668879270554
+5,negativo,5,163,Pink Floyd,-0.09592773765325546
+5,negativo,6,228,Kings of Leon,-0.08247728645801544
+5,negativo,7,461,Miley Cyrus,-0.08222883939743042
+5,negativo,8,344,Taylor Swift,-0.0816815197467804
+5,negativo,9,1048,The Kooks,-0.08149661868810654
+5,negativo,10,735,The Rolling Stones,-0.08134759217500687

@@ -1,0 +1,29 @@
+{
+  "random_state": 123,
+  "top_n": 10,
+  "n_users": 1892,
+  "n_artists_catalog": 17632,
+  "n_artists_observed": 17632,
+  "n_pairs": 92834,
+  "density": 0.002782815119924182,
+  "median_weight": 260.0,
+  "max_weight": 352698,
+  "single_listener_artists": 10679,
+  "single_listener_share_catalog": 0.605660163339383,
+  "selected_svd_k": 25,
+  "apriori_rules": 49819,
+  "apriori_users_with_popularity_fallback": 26,
+  "recommended_engine": "Apriori",
+  "ranking_weights": {
+    "recall_at_10": 0.35,
+    "catalog_coverage": 0.2,
+    "novelty_bits": 0.15,
+    "personalization": 0.15,
+    "explainability": 0.15
+  },
+  "limitations": [
+    "No hay marcas de tiempo: el holdout aleatorio no simula una evaluación futura.",
+    "Ausencia significa desconocido porque cada perfil está truncado a sus 50 artistas principales.",
+    "Los datos de 2011 sirven para comparar motores, no para fijar artistas actuales."
+  ]
+}

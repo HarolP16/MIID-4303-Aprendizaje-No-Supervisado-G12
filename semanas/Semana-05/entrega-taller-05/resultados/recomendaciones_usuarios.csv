@@ -1,0 +1,201 @@
+﻿userID,motor,rank,artistID,artist_name
+8,Popularidad simple,1,227,The Beatles
+8,Popularidad simple,2,67,Madonna
+8,Popularidad simple,3,190,Muse
+8,Popularidad simple,4,333,Avril Lavigne
+8,Popularidad simple,5,498,Paramore
+8,Popularidad simple,6,154,Radiohead
+8,Popularidad simple,7,466,Ke$ha
+8,Popularidad simple,8,65,Coldplay
+8,Popularidad simple,9,701,Shakira
+8,Popularidad simple,10,55,Kylie Minogue
+2,Popularidad simple,1,289,Britney Spears
+2,Popularidad simple,2,227,The Beatles
+2,Popularidad simple,3,288,Rihanna
+2,Popularidad simple,4,300,Katy Perry
+2,Popularidad simple,5,190,Muse
+2,Popularidad simple,6,292,Christina Aguilera
+2,Popularidad simple,7,333,Avril Lavigne
+2,Popularidad simple,8,498,Paramore
+2,Popularidad simple,9,295,Beyoncé
+2,Popularidad simple,10,154,Radiohead
+678,Popularidad simple,1,89,Lady Gaga
+678,Popularidad simple,2,289,Britney Spears
+678,Popularidad simple,3,288,Rihanna
+678,Popularidad simple,4,300,Katy Perry
+678,Popularidad simple,5,67,Madonna
+678,Popularidad simple,6,333,Avril Lavigne
+678,Popularidad simple,7,292,Christina Aguilera
+678,Popularidad simple,8,498,Paramore
+678,Popularidad simple,9,295,Beyoncé
+678,Popularidad simple,10,154,Radiohead
+1394,Popularidad simple,1,333,Avril Lavigne
+1394,Popularidad simple,2,701,Shakira
+1394,Popularidad simple,3,229,The Killers
+1394,Popularidad simple,4,55,Kylie Minogue
+1394,Popularidad simple,5,461,Miley Cyrus
+1394,Popularidad simple,6,72,Depeche Mode
+1394,Popularidad simple,7,163,Pink Floyd
+1394,Popularidad simple,8,157,Michael Jackson
+1394,Popularidad simple,9,377,Linkin Park
+1394,Popularidad simple,10,234,Nirvana
+8,Popularidad ponderada,1,227,The Beatles
+8,Popularidad ponderada,2,67,Madonna
+8,Popularidad ponderada,3,498,Paramore
+8,Popularidad ponderada,4,190,Muse
+8,Popularidad ponderada,5,333,Avril Lavigne
+8,Popularidad ponderada,6,154,Radiohead
+8,Popularidad ponderada,7,466,Ke$ha
+8,Popularidad ponderada,8,65,Coldplay
+8,Popularidad ponderada,9,55,Kylie Minogue
+8,Popularidad ponderada,10,701,Shakira
+2,Popularidad ponderada,1,289,Britney Spears
+2,Popularidad ponderada,2,227,The Beatles
+2,Popularidad ponderada,3,288,Rihanna
+2,Popularidad ponderada,4,300,Katy Perry
+2,Popularidad ponderada,5,292,Christina Aguilera
+2,Popularidad ponderada,6,498,Paramore
+2,Popularidad ponderada,7,190,Muse
+2,Popularidad ponderada,8,333,Avril Lavigne
+2,Popularidad ponderada,9,295,Beyoncé
+2,Popularidad ponderada,10,154,Radiohead
+678,Popularidad ponderada,1,89,Lady Gaga
+678,Popularidad ponderada,2,289,Britney Spears
+678,Popularidad ponderada,3,288,Rihanna
+678,Popularidad ponderada,4,300,Katy Perry
+678,Popularidad ponderada,5,67,Madonna
+678,Popularidad ponderada,6,292,Christina Aguilera
+678,Popularidad ponderada,7,498,Paramore
+678,Popularidad ponderada,8,333,Avril Lavigne
+678,Popularidad ponderada,9,295,Beyoncé
+678,Popularidad ponderada,10,154,Radiohead
+1394,Popularidad ponderada,1,333,Avril Lavigne
+1394,Popularidad ponderada,2,55,Kylie Minogue
+1394,Popularidad ponderada,3,701,Shakira
+1394,Popularidad ponderada,4,461,Miley Cyrus
+1394,Popularidad ponderada,5,72,Depeche Mode
+1394,Popularidad ponderada,6,229,The Killers
+1394,Popularidad ponderada,7,163,Pink Floyd
+1394,Popularidad ponderada,8,377,Linkin Park
+1394,Popularidad ponderada,9,157,Michael Jackson
+1394,Popularidad ponderada,10,257,Mariah Carey
+8,Coseno usuario-usuario,1,67,Madonna
+8,Coseno usuario-usuario,2,55,Kylie Minogue
+8,Coseno usuario-usuario,3,466,Ke$ha
+8,Coseno usuario-usuario,4,701,Shakira
+8,Coseno usuario-usuario,5,306,Black Eyed Peas
+8,Coseno usuario-usuario,6,461,Miley Cyrus
+8,Coseno usuario-usuario,7,333,Avril Lavigne
+8,Coseno usuario-usuario,8,299,Jennifer Lopez
+8,Coseno usuario-usuario,9,679,Glee Cast
+8,Coseno usuario-usuario,10,325,Ashley Tisdale
+2,Coseno usuario-usuario,1,1098,Björk
+2,Coseno usuario-usuario,2,227,The Beatles
+2,Coseno usuario-usuario,3,238,Massive Attack
+2,Coseno usuario-usuario,4,190,Muse
+2,Coseno usuario-usuario,5,511,U2
+2,Coseno usuario-usuario,6,154,Radiohead
+2,Coseno usuario-usuario,7,229,The Killers
+2,Coseno usuario-usuario,8,1001,Pet Shop Boys
+2,Coseno usuario-usuario,9,157,Michael Jackson
+2,Coseno usuario-usuario,10,159,The Cure
+678,Coseno usuario-usuario,1,163,Pink Floyd
+678,Coseno usuario-usuario,2,230,Green Day
+678,Coseno usuario-usuario,3,229,The Killers
+678,Coseno usuario-usuario,4,724,Ozzy Osbourne
+678,Coseno usuario-usuario,5,868,The Doors
+678,Coseno usuario-usuario,6,1369,Black Sabbath
+678,Coseno usuario-usuario,7,918,Megadeth
+678,Coseno usuario-usuario,8,2347,Van Halen
+678,Coseno usuario-usuario,9,176,Scorpions
+678,Coseno usuario-usuario,10,2343,KISS
+1394,Coseno usuario-usuario,1,333,Avril Lavigne
+1394,Coseno usuario-usuario,2,701,Shakira
+1394,Coseno usuario-usuario,3,461,Miley Cyrus
+1394,Coseno usuario-usuario,4,55,Kylie Minogue
+1394,Coseno usuario-usuario,5,528,Pixie Lott
+1394,Coseno usuario-usuario,6,544,Adam Lambert
+1394,Coseno usuario-usuario,7,257,Mariah Carey
+1394,Coseno usuario-usuario,8,464,3OH!3
+1394,Coseno usuario-usuario,9,229,The Killers
+1394,Coseno usuario-usuario,10,525,Gwen Stefani
+8,SVD,1,294,Leona Lewis
+8,SVD,2,301,Alicia Keys
+8,SVD,3,290,Jordin Sparks
+8,SVD,4,679,Glee Cast
+8,SVD,5,466,Ke$ha
+8,SVD,6,1934,Adele
+8,SVD,7,299,Jennifer Lopez
+8,SVD,8,55,Kylie Minogue
+8,SVD,9,906,Girls Aloud
+8,SVD,10,701,Shakira
+2,SVD,1,1098,Björk
+2,SVD,2,238,Massive Attack
+2,SVD,3,511,U2
+2,SVD,4,533,Oasis
+2,SVD,5,1001,Pet Shop Boys
+2,SVD,6,603,Aphex Twin
+2,SVD,7,298,Lily Allen
+2,SVD,8,748,Boards of Canada
+2,SVD,9,182,Keane
+2,SVD,10,1713,Dave Gahan
+678,SVD,1,230,Green Day
+678,SVD,2,67,Madonna
+678,SVD,3,1513,Ramones
+678,SVD,4,198,System of a Down
+678,SVD,5,176,Scorpions
+678,SVD,6,316,Alanis Morissette
+678,SVD,7,918,Megadeth
+678,SVD,8,1672,Avenged Sevenfold
+678,SVD,9,724,Ozzy Osbourne
+678,SVD,10,163,Pink Floyd
+1394,SVD,1,229,The Killers
+1394,SVD,2,333,Avril Lavigne
+1394,SVD,3,424,The Strokes
+1394,SVD,4,475,Eminem
+1394,SVD,5,1090,Franz Ferdinand
+1394,SVD,6,425,Yeah Yeah Yeahs
+1394,SVD,7,464,3OH!3
+1394,SVD,8,461,Miley Cyrus
+1394,SVD,9,439,Los Hermanos
+1394,SVD,10,3200,Cansei de Ser Sexy
+8,Apriori,1,701,Shakira
+8,Apriori,2,466,Ke$ha
+8,Apriori,3,333,Avril Lavigne
+8,Apriori,4,461,Miley Cyrus
+8,Apriori,5,67,Madonna
+8,Apriori,6,55,Kylie Minogue
+8,Apriori,7,294,Leona Lewis
+8,Apriori,8,299,Jennifer Lopez
+8,Apriori,9,306,Black Eyed Peas
+8,Apriori,10,325,Ashley Tisdale
+2,Apriori,1,993,Simple Minds
+2,Apriori,2,997,The Human League
+2,Apriori,3,187,a-ha
+2,Apriori,4,1001,Pet Shop Boys
+2,Apriori,5,1014,Erasure
+2,Apriori,6,1013,Ultravox
+2,Apriori,7,998,Orchestral Manoeuvres in the Dark
+2,Apriori,8,193,Tears for Fears
+2,Apriori,9,994,Howard Jones
+2,Apriori,10,599,David Bowie
+678,Apriori,1,439,Los Hermanos
+678,Apriori,2,163,Pink Floyd
+678,Apriori,3,289,Britney Spears
+678,Apriori,4,230,Green Day
+678,Apriori,5,932,Matanza
+678,Apriori,6,1513,Ramones
+678,Apriori,7,300,Katy Perry
+678,Apriori,8,67,Madonna
+678,Apriori,9,288,Rihanna
+678,Apriori,10,292,Christina Aguilera
+1394,Apriori,1,701,Shakira
+1394,Apriori,2,333,Avril Lavigne
+1394,Apriori,3,461,Miley Cyrus
+1394,Apriori,4,55,Kylie Minogue
+1394,Apriori,5,257,Mariah Carey
+1394,Apriori,6,299,Jennifer Lopez
+1394,Apriori,7,525,Gwen Stefani
+1394,Apriori,8,325,Ashley Tisdale
+1394,Apriori,9,294,Leona Lewis
+1394,Apriori,10,301,Alicia Keys

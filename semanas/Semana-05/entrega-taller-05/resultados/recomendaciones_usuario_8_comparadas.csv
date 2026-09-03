@@ -1,0 +1,11 @@
+﻿rank,Apriori,Coseno usuario-usuario,Popularidad ponderada,Popularidad simple,SVD
+1,Shakira,Madonna,The Beatles,The Beatles,Leona Lewis
+2,Ke$ha,Kylie Minogue,Madonna,Madonna,Alicia Keys
+3,Avril Lavigne,Ke$ha,Paramore,Muse,Jordin Sparks
+4,Miley Cyrus,Shakira,Muse,Avril Lavigne,Glee Cast
+5,Madonna,Black Eyed Peas,Avril Lavigne,Paramore,Ke$ha
+6,Kylie Minogue,Miley Cyrus,Radiohead,Radiohead,Adele
+7,Leona Lewis,Avril Lavigne,Ke$ha,Ke$ha,Jennifer Lopez
+8,Jennifer Lopez,Jennifer Lopez,Coldplay,Coldplay,Kylie Minogue
+9,Black Eyed Peas,Glee Cast,Kylie Minogue,Shakira,Girls Aloud
+10,Ashley Tisdale,Ashley Tisdale,Shakira,Kylie Minogue,Shakira
