@@ -1,0 +1,1211 @@
+está grabando... bueno chicos entonces hoy
+toca hablar de un tema que me parece súper
+chévere y que creo que por ahora es relevante no sé si... y a veces pienso
+cuánto va a durar la relevancia de esto o no hay por momentos que creo que no y hay por
+momentos que hablo con algunos colegas y me parece que se va a volver más
+relevante que nunca... cuando preparé esta clase anoche estaba como un poco
+pensando que no iba a ser muy relevante y después hoy a la
+mañana tuve una charla con el comité de la carrera de ciencia y datos y me
+parece que es más relevante que nunca entonces a usted va a estar bueno que
+después vayan formando su propia opinión de la utilidad... pero antes que
+eso estoy un poquito impreocupado y creo que se ata muy bien con la idea de
+esto y el uso de los LLM... como ustedes saben yo soy un enfermo de eso...
+a mí me encanta me parece súper útil yo los uso todos... pero me preocupa en el
+proceso de aprendizaje y creo que es relevante... todos esos libros que están
+atrás míos son importantes porque han implicado leer un montón de cosas leer un
+montón de cosas construir ese capital humano que creo que yo les aprendí mucho
+en la primera semana... tener ese capital humano para poder distinguir lo bueno de
+lo malo... y estoy recibiendo muchas quejas de algunos estudiantes y las
+dinámicas de grupo que me parece que está bueno que lo conversemos y
+al menos o al menos mostrarle un poco de evidencia de todas estas cosas...
+porque al fin y al cabo son una herramienta útil solamente si
+uno tiene el capital humano... entonces hay un paper reciente 23 junio 2026... más reciente no no se
+puede tener que se llama la... este es un working
+paper pero creo que está bastante bien que tenemos las chances para salir bien
+publicado... de gente de la universidad de estocolmo de hong kong y de el cpr... que están pensando en la
+penalidad de la AI generativa... ellos lo ven en el secundario pero creo que la
+validez externa de estos resultados son interesantes... entonces
+este es un experimento así que experimental y creo que describe muy bien los resultados... estos son los efectos
+causales del uso de la AI... tenemos tres grupos... tenemos el pre-IA, post-IA y los
+never-IA... y algo que se ve y pasa y lo están notando ustedes es... déjenme que grande... entonces recordemos
+los rojos son los ya, los azules los pre-IA y los verdes los
+never-IA el average treated on the treated... no?
+le va mucho mejor en los homeworks y eso está claro y se nota... entonces usar la
+AI generativa les va mucho mejor a los que usan la AI que los que no la usan que es en los homeworks... el tiempo es
+muchísimo menos entonces lo hacen mejor y lo hacen más
+rápido vale? pero a lo que nos interesa a
+nosotros es construir el capital humano la capacidad luego de poder juzgar ante ante cambio y ante la toma de
+decisiones y solamente eso lo podemos ver en los exámenes... cuando no tenemos
+esta herramienta y podemos evaluar realmente si usted construyó el capital
+humano... vale? y los resultados se dan vuelta... fíjense
+que a los que nunca usaron la AI le va mejor y la diferencia es
+significativa no? especialmente acá no? la diferencia es abismal casi un 20%
+peor que nunca se achica no? y a medida que va pasando el tiempo se hace
+más grande y eso habré hecho... vale? entonces está
+bueno usar la AI le va a ir mejor a los homeworks y lo van
+a hacer más rápido los homeworks pero creo que para gente como ustedes que están
+haciendo una maestría que están un lunes a la noche tratando de construir
+su capital humano no engañan a nadie no? si usted está
+inscrito acá para tener el cartón déjenme contarle que la evidencia del
+efecto del chip skin que se llama del cartón es bastante bajo lo que lo que
+importa es construir ese capital humano entonces simplemente llamarlo a la
+reflexión de qué están haciendo con los talleres y si realmente pensar están
+construyendo el capital humano si? y esto para atraer la atención a todo no?
+porque hay gente que la está usando muy muy bien y está haciendo cosas fantásticas y
+hay gente que la está usando muy mal y no está construyendo ese capital humano
+vale? entonces nada para que lo piensen un ratito para que tengan la reflexión esa
+final de los retornos realmente a esto bien entonces ahora con esa evidencia
+mostrada vamos a lo de hoy entonces la idea de hoy es pensar un poquito en seguir pensando en los sistemas
+de recomendación pero los sistemas de recomendación de esta
+semana están pensados en sistemas que incorporan texto vale? y entonces uno lo
+primero que pensaría es bueno pero si tenemos los LLMs porque no usamos los
+LLMs? y no es obvio que el uso de los LLMs sea lo lo mejor para acá especialmente por el
+costo para el beneficio de así? realmente la
+eficiencia de los LLMs al menos por ahora es bastante
+baja para el retorno que nos dan especialmente
+cuando uno quiere poner en producción estas cosas y
+lo mismo que por ejemplo estaba charlando con
+el director del pregrado de ingeniería en
+computación y hablábamos de la eficiencia no? por
+ejemplo de los MCPs versus las APIs y me mostraban lo ineficientes que son los MCPs versus
+una buena API no? entonces especialmente ustedes que
+van a poner en producción muchos de estos
+sistemas la eficiencia no es trivial y volvemos a
+esa idea de Netflix no? Netflix si bien tiene
+ese algoritmo que es súper eficiente para
+generar recomendaciones el costo para el beneficio
+que le da es muy bajo y te sigue recomendando
+cuáles son los más populares vale? porque al fin
+y al cabo vivimos en un mundo en el que los
+recursos son escasos y hay que pensar en estas
+cosas no? me salió el economista de adentro vale
+entonces el sistema de recomendación era esta idea
+de reconocer las preferencias y que era muy
+muy utilizado no? y entonces en los talleres
+habíamos usado 5 no? tratando de ver cuáles son los más populares Betty la fea ahora desde que
+me dijeron Betty la fea me sale Betty la fea
+todo el tiempo en Netflix me jodieron el
+algoritmo de Netflix Betty la fea o algún tipo de ponderación si? no simplemente simple sino tratar de
+entender la frecuencia y quienes los ven el coseno
+entre los usuarios tratar de encontrar los usuarios más similares los factores
+latentes o la regla de asesoramiento si? y la clave acá era
+que necesitábamos que haya una interacción
+previa con el ítem una interacción previa con el
+producto si? pero muchas veces cuando tenemos un
+ítem nuevo o estamos arrancando con esto
+tenemos el problema de del arranque frío vale
+entonces no tenemos con qué estimar y muchas veces
+aparece la idea de bueno pero tenemos mucha
+información asociada a los ítems a los artículos a la película a los cuentos no? estas semanas la idea es generar un sistema de recomendación para
+cuentos vale y entonces la idea es tratar de usar estos
+que se llama filtro basado en contenido no? y
+tiene que ver con lo que contiene el ítem la
+recomendación si? y lo chévere es que esto no
+necesariamente reemplazan sino que uno complementa a los
+otros sistemas efectivamente donde fallan entonces lo que vamos a ver lo que van a ver en la práctica es que muchos de estos
+sistemas son complementarios o lo que se llaman
+sistemas híbridos que aprovechan las ventajas de
+cada uno de estos si? pero como sabemos bien siempre es buena la estática comparativa
+no? la estática comparativa para los que no están
+familiarizados con eso es si uno mueve todo a la vez no? no entiendes nada no? entonces la idea es
+mover una sola palanca para entender qué está
+pasando dice la idea de la estática comparativa
+que viene de la ingeniería y que los economistas de
+cierta forma lo vamos a aprender no? entonces me de pensar en sistema que abarcan todo
+nosotros comenzamos bueno basado en usuarios basado en ítems y vamos moviendo cada una las palancas y
+después ustedes pueden juntar los otros si? entonces los
+sistemas estos basados en contenido como les decía
+no necesitamos datos de otros individuos o
+actividades sino que vamos a usar las descripciones
+que tenemos si? entonces lo que vamos a hacer vamos a aprovechar la información que
+viene el texto y entonces esto implica de cierta forma
+tener una noción de cómo se forma el lenguaje o qué es el lenguaje no? y entonces hay un principio que se llama el principio de
+composicionalidad que lo que busca es que una la idea es que el significado fíjense la idea no? y
+me parece bien chévere pero también controversial al
+mismo momento si? lo que dice es que el significado de una frase o de un conjunto viene de las partes que los componen si? entonces el
+significado de una oración es función del significado de
+las frases que la componen y el significado de
+la frase de la que los componen es función de los significados de las palabras y las
+palabras y el significado de esta palabra es función de
+las partes que constituyen las palabras o los
+lexems si? entonces la idea de esta filosofía del lenguaje es que uno puede encontrar el
+significado partiendo de los fragmentos más pequeños, entonces
+esta es una filosofía bastante viejita fíjense
+que no mire el contexto y la pregunta es si esta filosofía del lenguaje esta forma de
+entender el lenguaje nos puede llevar a resultados
+útiles? porque es lo que nos importa al fin y al cabo no? si el resultado que obtenemos es útil y
+cuán costoso es obtener un resultado útil de
+uno inútil vale? no es obvio que uno tenga que implementar
+siempre lo que yo digo no? un bazooka para para cazar un pájaro vale? yo voy a usar mi librería tradicionales y tengo
+unos datos de restaurantes que son falsos, todos los
+datos que voy a usar hoy son falsos y entonces acá tenemos unos restaurantes, unos usuarios, ratings y tenemos
+comentarios vale? entonces por ejemplo el primero le puso un
+rating de 5 y dice excelente servicio la comida
+deliciosa si? a ese se le escapa algunas setas, el
+comentario 2 dice comida mala y mal servicio, el 7
+dice pésima comida y pésimo servicio y así
+sucesivamente si? y lo que notamos es que hay algunos errorcitos de ortografía que son
+comunes, siguen sucediendo a pesar de que tenemos
+spell checkers en los teléfonos y en los computadores siguen sucediendo ahí está
+vale? entonces para para hacer la cosa un poquito más sencilla
+me voy a quedar con los que tengo comentarios
+llenos que creo que son 10 1 2 3 4 5 6 7 8 9 comentarios, entonces el primer
+proceso que uno tiene que hacer es homogeneizar de cierta
+forma el lenguaje. Si el lenguaje está constituido por sus lexemas, por su
+building blocks tenemos que poder capturar el significado
+a través de estas partes que los compone. Entonces el proceso típico de
+limpieza tiene que remover palabras vacías. ¿Cuáles son las palabras
+vacías? Las palabras que no me agregan a entender de qué trata la frase. Los ordenadores no son buenos con tildes,
+con signos de puntuación, números y cualquier otro. Pero en algunos casos los
+números son útiles. Estas son reglas en general. Y de ahí es en lo que vamos a separar el
+texto en palabras o tokens. Y esto lo vamos a encontrar los morfemos o los
+lexemos usando lematización o stemming. Y yo les voy a contar un poquito más. Y el
+tema de tokenizar y encontrar esta unidad mínima de análisis es un área
+activa de investigación. Por ejemplo OpenAI tiene
+su tokenizer que se llama TICTOKEN. Hasta pensar cuáles
+son las formas de analizar de los LLMs
+terminan en este punto de cuáles son las unidades
+mínimas de análisis. Entonces lo que yo voy a hacer es usar una librería bastante
+útil pero tiene algunos problemillas de instalación porque no está
+siendo activamente mantenida. Pero me parece a mí fantástica que es la
+librería del DNP que se llama Contexto. Esta librería desarrollada por el
+Departamento Nacional de Planación de Colombia es una de las mejores librerías
+en Python que he visto especialmente para el análisis texto en
+español. Tiene un montón de ejemplos. Está bien cómo puede uno leer y
+escribir textos. Recuerde que por ejemplo leer pdf es costoso desde un LLM.
+Entonces si uno los puede leer y los preprocesa y los pone como formato
+markdown es mucho menos costoso. Hacer la limpieza de texto. Uno lo puede hacer
+mucho más rápido y mejor sin gastarse las tokens. Yo les decía al principio que
+a veces me preocupa esta idea. Porque hoy por hoy usar los LLMs es
+bastante barato. Porque realmente las tokens no son costosas. Pero
+hay cierta visión de que algunos economistas especialmente plantean
+que estamos viviendo una época un poquito de de precios que no existen. No estamos
+pagando el verdadero precio que deberemos pagar por las tokens. Y esto me
+hace acordar cuando en un momento cuando apenas apareció el teléfono las
+llamadas eran gratuitas. Después a medida que se expandió el teléfono te
+cobraban por minuto en un momento y te cobraban por llamada a larga distancia.
+Y ahora bajó nuevamente el precio con la revolución tecnológica. La sensación que
+tienen algunos economistas es que hoy por hoy las tokens son muy muy
+baratas. Pero en un momento vamos a tener que pagar el verdadero precio. Y ahí
+ya que una vez que seamos todos adopters. Que todos estemos usando los
+LLMs. Nos van a cobrar el verdadero precio. Y entonces va a comenzar a jugar
+esta idea. Ok. Si lo voy a usar necesito
+saberlo bien para qué usar y en qué contexto usar. Y no me lo voy a gastar
+para haciendo cosas como estas que son fáciles y para hacerlo con pago.
+Vale. Entonces nada. Hay momentos que pienso que los LLMs van a solucionar todo.
+A punta de consumir agua limpia en los data centers. Y hay momentos que
+pienso que no. Tenemos que pensar en el precio marginal. Y se van a poner caros.
+No sé. El futuro dirá. Pero creo que vale la pena construir. Como les decía al inicio.
+Construir el capital humano. Y entonces tengo este comentario. Quiero
+hacer un poco de limpieza con estas funciones que ya están. Que
+funcionan bien. Que están. No. Entonces tenemos claramente una palabra que está
+mal. Y fíjense lo fácil que uno puede hacer con la función corregir textos. No
+hace falta que lo pase por ningún LLM que me gaste 30.000 tokens
+leyendo todo. Me dice. No. Unos cuantos segundos me corrigió el error. Y
+hasta puede remover acentos. Fíjense que los acentos. Especialmente para los
+computadores. Pueden ser complicados. O las diéresis. O las virgulillas. No. Y el
+llego fría. Fíjense. Las quita tranquilamente. Y entonces en esta idea de
+tratar de construir significado a partir de las palabras. De
+las formas más pequeñas de meaning. Desde lo más pequeño hasta lo más
+grande. Uno construye significado. Hay palabras que no agregan al significado. Y
+hay stop words. Y hay listas de stop words hechas. Y esta semana se van
+a encontrar un desafío especialmente relevante. Y ahí es donde yo
+me termino de dar cuenta. El uso de los LLMs bien y el uso de LLMs mal. Y en
+muchos les apliqué una penalización por el mal uso de algunas herramientas de IA en
+la corrección de los tallos. No fue grande. Pero sí hubo ahí una
+pequeña penalización. Y entonces, por ejemplo, la librería spaCy
+tiene unas stop words de ahí. Y yo tengo en los datos. Tengo unas stop
+words extra que le subí. Extra stop words construyendo con el
+tiempo. Y un poquito curadas. Pero quizás un poco descuidadas con el
+tiempo. Y entonces lo que hice acá fue juntar
+todas las stop words. Y es importante esto. Porque en el español especialmente
+van a encontrar. Y esto está hecho a propósito. Esta semana la idea es analizar
+los cuentos de Hernán Casciari. No sé si los tengo. Ah, acá los tengo, los cuentos de Hernán. Déjenme que se los
+muestre. Y está hecho a propósito. Porque Hernán es
+muy rioplatense, ¿sí? Es más argentino que el dulce leche. Y entonces, ¿por qué elegí los cuentos de
+Hernán? Porque impone los desafíos de esos que tenemos, a veces, de otras
+dimensiones que nos toca como analista. Si bien el español, que conocemos todo,
+acá está. Estos están firmados por Hernán cuando estuvo aquí en Bogotá, ¿sí? Y este
+está dedicado para los estudiantes de aprendizaje no supervisado. Yo le conté
+a Hernán la tarea que hacíamos. Y dice, para los estudiantes de aprendizaje no
+supervisado. Que hacíamos este taller en la clase. Este es muy bonito. Messi es
+un perro y otros cuentos. Porque impone desafíos. El español
+rioplatense tiene ciertas expresiones. Que si uno no es cuidadoso en la limpieza
+de las stop words, puede terminar quitando palabras clave, ¿sí? Que hablan
+en la recomendación y confundirlas por palabras vacías. Entonces, esa es la
+trampa que tiene el taller de esta semana para pensarlo de cerca. Y esto estaba
+pensado en algo que, bueno, como les contaba de
+Hernán, está dedicado a los estudiantes de
+aprendizaje no supervisado el libro, ¿vale? Sí, entonces lo que hago es, voy a limpiar
+el texto vaciando esas palabras vacías, ¿sí? Y entonces una
+expresión como, la comida llegó fría, el servicio fue muy malo. Déjenme que
+saque esto porque la verdad es que es un poquito
+molesto. Se resume a comida llegó fría, servicio malo, ¿vale? Fíjense que seguimos
+manteniendo el significado de que la comida llegó fría y el servicio malo. Pero acá nos entra a
+preguntar, ¿quizás llegar suma, no suma? ¿no? Comida
+fría, servicio malo hubiese sido quizás el
+camino a seguir, ¿vale? Y todas estas decisiones
+son claves para reducir ese análisis. Entonces lo que
+vamos a hacer ahora, siguiendo esta idea de que quiero reducir, que el significado viene
+de las partes más pequeñas, podemos pensar en dos
+procesos para seguir reduciendo las palabras, ¿sí? A
+esos lexemos morfem. Entonces una es lo que se llama la lematización, que la lematización
+es bastante más costoso computacionalmente que la
+estematización. No tengo una buena traducción para el stemming. En stemming hay que encontrar
+la raíz. Entonces la lematización ¿qué hace? Lo que
+vamos a hacer es vamos a tratar de transformar las palabras de su forma flexionada a su lema
+correspondiente, entonces ¿a qué se refiere esto? Bueno,
+por ejemplo, lo que tratamos de hacer es reducir niños,
+niña y niñito a un mismo lema. Por ejemplo, niña
+o niño. No hay ningún problema en el género. No va
+a distinguir género. Seamos inclusivos,
+pongamos niña, para que no tengamos problemas. La idea es que no
+nos complique la flexión. Como el llegó, lo
+quiero llevar al infinitivo, llegar, ¿sí? Y lo
+que hacen es vamos a reducir la dimensionalidad del vocabulario. Recordemos que el
+computador no distingue entre llegó, llegar, llegará,
+llegaron. Todo se refiere al verbo llegar. Lo que yo quiero es que sean una misma palabra. Hay un
+montón de lematizadores. SPACY tiene uno, ¿no? Y
+lo que van a necesitar acá, si lo cobran a esto, la librería va a descargar un modelo en su
+ordenador. Yo creo que acá está descargado, entonces
+no van a tener problema. Ah, no. Ahí está. Lo
+está descargando el modelo. Yo creo que igual
+lo tengo acá. El modelo ha sido cargado.
+Después inicia una nueva sesión para cargarlo.
+Entonces utilizar el modelo en blanco. Yo ya lo había corrido. Veamos acá. Lo corrí antes de
+comenzar la clase para que no me pase esto. Lo que puede fallar, falla. Entonces carga
+el modelo. Ya está. Y me... Ay, este no está corrido. También lo salté. Perdón. Voy a tener que
+pasar a mi ordenador personal. No se había corrido. Estaba seguro que lo había corrido. Bueno, déjeme que cambie
+entonces a mi PAI para que podamos hacerlo. Pues ya sí lo tengo. Obviamente lo corrí en mi
+ordenador antes. Y lo había corrido antes de comenzar la clase. No, pero éste le hace suficiente
+interés. Entonces acá está la sesión. No, este es el mismo cuaderno que tenemos. Y lo corro en mi VS
+Code. Tú, tú, tú. Está corrido. Está corrido.
+Acá. Ahí vamos. Acá. Sí. Entonces lo que lo que
+hice fue tratar de lematizar el lenguaje. Entonces comida llegó fría, servicio malo. ¿Qué
+hizo? La lematizar lo convirtió fría en frío. Y
+nada más. Llegó, por ejemplo, no me lo redujo a
+la forma infinitiva. Llega. Pero entonces yo
+podría, muchas veces, cuando no hace la tarea
+bien, agregar lemas al diccionario. Entonces,
+por ejemplo, podría esa forma infinitiva que no la
+tenía, la puedo agregar desde mi diccionario.
+Entonces lo que puedo hacer es poner llegó, que me lo a llegar si o comido por ejemplo si está a comida o malo a malo vale y es
+relativamente sencillo y con mi lematizador con un segundo
+diccionario no le di mi diccionario de lemas esto es
+especialmente importante cuando ustedes vayan a analizar
+los cuadernos de Hernán Hernán uy escriben muy divertido y si no quieren leerlo los
+pueden escuchar todos los cuentos están por por
+en youtube y si no si viene se los recomiendo enfáticamente que lo vayan a
+escuchar en un espectáculo no y entonces acá se va a
+definir mucho en las palabras que lo utiliza y
+cómo las utiliza y si queremos construir
+significado desde su palabra no qué quiere decir cada una por ejemplo él tiene el nombre un año me
+hablaban de quien es el chiri quien es el chiri y el chiri
+es su mejor amigo vale si uno hasta podría
+pensar en tratar de reemplazar esa palabra con
+algo que signifique la amistad o algo que capture
+su amigo no no no olvidemos que lo que queremos
+hacer es capturar el significado y para eso tenemos
+que tenerlo pero entonces lo que hace el
+lematizador nos lleva a esa a esa al lema de cada una de las palabras para que las inflexiones
+no no no no nos molesten por así decirlo mientras que el
+stemming es un método que nos permite reducir las
+formas flexionadas de una palabra a su stem a la
+raíz o al tallo vale y entonces lo que a mí
+siempre me gustó intuitivamente esta idea de reducir
+a la raíz no pero pero creo que solamente
+funciona cuando tenemos palabras a veces que vienen
+del latín porque el latín funciona muy bien
+con eso o el griego pero realmente para para el
+español y para los idiomas modernos resulta que no
+funciona tan bien entonces para los que son amantes
+de las lenguas clásicas como como yo esto a priori le parece muy atractivo no pero pero resulta que entre nosotros a mí
+me encantan los andes no creo que hay gente
+muy muy nerd acá y me hace muy feliz con el director de pregrado de economía
+compartimos especial aprecio por las lenguas clásicas entonces
+si uno mira nuestros emails la mitad son son una nerdeada en latín porque los dos
+estudiamos latín cuando éramos jóvenes y él enseña griego
+en sus tiempos libres no entonces siempre nos
+parecen atractivas estas cosas pero resulta que en
+la práctica como lo implementan siempre que pienses en lo que es las cosas no el dios lo hace y el viento los
+amontona y entonces el problema de las raíces
+realmente en español y en inglés no se hace así, se
+hacen siguiendo unas reglas bastante medio raras y especialmente las que vienen del stemmer que se llama el porter stemmer son simplemente unas reglas simplificadas pero
+que son extremadamente rápidas en términos de costo si uno va a pensar lo más rápido es hacer stems luego
+vienen lemas y después pensar en usar el lms entonces
+qué hace por ejemplo la palabra niños niña
+niñez en vez de reducirlo a un lema como niña piensa
+que todas tienen la misma raíz niño y entonces acá
+donde los cortas y el problema es que cuando las cortas no necesariamente uno termina con
+una palabra a veces termina hasta con una letra
+entonces si yo hago el stemming de esto comida se
+reduce en com, extremadamente rápido sirve un
+montón es muy útil pero para la interpretación a
+veces es bastante complicado y a veces el bang for the buck cuando uno quiere interpretar
+cosas no no es tan bueno, entonces comida a com
+llegó o llegar a llegue, fría a frí, servici a serví y
+mal a mal entonces el stemmer que es lo bueno súper rápido nos permite hacer un montón de
+operaciones no tenemos estos tokens con los que
+terminamos no son interpretables tienen estas cosas
+medio raras los lematizadores son un poco más costosos
+computacionalmente tenemos llegamos a los lemas podemos hasta poner nuestros propios
+lemas y modificarlo es bastante sencillo un poquito más costoso computacionalmente
+y finalmente si uno pensa en los LLMs son muchísimo más costosos para hacer estas cosas,
+entonces en esta escalera de costos esto es más barato
+pero perdemos un montón de interpretabilidad
+¿vale? entonces podemos agarrar a todos los
+comentarios y pasarlo por mi función limpiador ¿si? entonces corrijo texto, remuevo acentos,
+limpio, lematizo con el diccionario que viene, con mi
+segundo diccionario y me saque el stem porque me
+pone nervioso el stemmer, a mí me gusta mucho el lematizador y funciona
+interesante pero fíjense que lo que terminamos teniendo es que las
+unidades de análisis son las palabras ¿si? y entonces esto
+lleva a pensar que muchas veces las palabras uno necesita algo de contexto ¿si? y esto no
+nos da contexto entonces lo que van a ver
+muchas veces es que no se usan los unigramas las
+palabras solas sino que también se llaman bigramas ¿no? y por ejemplo un bigrama acá sería interesante porque uniría comida con
+mal entonces te da la sensación de que la mala comida y un mal servicio pero un bigrama donde
+tenemos comida mala y pésima comida que están transmitiendo el mismo significado serían
+completamente distintos ¿si? y entonces el ordenador en ese
+sentido no es capaz de distinguirlo, ahí tengo algo
+en el chat perdón ¿usted lematiza costoso? si exacto
+Juan, ay tenía varios, perdón Felipe, el
+lematizador es costoso por el tamaño de la bancada, si exacto,
+entonces tiene que buscar uno por uno y hacer la
+sustitución entonces es bien costoso por eso que el español por ejemplo entonces
+preguntar acá si Felipe nos dice es un problema con el emblem ¿no? que están construido
+alrededor de idioma en inglés que tiene muchas menos
+variaciones lexit en sus palabras que el español por ejemplo entonces preguntar en castellano consume
+más tokens y entendería que es más difícil lematizar un texto exacto, si exactamente
+Felipe, entonces dado que están construidos muchos
+en inglés y hay montón de evidencia pero no
+solamente en el consumo de tokens sino en la calidad de
+las respuestas que da porque tienes que hacer ese proceso extra, el prompting es mejor
+hacerlo muchas veces en inglés entonces yo por
+ejemplo trabajo casi todo en inglés y después las traducciones las hago al final o algo así y realmente es bastante más, la calidad
+difiere, lo mismo pasaba hace años con google,
+googlear en español y googlear en inglés no es lo
+mismo y cuando vos fijas la región del googling
+ya poco la gente googlea, por ejemplo yo fijo
+las regiones para googlear y cambian significativamente
+los resultados entonces por ejemplo para
+cuestiones académicas mi google está seteado en
+inglés en eeuu y la calidad de respuesta que me da
+ponerlo en la región de eeuu y googlear en inglés versus hacerlo en américa latina y en
+español es impresionante, eso para cuestiones
+académicas, si hablamos de piratear cosas en región américa latina y español porque hay
+tenemos una buena comunidad de piratear cosas y
+entonces eso está bien entonces lo que voy a hacer, claro estas son nueve sencillas todas, lo
+que voy a hacer es un corpus más complejo y para
+poder modelar lo que quiero del tema central de
+esta semana que es LDA, el análisis latente de
+Richlet, y lo que hice fue armé 800 reseñas falsas sintéticas y lo que hice fue generarla
+haciendo lo que a mí me gusta llamar ingeniería
+reversa es básicamente la misma intuición de la misma intuición de máxima
+verosimilitud, entonces que hago? yo conozco la verdad y genero las cosas conociendo la verdad
+después finjo demencia como si no conociese la
+demás pongo a andar mi algoritmo y veo si el resultado del algoritmo coincide con
+esa verdad porque esto me parece súper útil porque si
+uno tiene el baseline en el que conoce el
+ground truth la verdad para cuestiones didácticas es
+más sencilla obviamente en la práctica nunca
+conocemos la verdad, entonces yo acá sé todo, sé cuántos temas hay, cuáles son, en qué
+proporción entra cada tema en cada una de las reseñas, que me va a ayudar luego, entonces están
+guardadas en este documento data reseñas sintéticas, si
+entonces para cada uno genero 800 y fuera de generar, cobran la propina sin avisar y el valor final, la música acompaña sin tapar
+la conversación, la porción fue pequeña para
+lo que ofrece el menú, entonces acá están completas para que las podamos ver,
+entonces cobran la propina sin avisar y el valor final sube, la cuenta salió cara y la factura
+traía cobros que no pedimos, el lugar estaba
+limpio y las sillas comas, el lugar estaba limpio y las
+sillas comas, ese me repitió, se nota que lo hice con un
+código de python y no lo hice con el LLM, el descuento del día deja la cuenta muy
+barata, la cuenta salió cara y las facturas tenían cobros que no pedimos, entonces obviamente esto está
+generado a partir de un modelo estadístico que me genera
+palabras, el modelo es bobo, no sabe nada,
+simplemente sabe de estadística, entonces lo que hice
+primero es otra herramienta que es extremadamente
+útil por si contexto no funciona, es pensar en las
+expresiones regulares y un cuadernillo de expresiones regulares que si uno tuviese
+que aprender algo en ciencia de computación
+que tiene el mayor retorno posible, creo que son las expresiones regulares, es
+impresionante cómo son las expresiones regulares día a día, para
+buscar en mi computador, para mis archivos, hay
+cosas que me sé de memoria, no me las sé todas, pero hay algunas, por ejemplo el comando
+más usado que utilizo yo en mi ordenador es history
+slash grep y lo que estoy buscando, y grep es
+buscar sobre expresiones regulares, creo que debe
+ser el comando más útil en mi ordenador, en mi
+computador, entonces lo que voy a usar va a ser esta librería de expresiones regulares
+y estas expresiones regulares tienen ciertas reglas que como
+les decía no me las acuerdo todas que están en el cuaderno, pero me permiten detectar
+regularidades, de ahí expresiones regulares, para coger y
+limpiar afirmaciones, entonces por ejemplo los
+correos en una cadena de texto seguido de una arroba, otra cadena de texto, más un punto y otra cadena de texto, entonces esta simple
+oración me detecta muy bien un correo, y lo que usan un montón de formularios web, vio que usted
+está llenando el formulario y dice no, este formulario no,
+no, esa dirección de web no, esa dirección de
+correo no está bien formada, y yo me encanta testear
+porque típico de eso, no sé, la gente es muy
+naive, entonces por ejemplo en el aeropuerto El
+Dorado, para obtener wifi gratis le pide el correo y la gente le da el correo de ello, y no te das cuenta que poniendo cualquier
+expresión que cumpla con la regla de expresión regular, te dan
+acceso al internet gratis, cuál es el problema de
+dar tu dirección web, tu dirección de correo, que
+después te llenan de spam, eso lo venden, entonces
+sabiendo que usan expresiones regulares, yo ya sé
+que si le pongo, el mío es pepito arroba hotmail
+punto edu y pasa como, y lo que hago a veces, esto no le cuenten a nadie, si a alguien
+me cae muy mal le pongo la dirección web de la
+dirección de mail para que le llenen de spam sí
+entonces si se les comienza a llenar de spam ya saben por qué es no su correo entonces el correo del ex dice bueno no yo la quiero ya quedó grabado todo sí
+pero no dije que nunca las ex no no las ex no pero para otros individuos
+entonces los precios también no entonces si tienes si tienes signo de
+pesos no las conformaciones de las expresiones regulares son útiles lo mismo
+con los teléfonos entonces esto me permite rápidamente a mí hacer estos
+tipos de de limpieza sí entonces yo creo que puedo
+volver al cuaderno porque esta parte ya ya corre del cuaderno para que lo para que sí para que lo veamos desde el
+cuaderno y después ustedes lo reinicien al
+cuadernito para acá está el cuaderno entonces tengo el cuaderno acá están las
+reseñas las expresiones regulares y entonces vamos con sí entonces tengo un
+montón que tienen precio tienen teléfono mayúsculas tienen correo y entonces lo que
+voy a tratar de hacer es poner todo en minúsculas y
+remover correos, precios, teléfonos y tartiles y corregir todas las erratas que
+tengas algo importante que no es trivial y esto
+un poco lo traían ahí en el chat a colación el tema de que el español tiene
+estas cosas como como año y ano tamaño y tamaño tamaño y tamaño no hay
+ningún problema pero año y ano si es importante porque si
+yo quito la virgulilla o para los que hablan inglés tilde siempre
+me molesta que los gringos a la virgulilla le llamen tilde pero bueno si en el texto estamos hablando de años y
+ano no especialmente en las cuestiones médicas esto confundirlas puede ser llevar
+a una receta una receta para el desastre no? y si yo
+siempre que cuento la historia de en latino y en griego hay un verbo que se
+llama lío si? el verbo lío es desatar y en el
+subjuntivo tiene como una expresión como es que laico etcétera no? que lambda y y y alguna
+terminación no? pero laicos es lobo entonces en mi primer examen de
+griego yo vi laicos y en vez de traducirlo como el zorro era una fábula
+del zorro del pastorcito y el lobo, laicos es el lobo perdón, el
+pastorcito y el lobo yo creía que era desatar no? entonces mi examen fue el
+pastorcito desató y no sé qué con la desatada etcétera etcétera no? confundí
+uno por el otro imagínense no? volví al turno siguiente de
+examen estas cosas creo que son importantes
+tenerlas en cuenta cuando uno va limpiando los datos y entonces yo hago mi
+limpieza entonces lo que hago todas las
+correcciones y las mapeo y una vez que tenemos nuestras expresiones
+regulares esto demora un poquitillo perdón y una vez que nosotros tenemos nuestro nuestras palabras nuestra
+nuestra unidad mínima de análisis y que definimos a escuchar yo
+claro no esto no ocurrió podemos comenzar a analizarlo pero como
+les decía para poder analizar yo tengo las palabras ahora necesito de cierta
+forma mapearlo a algún punto del espacio es ponerla en números que me sirven y acá viene la segunda
+interpretación la interpretación de lo que se llama el bow no? o debería haberlo
+escrito escribamos lo bag o bolsa de palabras la idea es que el lenguaje uno lo puede
+pensar como simplemente una bolsa de palabras nosotros tenemos un diccionario y
+de ese diccionario nosotros vamos sacando las palabras y entonces cada una
+de esas frases y uno la puede representar por
+la existencia o no de esa palabra entonces nosotros tenemos nuestras reseñas
+entonces cómo va a lucir esas reseñas alguien entró déjenme que le dé
+acceso entonces una vez que nosotros tengamos
+nuestras reseñas nosotros la vamos a poder poner en una matriz que se llama DTM
+document term matrix entonces la document term matrix cómo va a
+lucir? vamos a tener en las filas el documento si? acá vamos a tener el
+documento qué van a hacer en nuestro caso las
+reseñas cada fila va a ser una de las reseñas y en las columnas vamos a tener
+las palabras si? entonces si la palabra aparece le vamos a poner la cuenta a ver las veces
+que aparece esas palabras y si no aparece le vamos a poner cero, fíjense
+entonces que va a resultar? se va a resultar que en esta reseña yo la pueda
+mapear como un vector un vector de cuántas dimensiones? en este
+caso de cuatro dimensiones en la posición 1, 2, 0, 0 ay che como demora esto, vale? creo que
+demora como dos minutos hay alguien que se conecta y se
+desconecta? no sé si lo estoy aburriendo o le anda mal el internet pero pero pero se
+conecta volvamos a mi cuaderno que ya lo tengo,
+que ya corrió porque si no este Coursera se demora mucho si ustedes están corriendo en Coursera le
+va a llevar dos minutos más o menos volvamos a mi cuadernito donde está mi cuadernito? mi Visual Studio ahí está, entonces sigamos con mi Visual
+Studio que yo ya corrigí, entonces me corrigió y vamos al VAU, entonces el VAU
+que es mi Bag of Words coge mis palabras limpias,
+mis reseñas limpias, fíjense que agarré las reseñas y las mapee, ah lo debería
+haber hecho en paralelo por eso no, por eso
+demora tanto y las toma y voy a formar esa matriz de palabras, si? entonces que hago?
+el count vectorizer lo que hace es me genera un vector con las
+cuentas, exactamente lo que les conté, si? cada reseña va a ser un vector y en ese
+vector me va a poner cuántas veces aparece esa palabra, si? a ver si esto
+corre hay tengo que correr todo para que, no
+justo lo que no quiero porque claro no no quería esto, bueno no toco nada más
+para que no, o lo pongo a correr todo lo anterior para que mientras vamos hablando,
+si? además le quité las palabras vacías para no tener ningún
+problema y armé mi Document Chain Matrix, si? entonces mi Document Chain Matrix, mi DTM
+o Matriz Documento Término, acá está mejor en español, que va a tener? va a
+tener una dimensión de 800 por 215, si? entonces qué quiere decir 800 por 215?
+tenía 800 reseñas que yo había hecho entonces las filas son esas 800 y tengo de
+mis palabras quedó mi vocabulario con 215 palabras limpias, implico eso? que yo
+de todas las que tenías no? reduje todo el vocabulario útil en 215, si? y cómo lo hice? bueno
+unificando términos, quitando números, quitando teléfonos, quitando
+precios y quitando palabras, si? y fíjense que acá dice una cosa
+interesante, dice la densidad es 10.5 qué quiere decir eso? alguien tiene idea? como a lo que se redujo? al revés? no, ni siquiera al revés yo en el ejemplo hice con dos, no? con
+cuatro, perdón, tengo dos documentos y tengo cuatro palabras, si? estoy esperando
+que corra si la puedo representar a la matriz y la podamos ver y había hecho 1 2 0 0 por ejemplo con una
+más 0 qué es eso? qué va a pasar? yo tengo 215
+palabras y no necesariamente todas las palabras van a estar, todas las palabras
+del vocabulario van a estar presentes en todas las reseñas, si? no todos usamos
+todas las mismas palabras, si? entonces fíjate que hay un montón de ceros, en este
+caso de 5 el 60% es cero, si? cuánto es no cero? el 40%, esa es la densidad,
+si? fíjate cómo la calculo, si? son las que son mayores a cero, entonces solamente el
+10% de esa matriz no tiene elemento cero y
+esto es algo muy común, vale? por qué? porque voy a tener mucho, no todos usamos
+todas las palabras, no? del vocabulario dice más o menos en promedio tengo un 10%
+de todas las palabras disponibles la estoy usando en esa reseña,
+vale? y qué implica esto? que cuanto más grande
+sea el vocabulario menos lo cubre voy a tener más columnas y más columnas llenas
+de ceros y computacionalmente eso implica
+desafíos muy grandes, es más, hay todo un área de la estadística que a mí me apasiona que se llama la
+estadística de la... sí, yo ya no le pego a que estudia cómo procesar las matrices
+poco densas o las sparse matrices, decime Melissa, pero en este ejemplo entonces
+afecta mucho las reseñas que son muy extensas, hay cómo identificarlas para
+reducir esas un poco más y que no afecte el resto de la matriz, al revés,
+acá el problema es cuando no usas muchas palabras, si en una reseña
+usas poquitas palabras entonces vos vas a tener muchos ceros, sí? y cuando vos tenés
+muchos ceros en las matrices son pesadas y el cero no agrega
+información entonces computacionalmente eso nos impone un
+montón de cosas, entonces el problema es la presencia de ceros en la
+matriz no la presencia de no ceros y entonces eso es por eso es que estamos
+tratando de limpiar tanto... ah mira ya corrió, tres minutos demora la limpieza,
+por eso estamos tratando de de por qué me... sí? cómo era? as matrix? no, me acuerdo del comando en en R, así, pero no me va a dejar la matriz, convio? no, no tiene ese
+método, tiene ese método? no le pidamos a la IA, para qué la tengo la
+IA, cómo hago para ver la matriz? implement, meta bruto, no, quiero ver la
+matriz ahí está, matriz transform limpia, no,
+bueno, veamos si funciona me parece que no, ahí está, ahí está, sí, sí funciona, ahí está, buenísimo,
+entonces así luce la matriz, no? entonces las 264, pero qué ineficiente este código, vale,
+entonces qué voy a tener? este el primer comentario,
+entonces el primer comentario, fíjate tiene un montón de cero y me apareció la
+token ya, sí? no sé si me sirve o no servicio, fíjense, acá me di cuenta que no
+funcionó mi es que está la versión vieja, no? acá está
+corregir texto y aún así no lo no lo corrigió, qué raro, servicio, zona,
+vista, ya, entonces fíjense que cada uno de los comentarios está representado por
+las palabras y la frecuencia que aparece, ¿no? Fíjate acá, este
+comentario alta aparece dos veces, ¿sí? Entonces se transforma en una matriz. ¿Y
+qué estamos viendo? Está lleno de cero. El 10% nomás son no
+cero, ¿sí? Y cuanto más palabras tengamos y menos
+limpiemos y tengamos, por ejemplo, al, que no agrega nada, que no me la
+limpió, más grande es. Si yo tengo stop words, si no se las quito, más grande el
+diccionario, más complicado el procesamiento de esa
+matriz que está plagada de cero con palabras que no
+agregan nada, ¿vale? Profe, por ejemplo, ahí en la limpieza,
+amabilidad y amable no las combinaría también con
+mono. ¡Exacto! Y me mandé una macana ahí.
+Entonces, ¿qué tendría que hacer? ¿Dónde está? ¿Dónde definí mi segundo
+diccionario? Ah, eso me pasó. Mi segundo diccionario, ¿dónde está? ¡Acá!
+Entonces definiría amabilidad. ¡Ah, qué bueno! Mirá. Amable,
+¿vale? Y ahí estaría. Y eso, exacto Melissa, es
+comenzar a ver y limpiar y me estoy agregando una
+palabra que la está distinguiendo en dos cuando
+quieren decir lo mismo, ¿sí? Y acá es donde se genera toda esa
+limpieza. Y en mi stop words tengo una extra que está
+el al. ¡Ay! No saben el tiempo que lleva esto,
+pero este es el key, ¿no? Están los memes de que
+trabajo en el científico de datos y el 90% limpia
+ese texto. Exacto, ¿no? Lo que dice Kevin, ¿no? Pero si son demasiadas palabras en un
+diccionario para cada una se puede volver impaciente. No, con el
+tiempo uno Kevin las tiene y además ya hay un
+montón dando vueltas online. Eso, el problema que
+plantea Kevin, eso era hace cinco años y ahora hasta uno se puede ayudar un poquito de lo de LLM
+para eso. Una fila que no tiene tantos héroes
+más útiles. Exacto. No, no la termina. Y ahora vamos a
+ir a lo que nos pregunta Juan, ¿sí? Entonces
+a Juan le preocupa la longitud. Que nos preocupe la
+presencia de las palabras, ¿no? Y vamos a tratar de
+hacer algunas cosas. ¡Ah! Acá están las palabras
+vacías. No la había filtrado, perdón. Acá están
+las palabras vacías. Saquemos las palabras vacías y la
+veamos ahora... a la matriz sin las palabras vacías, como
+en el código. Ahí se nota que yo uso... que con los agentes hay más de ocho
+fueras. X is not defined. ¿Si la acabo de definir? ¿No está acá? Ah, creo que es vocabulario. Bueno, ustedes saben más que yo de Python.
+No sé por qué no me están... Ah, acá está. Dice vocabulario. A ver si
+funciona con vocabulario. No, tampoco. La guía no
+sirve. Bueno, no importa. ¿Qué me dice? Exacto, John. Exacto. Así
+está. Sí, entonces fíjense, tengo la frecuencia
+de ciertas palabras y esto es lo que le está preocupando a
+John. La presencia de ciertas palabras y cuánto agrega la presencia de ciertas palabras.
+Estas son todas sobre reseñas. Y es obvio que todas
+van a hablar de platos, cuentas. Lo que yo
+quiero es poder distinguir entre ellas. Si todas
+hablan de plato, cuánta información extra me dan. O si estoy hablando de vacas, de algo de
+veterinario, de vacas y todos los textos hablan de vacas, ¿qué distingue uno de
+otro? Y si aparece un montón, ¿qué va a tender a
+hacer el programa? Unir las que aparecen más
+frecuentemente. Entonces, lo que uno puede hacer es lo que se llama el TD-IDF. El TD-IDF es tratar de mirar cuántas veces aparece la palabra en
+ese documento. Entonces, si aparece muchas veces, puede
+ser que sea importante. Si yo hablo mucho de vaca o
+mucho de platos, puede ser importante. Pero si
+todos los documentos hablan de lo mismo, reduce
+la importancia. ¿Por qué? Porque yo quiero
+separar. Recuerden, ¿no? Si algo no me aporta
+información, le quiero bajar la importancia, ¿sí?
+Entonces, lo que uno hace es el vectorizador type
+TF-IDF, term frequency, inverse document
+frequency. Entonces, lo que uno hace, hace el TD-IDF. TF-IDF. Entonces, ¿qué es lo que termina
+haciendo? Fíjense que la más frecuente era plato,
+ahora pasa a ser la IDF más baja. ¿Por qué? Porque están en todas partes. Es como, exacto
+Juan, exacto. Sí, exacto. Y las palabras más raras. Eso es lo que quiero establecer. Yo quiero
+realmente lo que más me distingue y me permite
+levantarme y poder distinguir. Si algo muy frecuente,
+no me agrega mucha información en los términos.
+Es muy frecuente dentro de y a través.
+Entonces, quiero normalizarlo. Y entonces ya tengo.
+Tengo mi matriz. Volvamos a ver la matriz. Estas
+eran las cuentas. La puse ahora en document
+terms. Y cada una, como les decía, es un vector.
+¿Vale? Entonces, si es un vector definido en este espacio de cuántas dimensiones? 264
+dimensiones. Puedo definir las distancias. Y entonces, dos
+reseñas que tengan las mismas palabras. ¿Quién me
+está diciendo en este sentido? En términos
+vectoriales. Que estén en la misma dirección.
+Exactamente. Bueno, en la misma dirección. Y entonces,
+si ya tengo, que usan las mismas palabras. Si
+están usando la misma palabra y el mismo término. Estamos pensando que son muy
+parecidas entre ellas. Si son palabras completamente
+opuestas, va a ser ortogonal. No, no completamente.
+Palabras que una tiene y la otra no, van a ser ortogonal. Y completamente opuestas,
+180 grados. Entonces, fíjense. Una vez que yo lo puse en términos de vectores. Puedo hacer todas
+las operaciones vectoriales que ya sabemos. Díganme
+Camilo. ¿Estaríamos haciendo una especie de PSA? Como encontrando... Ya vamos para ahí. Sí.
+Y el PSA se llamaba antes PSA. No, LSA. Latent Semantic Analysis. Que se usaba
+PSA. Pero estás pensando ahí. Este es un poquito más sofisticado. Pero sí. Puedes usarlo PSA y
+puedes contrastarlo. Entonces, tengo el vector. Y
+con el vector. Que bien Camilo. Puedo fijarme la distancia. Entonces, puedo definir la
+similitud con la distancia de vectores. Con el coseno.
+Entonces, voy a usar la similitud de coseno. ¿Y qué más voy a hacer? Me voy a sacar a Simi. La matriz diagonal. Para que no
+tenga. Entonces, por ejemplo. Puedo coger la reseña cero y
+buscar cuáles son las más cercanas. Y entonces, por acá tengo la reseña cero.
+Que decía, cobran la propina sin avisar y el
+valor. Recuerden que estas son inventadas. Lo
+hice con un generador hecho por mí. Hice lo mejor
+posible. Le pedí a Claude que me lo mejore. Pero estoy viendo que me duplicó algunas cosas.
+Pero bueno. Cobran. El mío anterior ya estaba bastante
+bien. Cobran la propina sin avisar y el valor final
+sube. La cuenta salió cara y la factura traía
+cobros que no pedimos. El lugar estaba limpio y
+las sillas cómodas. Fíjense que hay algo interesante.
+Está hablando de propina y el valor final. Que la cuenta salió cara. Que tiene que ver el precio. Y
+sobre el lugar. Y el lugar. Tiene frase lugar. Y
+veamos la más cercana. Dice, el espacio es amplio y
+se siente tranquilo. Ay, mirá. Ahí le estamos
+pegando en algo del lugar. El descuento del día deja la
+cuenta muy barata. Ahí no está muy bien. Y
+después dice, esto tiene que ver con mi generador. La
+cuenta salió cara y la factura trae cobros que no
+pedimos. Por eso. Fíjense. Coincide en la misma
+palabra y por eso la acerca. Y no está tan cerca
+porque tiene toda esta parte del descuento del
+día. Deja la cuenta muy barata. Entonces la
+similitud es 0.63. 6.55 de vuelta. El lugar estaba limpio y
+las sillas cómodas. En la misma frase. Y la
+ata. Esperamos mucho tiempo por la cuenta. La
+cuenta salió cara. La cuenta salió cara. Sí. Fíjense.
+Están esas palabras presentes y por lo tanto están
+similitudes. No son iguales porque tienen otras
+palabras presentes. Sí. En BID. No sé quién son, pero sí. Y es una limitación. Entonces acá nos
+pregunta. Pero profe, ¿qué pasa si tenemos estas dos
+reseñas con misma palabra pero significado
+opuesto? La comida estuvo excelente, pero el servicio fue
+pésimo. El servicio estuvo excelente, pero la
+comida fue pésima. ¿Sería un vector idéntico? Sería
+un vector idéntico. Sí. Entonces. Perdón. Me tilde leyendo la otra frase.
+Entonces es una limitación. ¿Vale? La pregunta es.
+Bueno. Si esa limitación no me permite hacer el
+análisis. Recordemos que esto es lo más barato que
+uno puede hacer. Fíjense que en un par de
+líneas de código yo lo armé en vectores. Todo el
+desarrollo posterior es poder vectorizar. Al fin y al
+cabo, todo lo que hacen los LLMs es poder
+representar en vectores las palabras, los tokens y
+después mapearlo y hacer esta operación. Sí. Esto
+es lo más básico. Y entonces no captura nada de meaning. La pregunta es. Aún así, sin
+capturar meaning, sin capturar el significado. ¿Cuán bien
+puedo hacer la operación? ¿Vale? A muchas veces no me interesa poder distinguir entre los dos.
+Si me hace un resultado lo suficientemente
+bueno. En otras claramente va a ser importantísimo. Y lo
+importante es el bang for the buck. ¿Cuánto me cuesta
+uno versus cuán bueno el resultado? Y es lo
+que he tratado en todos los talleres de hacer.
+Tengo un montón de alternativas. ¿Cuál es la más
+efectiva? Y no está claro a menudo en los talleres.
+¿Cuál es la mejor? ¿Cuál es la más efectiva? ¿Cuál recomendaría a usted? Y eso
+realmente muchos le dejan al LLM que le decida por ustedes.
+Y hay otra gente muy muy juiciosa que lo hace
+él. Y ya sabremos cuál tendrá laburo en el futuro.
+Entonces Julián nos dice. En algunas reseñas nos
+podemos encontrar con el texto bastante negativo.
+Por ejemplo como el de cobraron la propina sin avisar que la cuenta salió cara, que los precios
+subieron. Pero la calificación numérica es de 4. Que
+en una escala de 1 a 5 es una calificación
+positiva. Si el tipo de inconsistencia entre lo que
+dice el texto y la nota numérica es algo que se maneja de alguna forma antes de
+implementar algún sistema de recomendación o no es relevante. Mirá
+Julián. Es una muy buena pregunta. Y yo creo que es interesante porque nos hace pensar en los sesgos potenciales que tiene la gente.
+Entonces como analista ¿Qué hago yo? Incorporó ambas
+informaciones y lo que uno puede hacer es terminar
+ponderando. No hay una guía general. Pero esto por ejemplo pasa un montón en las
+retroalimentaciones en los talleres. Que sus compañeros ponen 100,
+100, 100, 100 y luego me escriben unos
+comentarios que son lapidarios. Entonces ¿Qué hace uno
+ahí? Esto es informativo de los sesgos
+potenciales de complacencia que tiene el ser humano.
+Entonces uno tiende a inflar las notas de las calificaciones. Entonces ¿Qué termina
+pasando? En ese caso lo que hace mucha la gente hace un poco de un esquema de peso bayesiano.
+Entonces lo que te digo le da menos peso a la nota
+numérica cuando la calificación es negativa. Y esto es muy importante. Hoy estamos de
+confesiones ¿No? Cuando nosotros vamos a... Si ustedes
+saben cómo funciona el mercado de economistas.
+El mercado economista es una pesadilla. Cuando uno
+termina el doctorado se anota en una página web que
+se llama el Econ Job Market. Y en esa
+funciona como un mercado general. Todas las
+empresas, todas las universidades, todo el individuo que
+quiera contratar un economista se anota ahí. Y todos los economistas que buscan empleo, que
+generalmente son cuando uno está terminando el PHD, se anota ahí
+¿No? Y después uno lo puede hacer más adelante en su carrera. Pero es un mercado muy
+centralizado. Y entonces cuando uno mira las calificaciones todo el mundo tiene buenas
+calificaciones. Entonces es muy difícil distinguir la
+calidad de un candidato por las calificaciones que
+obtuvo en el phd, rara vez alguien tiene malas notas,
+entonces pasa exactamente esto, las calificaciones
+no son informativas pero acompañado a eso uno
+además de subir los transcripts, todo cómo te fue en la carrera, uno tiene que subir las cartas
+de recomendación de tus asesores, entonces
+uno típicamente tiene un tribunal de tres
+profesores que te escriben carta de recomendación y
+ahí es donde uno realmente se transmite un
+montón de información en el texto espiritual,
+entonces con un montón de candidatos que uno ve muy tiene buenas calificaciones durante sus
+cinco años de doctorado, después uno lee las cartas de recomendación y dice... entonces qué
+hace uno ahí cuando toca contratar? pone menos
+ponderación a la nota y más a la carta, y es interesante porque a veces vienen
+cartas de grandes economistas, premios nobeles y uno obviamente,
+vallecianamente le pone mucho peso a lo que diga un tipo como David Card o Daron Acemoglu que se ganaron
+nobel, lo que dice Ignacio Sarmiento que no se
+gana ni la figurita de la esquina, pero la
+importancia del texto es importante y transmite un
+montón de información que vale la pena, entonces
+cada vez más pensando en esos sesgos, en las cosas
+que suceden, esa información que uno puede
+transmitir a través del texto se vuelve importante,
+entonces volviendo a todo, Julián lo que lo que
+hace la gente es algún tipo de esquema de
+pesos, entonces la idea es, lo que hice es, bueno a ver si funciona todo lo que estamos tratando
+de decir, che Ignacio qué lío que te armá, no mediste
+distancia, es útil, no es útil, bueno por eso yo me
+fabriqué los datos y yo sé los temas de los que salen, yo sé la concordancia, tengo la
+verdad, y entonces cada reseña está hecha a partir de cuatro
+temas, entonces lo que voy a hacer voy a desempolvar los datos de la verdad, y me
+voy a fijar si le pego, este es no define, donde está
+definido este? está definido acá, por qué no corre, este
+es no define, donde está este? ahí está, ya está, entonces qué pasó? fíjense que esa cosa tonta de
+usar los vectores le pega, coinciden temáticamente en 85 de
+cada 100, funciona súper bien para lo que
+hicimos, para lo low tech, para el lleno de errores que
+tengo, que limpie mal, que todo, le pego 85% en los
+temas que comparten, si hubiese sido completamente
+aleatoria, hay cuatro temas, si hubiese asignado completamente aleatoria la cercanía,
+hubiese sido 25%, entonces esto es lo que voy, sin limpiar bien el diccionario, con lo que me decía, con
+lo que le preocupaba acá a Kevin, de armar
+bien mi segundo diccionario lematizador, con
+todas esas cosas malas que hice con un diccionario que
+estaba bastante pobre, le pego un 85% en la
+coincidencia de temas, fíjense que bang for the buck,
+el retorno por la inversión es altísimo, obvio este
+es un ejemplo armado, pero esto sucede muy a
+menudo, y les sucede mucho más, y especialmente si
+usted le va a pedir al LLM, el LLM le va a hacer muy
+rápido, en vez de pedirle al LLM, che analízame todo, hacerme una similitud de cosas,
+limpiando el texto, usando bang of words, y te escribe
+el código de python, y eso es mucho más útil que ir con
+el LLM comentario por comentario, y por qué
+les digo esto, porque yo lo uso, yo analizo
+mucho, parte de mis experimentos es analizar
+texto, yo hago un montón de experimentos de
+discriminación, y la discriminación se transmite un montón
+a través del lenguaje, yo pago los LLMs y me gasto un montón de dinero en eso, y aún así me quedo sin tokens, y me las reviento las
+tokens, cuando hago que me lea comentario por comentario,
+entonces lo que yo tengo es, antes que hacía,
+contrataba un montón de asistentes de investigación,
+y los asistentes de investigación leían
+comentario por comentario, y los clasificaban
+manualmente, que hago ahora, los pongo a distintos agentes
+divididos, a cada uno de los agentes que lea los
+comentarios y me los clasifique, a mi asistente de
+investigación que haga eso, porque quiero la
+contrapartida humana, y finalmente un orquestador que
+los mira, y eso es costosísimo, y el bang for the
+buck es bastante bajo, y está plagado de
+errores, pero dado que son high stakes, y tienen que ver con discriminación, necesito como hacer
+todos los análisis, pero en muchos otros casos, con esto le pego, y le pego muy muy bien, ¿cuál es el
+problema? es esto que hablábamos, de lo que me decía
+acá en VIND, me decía, pero no va a
+distinguir, por ejemplo, de la comida estuvo excelente, pero el servicio fue pésimo, el
+servicio estuvo excelente, pero la comida fue
+pésimo, ¿por qué? porque no tiene contexto, pero tampoco va
+a distinguir cosas de que hablan lo mismo,
+el mesero fue muy atento, la atención en la mesa fue impecable, no comparten ninguna
+palabra, entonces el coseno la va a decir que son completamente distintas, sin embargo dicen
+lo mismo, entonces lo que nos está preocupando es, ¿importa de
+alguna forma el contexto? y entonces de acá, el bang of words, pensar que son palabras sueltas,
+que nos da un montón de bang for the buck, uno lo que puede pensar es, bueno, ¿por qué no
+categorizamos por tema? fíjense que esto está hablando
+todo el mismo tema, y la pregunta es, si nosotros
+hay alguna forma de descubrir ese tema
+latente, ¿no? y como nos decía Camilo, creo que fue el Camilo,
+de PCAM, que si hay un tema subyacente, y yo con la representación vectorial, ¿por qué no
+reducirlo al tema subyacente? si todo me está hablando
+de limpieza y servicio, y hablamos de
+reducción de dimensiones, y son cuatro grandes temas
+con que lo generaste, ¿por qué no los reducir a esas cuatro dimensiones claras? y eso se llama
+el análisis semántico, y uno poder usar a esa matriz,
+utilizar PCAM, ¿vale? resulta que PCAM se usó un
+montón, se usaba hasta principio de los 2000, pero
+hasta que apareció este paper que se llama el de
+LDA, Latent Dirichlet Allocation, ¿qué es lo
+que vamos a hacer ahora? que es tomarse en serio cómo
+surgen estos temas, esos temas latentes que
+armamos, ¿sí? entonces la idea es tratar de ver la
+concurrencia de palabras dentro de cada uno de los temas, ¿vale? entonces esta introducción
+si usted la quiere leer, y entonces lo que voy a hacer es contarle cómo piensa el LDA que se
+genere el lenguaje, ¿sí? y el LDA, a mí me encanta
+esta palabra ingeniería reversa, esta es mía, no es de Claude, no se
+preocupen, yo soy el obsesivo en ponerle ingeniería reversa, la idea es que no es un algoritmo, es una filosofía
+de cómo se genera el lenguaje, ¿sí? entonces
+cuando uno lee el artículo original de Bley, es muy bonito
+porque uno puede pensar la idea de PCAM, bueno hay temas subyacentes, podemos descubrir
+esos temas subyacentes, o lo que decíamos la
+habilidad subyacente en el ejemplo, acá lo que vamos
+a decir, no, nos tomemos en serio el proceso
+general de datos y lo pensemos de la siguiente forma, ¿sí? la
+idea, la historia que tienen por detrás del paper
+es, mire, yo digo la gente cuando escribe no elige las
+palabras, elige temas sobre lo que va a escribir y dentro de ese tema yo tengo mi vocabulario, ¿sí? y
+entonces dentro de ese tema de mi vocabulario va a haber palabras más frecuentes, si yo estoy
+hablando de economía voy a hablar más
+frecuentemente de precios, pero si estoy hablando de
+restaurantes también voy a hablar de precios, ¿sí? entonces en esos
+dos temas de restaurantes y de economía van a
+aparecer precios, pero no van a ser palabras, no
+van a aparecer palabras como robot en economía tan frecuentemente con precios, pero puede
+aparecer este mi vocabulario, pero va a aparecer
+con menos probabilidad, ¿sí? entonces cómo es
+la historia, ¿sí? cómo se imagina que se genere el lenguaje,
+¿sí? entonces lo que uno dice es, yo fijo el
+tema que voy a hablar, ¿no? voy a hablar del
+servicio, de la comida, del lugar, o voy a hablar de la
+amistad, ¿no? entonces esto es clave para el taller,
+¿por qué? porque Hernán Casiari habla mucho de
+la amistad, del fútbol, de la paternidad y me falta un
+tema, y de la familia, ¿sí? y entonces lo que vamos a hacer es, la
+idea es esto, yo tengo los temas que voy a
+hablar y estos van a ser K y va a ser reminiscente a K medias, tengo que definir los temas,
+tengo un vocabulario con el que cuento, pienso en
+un diccionario con el cuento y documentos que
+voy a escribir, ¿sí? entonces, ¿qué voy a hacer?
+voy a fabricar primero los temas, cada K es un
+dado, cada tema tiene un dado, entonces hay tema
+de economía que tiene un dado que está
+cargado, ¿no? entonces, ¿qué quiere decir eso? que
+cuando yo voy a elegir la palabra va a aparecer con
+mayor frecuencia cierto tipo de palabras, por
+ejemplo, va a aparecer más veces precio, ¿sí? y ese vector de probabilidades, como un
+vector de probabilidades va a sumarlo, ¿sí?
+entonces yo voy a coger, ¿sí? de esos K temas con cierta frecuencia y después para cada
+documento, ¿sí? una vez que yo tengo el tema voy a elegir dentro de ese documento, de la
+reseña de qué temas voy a hablar, ¿sí? y todo esto se
+sacan de la distribución de Richlet, ya vamos a
+hablar de distribución de Richlet, pero la clave es que es un proceso estadístico, ¿no?
+entonces vamos en forma y después sacamos palabra por y después palabra por palabra, pero para eso
+necesito un tema, ¿sí? entonces yo tengo los temas que
+voy a hablar, dentro de los temas tengo cuánto
+cargan las palabras de esos temas, después el
+documento, la combinación de temas que va a haber en ese documento, ¿sí? y entonces una vez que
+tengo el documento voy a elegir, ok, de este
+documento, voy a hablar de este tema en el documento,
+tengo que escoger la palabra de ese tema, y fíjense
+que se van anidando las probabilidades que
+suceden, ¿sí? entonces la clave es que parte de la receta, ese proceso que yo voy pensando, voy a hablar
+de estos temas, voy a sacar estas palabras,
+etcétera, no se ve, lo único que yo veo son las palabras,
+entonces la idea es hacer la ingeniería reversa,
+una vez que yo observo las palabras quiero ver cuál fue
+el proceso general de datos que me llevó a elegir
+esos temas, esa frecuencia, esas probabilidades,
+¿vale? entonces este es el ejemplo de juguete, ¿vale? entonces sí, exactamente Jairo, es un clustering
+más sofisticado, ¿sí? es un clustering, si
+queréis, bayesiano jerárquico, ¿sí? tenemos
+jerarquía de cómo se va a hacer, entonces lo que yo quiero hacer es, yo observo la palabra y la
+quiero clasterizar en los temas, pero en vez de
+usar esas distancias que usábamos en
+clustering, usamos el proceso general de datos estadísticos,
+¿sí? entonces, ¿cómo decimos? mira, este es mi vocabulario, tengo comida, sabor, plato,
+mesero, atención, espera, precio, cuenta, carga, este es el
+vocabulario con el que yo cuento, ¿sí? muy limitado, ¿sí?
+puedo tener vocabulario mucho más grande, Hernán tiene un
+vocabulario muchísimo más grande, entonces voy a hablar de temas, ¿sí? de
+tres temas, comida, servicio, precio, fíjense, tengo nueve
+palabras, todas las palabras tienen alguna probabilidad de salir en el
+tema, ¿sí? y todas suman uno, va a sumar uno esto,
+¿no? pero claro, de la comida, va a ser más
+frecuente que aparezca comida, más frecuente que
+aparezca sabor, más frecuente que aparezca plato, menos
+frecuente mesero y un poquito quizás más frecuente
+que aparezca precio, cuenta, carga, si hablo del
+servicio, ¿cuál va a ser más frecuente? que aparezca mesero,
+atención y espera, y si hablo del precio, va a ser más
+frecuente precio, cuenta, carga, no quiere decir que
+no me vayan a aparecer las otras palabras,
+aparecen con poquita probabilidad, ¿sí? entonces si yo
+voy a hablar de precio, van a aparecer más
+frecuentemente precio, cuenta, carga, si voy a hablar de
+servicio, va a aparecer con más frecuencia mesero,
+atención, espera, y si hablo de comida, van a aparecer comidas,
+sabor, entonces fíjense que la suma me da
+exactamente uno, ¿vale? entonces ¿cómo genero yo? si voy a
+generar cuatro documentos, ¿si? a partir de estas palabras ¿si?
+entonces el documento 1 yo defino la probabilidad de los temas ¿si?
+entonces digo mire voy a sacar el tema 1 con probabilidad 31% el tema 2
+con probabilidad 64% y el tema 2 es el 0 el 1 y el 2 con 5% entonces
+¿cuáles son los temas que más probabilidad tienen en ese documento? el 0
+y el 1, el 2 tienen bajita probabilidad y efectivamente para las
+nueve palabras que yo uso la primer palabra va a ser el tema 0, la segunda
+palabra el tema 1, la tercera del 2 y así sucesivamente ¿si? y el texto una vez
+que yo tengo el tema voy a samplear las palabras ¿si? entonces el tema 0 ¿cuál era
+probablemente la más frecuente? sabor claro tiene sentido porque sabor tiene 28%
+¿si? entonces tiene una probabilidad alta no quiere decir que no me aparezcan
+palabras que están en la otra ¿no? fíjense caro, caro es del tema 2, caro es
+del tema 2 fíjate el caro aparece 27% pero en el tema
+1 también aparece con poquita probabilidad pero puede aparecer ¿si?
+entonces fíjense generé en mi documento el texto este hecho a través de esta idea
+es sabor, atención, caro, espera, plato, caro, comida, mesero, mientras el
+documento 2 saca otras probabilidades caro, mesero, mesero, espera, cuenta,
+cuenta, cuenta, espera ¿vale? esa es la idea de cómo se genera el lenguaje, fijo temas una vez
+que fijo temas tengo las probabilidades de ocurrencia de esos temas luego fijo el
+tema que va a pertenecer a la palabra y luego dentro de ese tema que va
+a pertenecer a la palabra tengo la distribución de probabilidades, así piensa
+que se genera el lenguaje que un proceso probabilístico de arriba hacia abajo ¿cuál
+es el tema? que yo solamente observo las palabras entonces la idea es hacer la
+ingeniería en reverso, lo mismo máxima veracitud que
+vamos a ver la próxima semana ¿si? lo que vamos a hacer la próxima semana es
+tomarnos súper en serio esta idea de máxima veracitud y tratar de encontrar
+cuáles son los parámetros que me genera el modelo, eso es lo que estamos
+haciendo acá ¿si? entonces lo chévere es que yo
+tengo las verdaderas probabilidades con lo que
+generé las recién yo siempre me quedo sin tiempo ¿vale? les
+dejo esto para que vean luego de Dirichlet pero la idea de Dirichlet es que nos
+permite armar cada vector como las probabilidades entonces que sumen uno, entonces ¿qué es
+cada uno de los puntitos? cada uno de los puntitos es uno de los documentos, este
+documento ¿cuánto tiene? y bueno este documento tiene un poco del tema 1, un
+poco del tema 2 y un poco del tema 3 este documento que está acá arriba ¿qué
+tiene? tiene todo del tema 3 poquito del tema 1 y poquito el tema 2, el
+documento que es cada punto de un documento ¿si? este documento de acá tiene todo del tema
+2, todas las palabras del tema 2 y nada del tema 1, la idea es que cada
+documento es una mezcla de temas ¿cuán mezclados van a estar? van a estar
+dados por esos parámetros que nosotros tenemos que descubrir de la Dirichlet,
+entonces con un alfa igual a 10 todos los temas están mezclados, si todos
+los temas están mezclados va a ser fácil distinguirlo? los temas? no, muy difícil,
+muy difícil, si están así va a ser más fácil, claro, y acá el punto
+intermedio, entonces la idea es que nosotros vamos a tener que de cierta forma
+recobrar ese parámetro, decime Melisa. Profe ¿y cómo defino cuántos documentos sacas? son los que te vienen,
+las 800 reseñas son mis documentos, en el taller
+creo que son 520 cuentos, entonces tenés 520 documentos ¿vale? y está buena
+esa pregunta porque yo muchas veces me pregunté bueno ¿cuál es la unidad de
+análisis del documento? y hay gente que por ejemplo analiza páginas y eso lo toma como documento, y a mí siempre me puso
+bien incómodo eso, pero pueden ser los
+capítulos de un libro, por ejemplo, y esos pueden ser tus documentos, si vos estás analizando un libro, cada documento puede ser uno de los capítulos y querés ver la similitud, o de
+qué temas trata cada uno de los capítulos, etcétera, pero eso va a ser tu
+unidad de análisis, eso te toca a vos como analista definirlo ¿vale? en nuestro caso
+cada uno de los cuentos va a ser uno de los documentos bajo análisis vale entonces ve y esto me quedó sin corregir todo esto para que sea una sola función, pero creo
+que vale la pena entender ¿si? entonces lo que tengo que
+recobrar, ah! déjenme contarles ¿si? entonces ¿cuál es la fórmula? ¿si?
+entonces la idea es que la probabilidad de
+ocurrencia de una palabra, que es lo que nosotros vemos, depende de dos
+hiperparámetros, de alfa y de beta y entonces la idea es ¿cuál es el proceso
+general de datos? ¿si? yo observo esta probabilidad de la palabra que depende de
+esos hiperparámetros, si yo puedo descubrir cuántos son estos
+hiperparámetros, puedo describir toda la distribución y te puedo sacar todo lo que
+quieras ¿si? ¿cuál es el problema? que esto implica una suma, un producto y un integral ¿vale? vaya lío, esta es la probabilidad posterior ¿no? para los
+que están familiarizados con el mundo bayesiano,
+condicionales, observo la alfa y beta ¿cuál es la probabilidad de observar esa
+palabra? ¿si? entonces me dicen, mire la palabra pudo
+venir de cualquiera de los cas temas y no sabemos cuál, queremos descubrir y eso va
+a depender de cuánto es alfa, el producto y esto pasó para cada una de las
+n de palabras que tenemos y la integral dice, además la mezcla de temas
+tampoco la vimos, no sabemos cuáles son las probabilidades, así que hay que
+promediar sobre toda la mezcla entonces si usted está familiarizado con
+estadística bayesiana, las posteriors uno las puede tratar de calcular ¿cuál es
+el método más común? bueno las que son lo que se llaman los conjugate priors
+¿si? hay un montón en estadística bayesiana que usted sabe que si combina un
+prior con un data le da un posterior por ejemplo, datos normales con prior
+normales le da un posterior normal y ahora se me fueron de la cabeza todos
+los demás que sabía me va a retar mi profesor de estadística bayesiana, pero generalmente
+analíticamente eso no sirve mucho, uno toca calcularlo, una es la
+forma de usar lo que se llama el Gibbs sampling el muestreo de Gibbs ¿si? acá lo único que
+funciona es uno que se llama un muestreo de Gibbs colapsado,
+pero hay otro que es súper útil que se llama inferencia variacional y la
+inferencia variacional es un concepto muy chévere porque dice mira este problema
+no es solucionable pero voy a buscar un problema muy parecido que me va a obtener un resultado similar y
+ese sí lo puedo resolver y eso es un montón ¿cuál es el caso más conocido de
+ese tipo de algoritmos? ¿ustedes conocen el problema del viajero? ¿del travel salesman problem? ¿lo conocen
+a ese? el problema ese que un viajante tiene que ir a un montón de lugares pero
+no tiene que repetir nunca el lugar, resulta que ese problema no
+tiene solución pero uno puede encontrar un
+problema similar que es subóptimo y encontrarle solución a ese problema del
+camino óptimo, bueno la inferencia variacional, eso se los recomiendo, hay un
+librito que es buenísimo exacto Melissa con el problema de los tres
+cuerpos, exacto, que se los recomiendo enfáticamente y que yo lo uso todo el
+tiempo que se llama ya les digo algoritmos para vivir, entonces ¿qué es lo
+que hace este algoritmo para vivir? todo este algoritmo que nosotros
+estudiamos te lo aplica a problemas del día a día, entonces por ejemplo la
+pregunta es cuando uno quiere comprar una casa ¿cuántas casas tienes que
+ver antes de hacer una oferta? ¿alguien sabe la solución de
+eso? bueno resulta que después del tercer caso
+uno tiene que comenzar a hacer oferta, lo mismo con la novia, después de la tercera
+novia tiene que comenzar a hacer la oferta ¿vale? ¿por qué? porque vos ya
+viste la suficiente cantidad de personas que quería y ¿cuál es el problema? que si
+vos seguís esperando probablemente te perdás algo muy bueno ¿si? entonces eso
+son soluciones bastante interesantes, bueno acá pasa lo mismo ¿si? entonces es lo que
+implementa ese caler ¿si? la inferencia de vares señales y por eso lo
+podemos resolver muy muy rápido ¿vale? entonces yo lo implemento con LDA
+¿si? le digo cuántos componentes, acá le dije el alfa y el eta pero esto lo podemos
+hacer que lo busque porque ese es uno de los parámetros que queremos que
+los busque auto y entonces uno le pone auto y entonces no va a correr, hay algo
+no corría antes, ¿que no corría antes? bueno no corría algo antes, perdón chicos
+y entonces no me va a correr lo que no tiene definida aquí ¿vale? entonces me
+va a correr y me va a encontrar los matriz de distribución de tópicos por
+documento ¿si? y entonces yo voy a tener cada fila
+va a corresponder a un documento y cada columna a un tema ¿si? entonces ¿que hice?
+volví hacia atrás, me dijo ¿cuánto del documento corresponde a cada
+uno de los cuatro temas que yo le dije? fíjense yo le di cuatro temas lo recarguemos a esto, lo voy a cerrar
+chicos y lo voy a volver a cargar para que podamos volver, acá está,
+¿que sería como volver a tener un DTM pero en vez de palabras temas? estoy tratando
+de volver hacia atrás yo veo las palabras y quiero saber cuántos
+temas los generaron y le dije che son cuatro temas ¿cuál es la probabilidad que
+vos me generes? hoy se me guardó lo que no quería ¿si?
+entonces la idea es tengo palabras quiero saber los temas y a qué pertenece cada una
+de las palabras ¿si? entonces estoy volviendo de abajo hacia arriba ¿te
+acuerdas que antes tenían la probabilidad de temas, saqué los temas de
+cada una de las palabras y después las palabras dentro de
+cada uno de los temas? bueno ahora estoy comenzando las palabras y quiero volver
+hacia arriba ¿si? quiero recuperar toda esa distribución que yo hice de lengua no sé por qué se me abrió la versión de
+don't say, que esto tiene memoria corta si, me guardo la memoria verdad, eta, vecino, s, t, d, a, i, d, e,
+la perdí a x quizá la tengo en el cuaderno, bueno ya le
+voy a correr el cuaderno para que les quede corrido y todo
+bien, entonces corrí mi matriz y ahora puedo sacar el top
+de palabras que están en cada uno de los tópicos ¿si? entonces el tópico cero
+está ¿cuál es el top de palabras que se asignaron a ese tema? espacio, lugar, terraza, ambiente, decoración, luz,
+sillas, música ¿de qué está hablando el primer tema? del ambiente y yo lo había generado al
+ambiente y fíjense que yo les di las palabras, no les dije nada y me retornó el
+ambiente, yo tenía cuatro temas que generé, uno ambiente, otro precio, otro
+servicio, el segundo valor, cuenta, precios, factura, promoción económica, el segundo
+tópico, plato, sabor, comida, sazón, menú, postre y el tercero pedido, mesero,
+atención, fíjense que yo le di las palabras y me recobró los trópicos con los
+que lo había generado qué chévere ¿si? y esto yo no le dije nada
+y lo generó con esa frecuencia y con esas
+probabilidades ¿si? y lo que hice es, mire si el lenguaje se genera así y hay cuatro temas
+y hay probabilidades, me puede recobrar los tres ¿si? no le dijimos
+cuánto existían y cuáles, le dimos 800 bolsas de palabras, 800 bolsas de palabras
+que fue cada uno de los documentos y el número 4 sí y me recobro los temas sí entonces la
+idea no fíjense que lo que uno tiene que pensar acá es que los grupos de
+palabras no no están relacionados con conceptualmente pero están correlacionados
+por la proximidad con la que aparecen si aparecen juntos seguido en
+los mismos documentos y ese es todo lo que entonces todo el problema que tenía
+el vote la bolsa de palabras que que no entendía el contexto acá comienza a
+tener contexto y de dónde porque los tópicos tienen cierta
+probabilidad de que ocurran ciertos términos y eso es lo que está haciendo
+entonces servicios van a aparecer con más probabilidad ciertas palabras y eso es
+lo que está capturando cuando ve eso recobra eso entonces qué pasa si los temas están muy
+mezclados como esa distribución de Dirichlet que
+habíamos visto con el alfa muy grande realmente no va a no va a poder distinguir
+nada pero como algo de clustering como nos
+decía Jairo, interpretar muchas veces clustering o reducir la dimensión puede
+ser bastante complicado y esto toca a que el analista lo pueda
+descubrir y no y no el algoritmo pero lo que siempre les digo donde se van
+a pasar un montón de tiempo acá y quizás ahí si los pueden ayudar el NLM a
+hacer una buena limpieza de datos y por qué? porque si yo le doy basura me va a dar basura y lo mismo pasa con el
+NLM, si uno le da malos prompts le genera malos resultados y en este ejemplo nosotros fabricamos el
+corpus que estaba relativamente limpio a
+propósito, con texto real y la limpieza me la saldí un poquito pero le
+mostré la importancia de la limpieza, de lo que
+me quedaría y esto se los dejo para que lo lean ustedes es cuántos tópicos elegir
+y esto porfa le voy a pedir el NLM le va a sugerir un montón de cosas tengan
+cuidado hay algunos que le sugeren unas porquerías y hacen un
+análisis que se va más allá de lo que pedimos etcétera si lo entienden genial
+buenísimo pero hay muchas veces que no lo entienden nos
+ponen en las presentaciones y el que queda como un nabo son ustedes y algo
+también que pasa mucho que hoy lo discutimos en el comité es cuando hacen las presentaciones, hay unas
+presentaciones muy bonitas increíbles y hay unas que arrancan
+con el default de cloud y cuando ponen las presentaciones a default de
+cloud pierden la audiencia, fíjense que cuando yo cargo mucho de el texto también
+los pierdo rápidamente entonces noten eso al revés también si
+ustedes cargan y la gente en su presentación los hacen que tengan una reacción no muy buena y
+reciben un montón de mensajes porque estoy hablando de esto? porque
+reciben un montón de mensajes por slack de estas de estas cosas entonces eso les genera una
+reacción de que la gente desconfía mucho de su análisis vale? entonces está
+muy bien pero verifiquen verifiquen verifiquen no usen las
+cuestiones estándar chequen háganlo distinto aprovechen para hacerse más
+productivo y no dar esa señal incorrecta vale? entonces cómo pueden
+elegir? fácil utilizando todo lo que saben este es un modelo de máxima
+verosimilitud, cómo puedo hacer? saber cuán bien ajusta cómo funciona la máxima
+verosimilitud? puedo ver el log del ajuste de esta función de
+verosimilitud y eso es lo que se llama la perplejidad, pero que voy a necesitar
+ver la perplejidad dentro de la muestra y fuera de la muestra, si? y acá aparece
+todo lo que sabemos de Machine Learning si este el log verosimilitud, si? cuanto
+más temas ajuste, que va a aparecer con la verosimilitud? va a ir cayendo, es lo
+mismo que leer el cuadrado, si? dentro de
+muestra qué es lo que sabemos? un modelo que hace un buen trabajo dentro
+muestra sobre ajusta y hace un mal trabajo fuera de muestra, si? que es lo
+que tenemos que hacer realmente mirar fuera de muestra, si? entonces yo por
+ejemplo acá lo hice con dentro muestra y fuera de muestra para los distintos
+tópicos y fíjense dentro de muestra que va pasando con la perplejidad, el ajuste,
+la log verosimilitud, yo no sé por qué le llaman perplejidad en esto, la log
+verosimilitud va bajando obviamente pero qué pasa con fuera de muestra? baja al
+principio llega un mínimo y comienza a subir
+nuevamente, no perdón, acá llegó al menor, 145 y comienza a subir nuevamente,
+si? qué está pasando? cómo se llama este? qué está pasando?
+dentro de muestra va bajando el error y fuera de muestra está haciendo
+esto, cómo se llama esto? y con esto cierro la clase y
+ya estoy pasando, sobre ajuste, sobre ajuste o el
+trade-off o el dilema sesgo varianza, lo oyeron nombrar al
+trade-off sesgo varianza, si? qué está pasando? por qué baja el error? va bajando
+el error porque el sesgo va bajando si? entonces el sesgo al cuadrado va
+bajando, la varianza va aumentando, si? entonces al principio baja y después
+comienza a subir, si? porque éste va disminuyendo? porque está dominado por el
+sobre ajuste, el sesgo va bajando, si? recuerden, el trade-off sesgo varianza, si
+uno tiene que hacer algo machine learning el trade-off sesgo varianza, si? eso
+siempre y de ahí se deriva Camilo exactamente el sobre ajuste y el sobre
+ajuste, tiene que ver con ese trade-off sesgo
+varianza no se olviden nunca del trade-off sesgo varianza, ustedes que vieron machine
+learning, vale? y otras métricas, no? como por ejemplo la
+coherencia, la coherencia es la co-ocurrencia de palabras, que está
+vinculado al lift, que no me acuerdo quién me dijo, si? nada chicos, lo difícil de acá es realmente entender lo que hace un LDA, si?
+entonces LDA es un modelo tópico, es un modelo de lenguaje, claramente no me gustó
+nada y nada me gustó no, contienen exactamente la misma información lo que
+vean ustedes, si? los modelos de lenguaje son bastante
+distintos, les importa el orden, pero a mí esta frase me vuelve loco y me
+encanta, entonces algo que quiero que les quede para la vida es el bang for the
+buck, si? uno tiene cuando está tratando de hacer
+esta cosa, quiere usar el modelo más sofisticado, si? quiere pelear la guerra
+con el último bombardero, pero a veces con unas piedritas funcionan muy
+bien, si? esta idea de mucho rendimiento por poco costo, mucho valor
+por lo que cuesta vimos hoy que con un modelo relativamente
+simple, barato, podemos explorar muchísimos documentos, explorar
+estructuras temáticas, obtener resultados que podemos ver, entonces esta combinación
+de tener bajo costo y que son muy escalables, si?
+siendo muy muy valiosos, si? los LLM son extremadamente útiles, yo los uso
+constantemente, ustedes lo notan en mis cuadernos, que yo los uso, los trato de
+usar para mejorar mi exposición, pero al mismo
+tiempo en los análisis uno es pensar el retorno por el costo, si? entonces
+aquel retorno de tratar de mejorar el material es bastante alto por un costo bajito, pero cuando tengo miles de
+millones de documentos utilizo herramientas como esta,
+si? porque? porque el costo es mucho más bajo y el retorno es altísimo, si? entonces vale la pena estudiar, vale la
+pena saber los tipos de herramientas que están disponibles, más allá de pedirle
+al LLM que le haga las tareas, si? el retorno ahí es bastante bajo por lo que
+se están gastando, vale? nada, eso tenía para contarles hoy voy a tratar de que funcione el cuaderno
+en Coursera, si tienen problemas con Gensym me cuentan o le cuentan a los
+complementarios que manejan mejor Python que yo, yo tengo una relación amor-odio
+con Python, yo me llevo mejor con R porque tiene que ver con mi formación que
+viene más de la estadística, no? entonces nada, no sé si hay alguna duda, pregunta,
+voy a parar la grabación para los que le den vergüenza que quede grabado y así me pueden hacer preguntas, me quedo
+un ratico más

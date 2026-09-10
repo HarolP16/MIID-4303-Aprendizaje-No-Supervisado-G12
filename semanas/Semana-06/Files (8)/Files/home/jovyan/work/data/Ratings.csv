@@ -1,0 +1,26 @@
+restaurant_id,user_id,rating,comentarios
+1,1,5,"Excelente zerbicio, la comida deliziosa. "
+1,2,4,
+1,3,3,"Comida mala y mal servicio"
+1,4,,
+1,5,,
+2,1,4,
+2,2,3,
+2,3,2,"Pésima comida y pésimo servicio"
+2,4,,
+2,5,,
+3,1,5,"Comida deliciosa, el servicio excelente!"
+3,2,4,"Excelente servicio, buena comida"
+3,3,3,"La comida llegó fría, el serbizio fue muy malo!"
+3,4,,
+3,5,,
+4,1,,
+4,2,,
+4,3,,
+4,4,4,"Buena comida, buen servicio "
+4,5,4,"Buen menu, servicio excelente"
+5,1,,
+5,2,,
+5,3,,
+5,4,5,"Excelente comida y servicio"
+5,5,5,
