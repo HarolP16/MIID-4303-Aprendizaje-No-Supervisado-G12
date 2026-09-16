@@ -1,0 +1,939 @@
+ok, genial, ahí se está grabando deberían ya poder ver, por favor, me
+confirman el cuaderno de la sesión sincrónica si van acá, yo lo acabo de lanzar al
+escritorio y lo pude correr traté de que no me pase lo mismo la semana
+pasada que no corría pero ustedes ya ven que en vivo todo falla por más que uno se prepare, siempre a mí
+me causa gracia hay un profe mío que decía que cuando uno
+está explicando una tecnología una tecnología de un orden menor siempre
+falla hay un día estaba yo en una sesión de
+Amazon Web Services que nos iban a presentar unas nuevas
+funcionalidades y en el auditorio no había internet así que, no, lo gracioso de que nos
+querían presentar algo sobre internet y no andaba
+el internet entonces trataremos de que esta semana no
+nos pase lo mismo que la semana pasada que no corrían
+las cosas bueno, entonces déjame reiniciarlo lo tenemos corrido, está guardado, parece
+correr configurado el entorno pero ustedes ya, disculpen entonces la semana esta ya me entra un poquito de tristeza porque ya es la
+penúltima semana y la última obligatoria por así decirlo,
+porque hemos dejado la semana 8 como que sea
+optativa siento que es un curso bastante pesado,
+que hay mucho por hacer entonces la semana que viene son
+actividades de talleres en optativa el quiz sigue siendo obligatorio, siempre,
+pero esos son más sencillos y es simplemente buscar refrescar los
+conocimientos y algo que sí le voy a pedir es que no se
+olviden de hacer la evaluación de pares hasta el momento antes de entrar a clase, solamente 9 estudiantes habían hecho la
+evaluación por pares y si me tienen comentarios para los grupos
+que valoran porfa me mandan un mensajito por privado que yo
+lo junto y se lo hago llegar lamentablemente en la form no hay una
+forma fácil de incorporar comentarios y dado que no nos funcionó FeedbackFruits,
+tuve que pasarme a Microsoft Forms en otros cursos con otras plataformas anda
+súper bien FeedbackFruits pero lamentablemente parece que con el
+volumen este de estudiantes no alguien se está conectando con iPhone, no
+sé quién es porfa, si ustedes saben quién es le avisan
+que no haga saber porque me pone un poquito
+nervioso no? alguien da acceso a alguien a él entonces les decía la semana esta entramos
+con datos geográficos creo que si pensamos uno de las fronteras
+creo de aprendizaje de máquinas y de todas estas cosas va a ser el
+aprendizaje que se llama Remote Sensing que tiene que ver con aprender de los
+satélites, aprender de datos geoespaciales y creo que en los últimos años ha habido
+un boom importante y sucede, acontece que los métodos de
+aprendizaje no supervisado pueden ser muy eficientes para el análisis
+de estos datos geográficos la idea de esta semana es utilizar hacer un ejercicio súper súper útil o por
+lo menos que se utiliza un montón sobre crímenes, entonces el taller les
+pide examinar Chicago ¿por qué Chicago? porque Chicago es
+interesante, una de las ciudades con mayores nivel de delitos de América, casi tan
+parecida como Bogotá o en algunos lugares más altos que en Bogotá, también
+están muy concentrados geográficamente y hay una variedad geográfica donde
+ocurre, entonces la idea es que utilicen esto para poder analizarlo,
+además la ciudad de Chicago tiene algo muy bonito que tiene todos sus datos de
+delitos abiertos, entonces uno puede entrar y analizar, uno puede irse hasta casi el
+2001, yo tengo un par de artículos examinando algunas particularidades del
+delito en Chicago, entonces el taller de esta
+semana busca eso y busca un poco también informar políticas que podremos
+implementar acá en Bogotá y la de puntos calientes es bastante interesante, hay
+investigaciones hechas sobre lo de puntos calientes, más colegas míos justo
+en la oficina de acá a mi izquierda es quien trabaja mucho en estos temas,
+entonces tiene un artículo muy conocido, muy famoso
+sobre eso del Hotspot Policing y otros colegas como
+Álvaro Riascos que hace mucho de de aprendizaje máquinas también, entonces
+la idea es esa y como les decía aprender a trabajar con datos geográficos es potencialmente muy muy útil y a través
+del aprendizaje no superficial, yo tengo un proyecto ahora a escala país, que
+estamos usando los sensores remotos y los algoritmos de clasificación
+nos están funcionando muy muy bien si hacemos previamente una pre
+segmentación utilizando K-medias y especialmente explotando la variación
+temporal, porque la variación temporal en el espacio es interesante
+porque las plantas varían en fenología entonces uno puede identificar desde el
+espacio cultivos, carreteras, edificios a partir de la
+variación en el tiempo y es impresionante cómo K-medias lo detecta, entonces creo
+que esta es una frontera que en los próximos años ya explotó pero va a seguir
+explotando más a medida que tengamos más sensores, más satélites y más
+frecuencia en esos datos, entonces el que pega primero, pega dos veces como
+dicen y me parece bien chévere poder analizarlo, entonces esa es un poco la
+idea de por qué datos geográficos, pero para poder analizarlos un poco tenemos que que
+podemos seguir avanzando sobre estos métodos, no simplemente quedarnos con
+K-medias, K-medoides, jerárquico, todo lo que habíamos hecho hasta ahora, sino
+también podemos avanzar sobre la estimación de densidades, que es un área clásica en la estadística y que cada vez
+se utiliza más y se piensa más y uno lo está haciendo hasta sin querer darse
+cuenta, uno casi siempre estima densidades en su cabeza, y me gusta
+porque la estimación de densidad está en esa línea delgada entre lo que nosotros
+llamamos aprendizaje no supervisado, esta idea de feature engineering que
+aparece de cómo armamos los predictores y de dejar hablar a los datos por sí
+mismo, el modelado de datos, algo que está muy bonito, que es muy bonito de la
+estadística paramétrica y no paramétrica en particular, esta idea que
+tiene Breiman, supongo que ustedes lo habrán visto, porque confío que cuando
+vieron árboles y bosques todos leyeron el paper de Breiman, win-win, ya
+sé que nadie lo leyó pero me encantaría que lo lean, el artículo de ese seminal de
+Breiman es muy bonito y tiene una frase interesante en la que la motivación
+es dejar a hablar a los datos por sí mismo, a ver qué patrones
+surgen de los datos y esto cada vez va apareciendo más, en esto que llamamos
+ciencia de datos, y Breiman es un visionario, ese paper
+original, acuérdense que el paper, no me acuerdo si es el de los árboles, pero el
+de cost complexity pruning es del 84, creo que el de los árboles del 83 y el de
+bosques del 86, ya tiene 40 años el artículo, esa familia de artículos y hoy
+son más que ciertos, entonces para los curiosos, para los no tan curiosos les recomiendo los papers de Breiman, y ya
+no hay excusa, porque ahora si usted no entiende algo ya le puede preguntar a la
+IA, que veo que están todos muy muy muy duchos con la IA, algunos los complementa
+extremadamente bien, a otros los sustituye extremadamente bien también,
+sí? entonces la idea es que nos metamos en esto, para
+qué sirve la estimación de Reyes Camilo, gracias Camilo
+por las reacciones, para qué sirve? entonces la idea es que nosotros tenemos
+unos datos y vamos a suponer que son I y D,
+recordemos I y D independiente, idénticamente distribuidos, con una CDF, con una función
+de distribución acumulada F, que tiene densidad F,
+recordemos que que F no es otra cosa que la derivada de F sí? entonces la primera derivada de esa
+acumulación, y el objetivo, no? y recordemos que hay muchas cosas de estas que nos
+importan, porque nosotros tenemos, no? recuerden que conocer esta F puede ser muy
+muy útil para un montón de cosas, no? porque tenemos el teorema
+fundamental de la estadística, ese de Glibenko-Cantelli, que nos habla de que
+nosotros por ejemplo podemos utilizar la función de la CDF empírica para aproximar la la verdadera CDF, no? entonces la empírica
+CDF nos permite aproximar a la CDF, esto en
+una flechita un menos, perdón no? entonces a medida que N tiende a
+infinito a infinito, esa distancia se acerca,
+entonces la CDF empírica suele ser muy útil, y este es el
+argumento, no? este de Glibenko-Cantelli, que es el argumento por detrás de cosas como
+bootstrap, que vieron en sus clases de aprendizaje superviso, que está detrás de
+los bosques que está detrás de los bosques, entonces
+conocer las densidades, aproximar las densidades y utilizar este concepto puede
+ser muy muy útil, pero además nos puede servir mucho en lo que estamos
+haciendo nosotros en este curso, no es solamente para esas cosas que ustedes
+sabían de aprendizaje supervisado, detrás de los bosques, sino que muchas de las
+técnicas de clustering que están que estamos usando en el curso, utilizan
+esto, no? como DB scan, DB scan, density based el DB nos dice ya que es density based,
+esta B, DB scan, ya nos dice, no? lo que estábamos haciendo era buscando una
+densidad, un grupo de puntos, pero y lo que vamos a ver hoy que son las
+estimaciones de Kernel o los modelos de mezcla gaussiana la semana que viene, pero no solamente sirve para eso, sirve para el objeto clave que nos interesa a
+nosotros en aprendizaje de máquinas, no? recuerden que si ustedes, no? el objetivo
+del aprendizaje de máquinas que tenemos, no? el target, no? es minimizar la función de pérdida y cuando la función de pérdida la
+denominamos como la esperanza de y menos la función de x al cuadrado, si? y
+resultaba que encontrar la f que minimiza ese proceso supongo que esto lo hicieron, este debería
+ser un repasito de aprendizaje supervisado, esa f estrella no es otra
+cosa que la esperanza condicional entonces todo el problema de de aprendizaje supervisado lo, si
+recuerdan se resume a encontrar esta esperanza
+condicional, si? y entonces fíjense que la definición de una esperanza no es otra
+cosa que, no? la integral de y ponderado por esa densidad condicional en dj, si?
+entonces si nosotros quisiésemos estimar esa esperanza condicional lo único que
+necesitaríamos es tener una estimación de la densidad, si? y los métodos que
+vamos a visitar esta semana nos permitirían hacer esto si no lo vieron les recomiendo que lean el libro de los elementos de Statistical
+Learning pero además todo esto es una discusión de los métodos no paramétricos, algo muy
+bonito y muy muy interesante. Acá atrás creo que tengo
+el libro de la biblia de econometría no
+paramétrica y acá aparecen estimadores que eran muy
+famosos hasta principios de los 2010 como el
+Naradaya Watson y otros más. Todos tratando de estimar esa esperanza condicional y esa
+flexibilidad dejar que los datos hablen por sí mismo. Pero
+fíjense que no solamente era útil en los problemas
+de aprendizaje supervisado y haciendo
+regresiones no paramétricas para capturar esa
+flexibilidad, esa flexibilidad que los árboles y los
+bosques detectan de una forma muy particular, sino que también aparece en los problemas
+de clasificación. Fíjense que en los problemas de clasificación uno
+utilizando la regla de Bayes todo el problema de clasificar bien se reducía
+cuando la función de pérdida era simétrica a
+estimar probabilidad. Y si yo tengo las densidades puedo estimar probabilidades. Y entonces
+supongo que vieron en aprendizaje supervisado y si no
+los invito a que vean mi curso en dos semanas. El miércoles comenzamos con esto, pensar en los métodos estadísticos para estimar
+densidades y entonces ahí entran Bayes, Bayes
+ingenuo, todos estos Bayes no paramétricos, estas
+cosas que funcionan muy bien y que en un principio por ejemplo lo utilizaba google
+para clasificar los correos en spam o no spam. Entonces todo esto están súper utilizados, son
+importantes y y mucho más frecuente que no están siendo,
+no me sale la palabra en español pero la
+palabra en inglés sería overlooked como sobrevisto,
+sobrevisto no es la traducción, si a alguno se le ocurre me le escribí en el chat, overlooked por las
+cosas más modernas, más de moda, sin embargo
+como siempre esto no da mucho retorno por el costo que tiene. Siempre tenemos que pensar eso,
+no necesariamente uno tiene que irse con el último LLM
+cuando cosas más simples nos dan un retorno mucho
+más grande. Entonces cuál es la diferencia entre estas estimaciones no paramétricas que nos van a interesar ahora y los métodos paramétricos
+como los que vamos a ver la semana que viene con el modelo de mezclas gaussianas. ¿Por qué
+cambiar el orden? Creo que cambiar el orden es
+interesante porque generalmente los modelos
+paramétricos son los que más manejamos, los que más
+acostumbramos estamos, entonces hacer esa extensión lo
+dejamos para cuando estamos un poquito más
+cansados y aprovechamos una semana antes para
+extender en los métodos no paramétricos. Entonces nos
+vamos a meter en la estimación de densidad equivalente.
+Entonces, por ejemplo, si nosotros quisiésemos
+estimar una densidad, podríamos asumir que esa
+probabilidad, por ejemplo, sigue una densidad normal. Entonces si nosotros asumimos,
+este no es P, este es F, perdón, yo tenía un talco. Si nosotros queremos estimar esa F,
+nosotros podríamos decir, bueno, viene de una
+familia de distribuciones. Por ejemplo, podríamos
+decir que en el punto X0 esa densidad podría asumir viene de la normal. Recuerden que esta es
+la densidad de la normal. Entonces la
+densidad en ese punto X0 es simplemente esta expresión 1
+sobre raíz de 2 pi por sigma exponencial de menos 1 medio X0 menos mu sobre sigma todo igual.
+Y fíjense lo interesante, que si yo estoy
+dispuesto a asumir una forma funcional, toda la estimación se
+reduce a encontrar estos dos parámetros. Mu y
+sigma. Si yo tengo estos dos parámetros, ya conozco
+toda la distribución. Y entonces la pregunta
+que uno tiene, ¿cómo hago para estimar esos dos
+parámetros? Mu y sigma, si estoy dispuesto a asumir esa
+forma funcional. ¿Alguna idea? Ahí tengo a alguien en el chat, gracias. Ah, gracias Jaime. El overlock subestimado
+pasará pronto. ¿Nadie sabe esto? ¿Nadie se le ocurre? ¿Cómo hago para estimar esos parámetros? ¿Cómo hago para estimar esos parámetros? Acá no sirve la respuesta 0 1 infinito,
+como yo le digo a mis estudiantes en estadística,
+siempre 0 1 infinito. ¿Nadie? ¿Ni cerca? Le pregunto al chat
+GPT. Profe, pues son los parámetros de la
+muestra. Ah, muy bien. Con los datos de la muestra. ¿De dónde sale esa idea? ¡Perfecto! Jorge
+no le tiene que preguntar al chat GPT, con la media y el
+desde estándar. Entonces, ¿a qué responde ese principio,
+Jorge? ¿Te acuerdas? Yo sé que Jorge se acuerda. ¿El principio de centralidad? De máxima verosimilitud. Eso, perdón. Es raro, ¿no? El maximum likelihood. No sé
+por qué la gente lo tradujo, no sé qué gallego lo
+habrá traducido. Máxima verosimilitud. Pero el principio de máxima verosimilitud. Entonces, ¿qué hacíamos? Buscábamos cuáles
+eran los estimadores máximos verosímiles. Y encontramos que son la media y la
+varianza muestral, son los que nos permiten. Entonces, el problema se resuelve fácil,
+porque si nosotros estamos dispuestos a asumir que los datos se
+distribuyen como normal, describir toda la densidad, y por lo tanto
+toda la distribución de los datos, necesito solamente calcular la media y la varianza con los estimadores máximos
+verosímiles. ¿Cuál es el problema del estimador de la
+varianza máximo verosímil? Es que es sesgado, pero es consistente. Así que a medida que N estiende a
+infinito, le pega el parámetro, lo malo es que en muestra
+pequeña es sesgado. ¿Sí? Entonces, genial Jorge, qué bueno que
+te acordas de estadística, porque ya me estaba
+preocupando un poquitín. Yo sé que está detrás de... pero es un
+lunes, estamos todos cansados, yo no sé por qué los lunes estoy más
+cansado que los viernes. Tiene que ver con los fines de semana
+tumultuosos, pero no vamos a hablar de los fines de semana
+tumultuosos. Entonces, no vayan a creer que estuve todo
+el fin de semana trabajando en un artículo para
+mandar el referís. Entonces los métodos no paramétricos lo
+que van a buscar es buscar estimar F sin asumir una forma
+funcional particular. ¿Sí? Entonces no vamos a levantar ese
+supuesto de normalidad, no lo vamos a asumir. Solamente vamos a pedir algunas
+condiciones de regularidad, que sean suaves,
+diferenciables. Y esto nos va a dar más flexibilidad a un costo computacional, pero realmente los
+computadores son bastante rápidos ahora. Pero lo que tenemos que tener en cuenta
+con estos métodos es cómo hacemos para
+interpretar la información muestra. Si yo tengo una muestra, por ejemplo, de
+dos puntos X0 y X1, recordemos la idea de DBSCAN que
+teníamos, ¿no? Cuando hay mayor concentración de puntos
+vamos a pensar que hay mayor densidad, ¿sí? Entonces la densidad... ¡Ah! y esto lo
+había cambiado y me quedó... Entonces, por ejemplo, si tenemos mayor
+densidad cerca de X0 que de X1, como vemos en la grafiquita, podemos inferir que la densidad en X0 es
+mayor que la de X1, ¿sí? ¿Vale? Entonces vamos a asumir eso,
+simplemente, y eso va a ser nuestro punto de partida más la
+suavidad y la diferenciabilidad. Quizás la estimación de densidad más
+familiarizada que ustedes tienen son los histogramas,
+¿sí? El histograma, ¿qué hace? Simplemente
+estima la probabilidad dentro de los intervalos a través de la
+frecuencia relativa, ¿no? ¿Cuánto suceden esos datos dentro de ese
+intervalo? Y la clave es que los datos los
+determinamos a partir de un punto inicial y de un ancho de
+banda, ¿sí? Entonces, por ejemplo, fíjense que yo
+tengo un punto inicial A, tengo un ancho de banda W, entonces mi intervalo es
+hasta A más W, ¿sí? Y en ese intervalo yo tengo dos punticos,
+en el intervalo siguiente tengo tres punticos,
+entonces la densidad es mayor, en esta tengo cuatro punticos, la densidad
+es mayor, acá tengo un puntico, un puntico y un punto, la
+densidad es menos, ¿sí? Entonces, el área nos da la frecuencia
+relativa, ¿sí? ¿Qué es el número de observaciones en el
+intervalo? Y la altura, ¿sí? es el estimador de la
+densidad en ese punto, ¿sí? ¿Qué va a ser? El número de observaciones
+en el intervalo, ¿sí? dividido sobre el número de
+observaciones por el ancho de banda. Entonces este es nuestro primer estimador
+inocente de las densidades, y lo hacemos todo el
+tiempo, ¿pero por qué lo enseño en este curso
+súper avanzado, que queremos ver cosas más avanzadas? ¿Por qué
+volvemos a los básicos? Porque hacer bien lo básico paga mucho,
+tiene un retorno altísimo y la gente se olvida de hacerlo
+bien, ¿sí? Entonces déjame hacer los datos, tengo los
+datos y voy a hacer el histograma, ¿sí? Entonces fíjense que me da el histograma,
+y este histograma comienza en 3 y el tamaño es 1,
+¿sí? ¿Cuál es el problema? Y esto la gente
+suele olvidarse o lo trata de engañarte con ello, que el
+histograma depende del punto inicial, la estimación de densidad es
+sensible a ese punto inicial, ¿sí? Y fíjense que si el punto inicial yo lo
+cambio de 3 a que esté centrado en 3, la densidad
+cambia, fíjense cómo iba la densidad, había una densidad
+alta, subía y caía, ahora es mucho más baja, sube y vuelve a
+caer, ¿sí? Entonces obviamente si cambia la densidad
+cambian los resultados, no nos gustan modelos que sean
+poco robustos. Otro que depende de los anchos de banda,
+si yo hago que el ancho de banda sea más largo me cambia
+la densidad, ahora cae completamente, cuanto antes subía y luego
+bajaba, y acá subía y baja, ¿sí? Y finalmente uno de los problemas que
+tiene es que la estimación de la densidad es
+discontinua en los bordes, ¿sí? Entonces fíjense que el cambio entre acá,
+si yo me aproximo por izquierda la estimación de la densidad es una, y la
+densidad por derecha es otra, ¿sí? Y no nos gustan las cosas discontinuas,
+generalmente, ¿sí? Nos suelen gustar las cosas suaves, porque nos permiten usar el cálculo diferencial,
+¿sí? Y cuando comienzan a ver estas cosas ya
+nos ponemos nervioso y tenemos que recurrir a
+otras herramientas, ¿vale? Entonces, una forma es utilizar lo que
+vamos a estudiar en profundidad en los cuadernos de la semana, que se
+llama Kernel Density Estimation, ¿sí? Fíjense que el Kernel Density tiene la
+misma idea, ¿sí? Tiene N sobre H acá, que tenía nuestro
+histograma, ¿sí? Fíjense, N por W, H va a ser nuestro W,
+¿sí? Que va a ser nuestro ancho de banda, ¿sí?
+Entonces es la misma idea. N por W, W era el ancho del intervalo, H
+va a ser el ancho de banda, que va a aproximar
+esa idea de intervalo, y después la altura, ¿no? Allá teníamos el
+número de observaciones, aparece algo que a todos
+nos confunde. que es esta función media extraña, que es una función evaluada en la distancia a un
+punto objetivo menos todos los otros puntos
+dividido por 8, fíjense que esto es como cierta forma pero acá hay una función que se está
+midiendo en un punto y entonces acá hay dos cosas
+clave de lo que depende esto, depende de SH que
+habíamos visto que está aproximando el W y que en
+el histograma era súper importante y de K vale de este kernel, entonces metámonos en
+el kernel que suele ser lo más difícil de
+entender el kernel puede ser cualquier cosa, el
+kernel puede ser cualquier cosa siempre y cuando
+cumpla las siguientes condiciones, tiene que ser
+una función no negativa y tiene las
+propiedades de simetría, es decir que si yo evalúo el
+kernel en un punto y lo evalúo en el negativo de ese
+punto me da exactamente lo mismo, entonces lo
+evalúo en 2 y en menos 2 y me retorna lo mismo, es
+simétrica está normalizada de forma tal que si yo
+integro entre menos infinito es infinito nos da 1,
+es monótona decreciente, es decir la primera derivada
+es negativa y algo que se desprende de la simetría y la normalización es que el valor
+esperado es igual a 0, es decir que está centrada en 0, es
+decir que esta función tiene que tener unas
+propiedades súper súper específicas, vale? entonces si
+uno comienza a fijarse qué qué función podría cumplir ésta, estas
+propiedades, la primera al menos que a mí se me viene a la cabeza siempre, pero eso puede ser porque
+me limaron la cabeza con esto, la que yo
+recuerdo del colegio secundario es perdón, es una que tiene esta forma y está centrada en 0, bueno imagínense que
+está centrada en 0, es simétrica si yo la
+evalúo acá a la misma distancia me da igual, si la
+integro me da 1 y es monótona decreciente, cuál es esta
+función? la normal estándar? gracias, por qué? porque está centrada en
+0 y tiene varianza, entonces fíjense que no estoy diciendo que mi función de
+densidad sea normal, estoy diciendo que yo necesito una función para el kernel que
+cumpla ciertas propiedades, y esta es una hay un montón, no? hay un montón de
+funciones, pero una es esa, si? entonces fíjense que eso es interesante
+porque tenemos que distinguir, y esto suele
+confundir la gente, estoy buscando una función que cumpla ciertas propiedades para
+reemplazarme eso, no quiere decir que la estoy asumiendo
+normalidad, nada nada nada, distinguimos eso, entonces
+veamos cómo funciona, entonces yo tengo un dato, si? vamos a ilustrar un
+dato por ejemplo es 3, no? y tengo un montón de
+otros datos la función de kernel yo le estoy poniendo
+una normal, entonces yo quiero estimar la
+densidad en 3 yo quiero estimar la densidad en 3, vale? y el estimador de
+kernel me dice que va a ser? bueno va a ser 1 n por h, por la sumatoria de x menos xy, cuál va a ser el x? nuestro x va
+a ser 3 dividido por h, vale? para hacer las cosas
+más simple vamos a asumir que h es 1, entonces
+nos lo saquemos por ahora, es súper importante
+el h, pero por ahora no nos hagamos los onzos,
+no nos enfoquemos en simplemente entender qué
+hace la función de kernel, si? y acá va a estar el kernel, ah yo lo quería hacer con otro color,
+perdón, si? entonces el kernel no puedo elegir otro color, el kernel si? entonces yo tengo que agarrar una función de kernel, evaluarla en estos
+puntos, sumarla de 1 hasta 2, cuántos son nuestros puntos?
+1, bueno acá los tengo calculados dónde están los punticos que habíamos
+hecho? 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 11, 1,
+2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 11, tengo
+alguien? gracias cristián entonces cómo hacemos? vale? entonces calculemos, si? cuánto es la normal standard centrada en 3 con desvía standard 1, si? con el h igual a 1, cuánto es esa kernel density, si?
+entonces fíjense que me dice a través de todos los i, cuál
+va a ser el primer i, si? 3 será parte, si?
+entonces la primera va a ser 3 menos 3 evaluado en la función de kernel, la función de kernel habíamos dicho que
+estamos asumiendo una normal, entonces cuál es la
+contribución de esa? eso es 0,398 0,398 y así para todos los puntos, por
+ejemplo si ahora lo mido respecto a 10, cuánto
+cree que va a ser la contribución de ese 10? o
+cuánto me va a dar esta operación? más grande o
+más pequeña? pequeña, pequeña, al revés Andrés, por qué
+pequeña? pero no era 3 menos 10? si, acá está mira, 3 que es donde está centrado y acá está el
+10 entre más lejos nada más cerca de 0 0,13 9,13 pero tiene e a la menos 12, qué es lo que estamos haciendo intuitivamente?
+fíjense, yo centré el kernel, el kernel 1 normal en 3 y
+evalué la densidad en 3 y entonces le pregunto,
+si yo quiero estimar la densidad en 3,
+recordemos que yo estoy tratando de estimar la densidad
+en 3 cuál va a contribuir más para estimar la
+densidad en 3? la observación en 3 o la observación en
+10? en 3 si, obvio, y el 4 más que el 10, fíjense que sin embargo lo que me
+dice, mire contribuye menos en 10, casi cero, pero no es cero,
+no es cero, si? volvamos a ver la diferencia
+con el histograma, yo quiero estimar por ejemplo
+en este, la densidad en 3, cuánto contribuye 10
+para estimar la densidad en 3? lo está teniendo en
+cuenta? cero, nada, no lo tiene en cuenta, a
+quiénes tiene simplemente en cuenta? a los que están
+dentro de ese intervalo, vale, qué hace el kernel?
+el kernel dice mira todas contribuyen, volvamos acá,
+todas contribuyen fíjense todas contribuyen, pero no todas
+contribuyen igual, cómo contribuyen? en la distancia entre el objetivo, el punto objetivo, si? y ese
+punto rescalado por ese, entonces en el caso de
+una normal, qué me está diciendo? mira los
+puntos cercanos a mí son los que más contribuyen a para estimar la densidad, mientras que los más alejados importan, pero importan
+poquito, pero todos están ayudándome a estimar la
+densidad, y h qué me está dando en ese sentido? vamos a ver si estamos pensando que x es
+donde está centrado, entonces lo podemos pensar como la media,
+como el mu, qué me están midiendo h? la desviación
+estándar, la desviación estándar, y qué me dice de
+la desviación estándar? es el peso, exacto, si yo hago un h más
+grande voy a tener en cuenta van a recibir más peso más alejada, sí? y a qué equivale eso a lo que veníamos
+viendo en el histograma? a el ancho del intervalo, pero fíjense qué chévere, qué interesante, porque lo
+que está diciendo, mire todas las observaciones
+contribuyen a estimar, entonces cómo funcionaría para
+sacar la densidad final? y la densidad final?
+bueno para todos los puntos tenemos que hacer,
+no? entonces la densidad en f van a estar
+ponderada por todos, en 10 lo mismo, para 3 el punto 3
+va a contribuir menos, y fíjense cómo se van solapando esas contribuciones de
+todos, qué me van a ayudar a estimar la densidad final?
+si yo lo sumo, fíjense, que la contribución
+final de esa densidad, la estimación de la densidad
+final, perdón, en todos esos me da algo que no se parece a la normal, tiene dos picos completamente distintos, entonces no
+confundan, acá viene la confusión más grande y no saben cómo me
+aquejaba esto, yo me iba a dormir y no entendía, lo único que está haciendo la función encarnal está ponderando cuánta
+información contribuye y utilizo como ponderador la normal, pero
+la uso podría ser cualquiera y eso me da una
+estimación de la densidad que puede o no parecerse a
+la normal, en este caso nos da algo que tiene
+dos puntitos, vale? entonces es clave
+distinguir eso, la estimación final es simplemente cuánto
+estamos estimando en cada uno de esos puntos objetivos. Excelente pregunto Juan
+Sebastián, si se utiliza otra función nos pregunta Sebastián si el
+resultado cambiaría, resulta que no mucho, lo que más importa es el ancho de banda, SH, que yo me estoy haciendo el sonso en
+responder, resulta que la elección del kernel o la función no afecta tanto los resultados, y
+entonces parte del taller creo que les pide que miren cuán sensibles son los resultados a la
+elección del kernel, resulta y acontece que años de
+estadística no paramétrica muestran que los resultados
+no son tan sensibles a ese kernel, hay un kernel
+epachnicom que es el que es teóricamente óptimo, pero en la práctica ustedes saben que la optimalidad depende más de la
+validación cruzada que de las respuestas teóricas,
+entonces Juan Sebastián la respuesta es los
+resultados son poco sensibles a la función de kernel que utiliza, y hay un montón y vienen
+programadas, exacto Melissa, si cambiamos el H entonces
+cambiarían los picos, sí y es importantísimo eso, por qué? porque
+va a cambiar porque va a cambiar cuánto pesa la
+información, entonces dónde está eso? acá fíjate en la escala, el H es la escala
+entonces cambiemos la escala que estamos usando es el promedio, sí me preguntaba Cristi,
+sí, entonces fíjate cómo cambia Kevin ahí voy, aguantame un segundo,
+fíjate cómo cambia el ancho de banda qué está haciendo? el ancho de banda lo que me termina haciendo es, dónde está
+esto? es diciéndome esa consideración del peso
+que reciben los puntos cercanos entonces hagamos algo extremo, sí, fíjate
+antes 10 recibía muy poquito peso si yo le pongo escala 10, sí, la varianza en
+este caso recibe peso 0.30, sí, fíjate cómo cambia, entonces lo que está dándonos
+esa idea de cuán gordo es la contribución de esos pesos, no? y la
+contribución final fíjate la función, no quiero dejarte en
+banda Cristian, sí, el promedio de cada uno en
+los puntos, sí, entonces yo estoy obteniendo la suma dividido por
+la lengua de cada uno entonces es el promedio sí, ahí voy Antonio y entonces a qué va a responder? ya todos
+están yendo a lo mismo, va a responder a ese fenómeno viejo y peludo del machine
+learning a qué va a responder al trade-off sesgo
+variance, sí, entonces el HS, el más importante, si es bajo, sí, lo que va a
+tender a hacer va a capturar los ruidos de los datos y no
+la señal y si es muy alto la densidad va a ser súper suave y no
+va a capturar nada de estas particulares esos dos picos que teníamos
+no van a ser capturados, sí, entonces nosotros podemos ver el mean square error,
+se acuerdan lo que es eso de todo está cerrando, no? todo tiene que ver con todo,
+decía un conductor de televisión en Argentina, no?
+todo tiene que ver con todo, aunque no sea así pero parece que sí, no? entonces el
+mean square error de esa función va a depender de esa descomposición de sesgo al
+cuadrado y variance, sí? y nos va a dar el trade-off sesgo variance, entonces
+miremos de qué depende, si uno descompone el sesgo, tiene un montón de
+cosas medio raras pero fíjense que aparece el sesgo depende
+positivamente del ancho de banda y la varianza depende negativamente del
+ancho entonces hagamos nuestro diagrama nuestro mejor amigo de la clase de machine
+learning hoy parece una clase de repaso y entonces nosotros vamos a tener H y esto lo veíamos con complejidad, qué
+pasaba con el sesgo cuando aumentábamos la complejidad de los modelos y disminuye? se disminuía, sí? entonces
+tenemos el trade-off sesgo varianza aumentaba la complejidad, el sesgo bajaba,
+la varianza iba aumentando acá está pasando al revés, aquel sesgo
+fíjate va aumentando, esto es justo al revés de
+lo que veíamos en machine learning porque aumenta en función de H? justo
+justo al revés, es más a ustedes se les está haciendo un
+cortocircuito en el cerebro porque lo están aprendiendo así, imagínense para mí
+que yo aprendí primero este y después casi palmo en ese momento, entonces qué
+pasó con la varianza? a medida que aparece la varianza va a disminuir, y
+dónde está el óptimo? si el óptimo está en algún punto
+por ahí, este es el mean squared que hace ese trade-off sesgo varianza entonces es interesantísimo, justo será el revés de
+todo lo que sabíamos y de todo lo que veníamos aprendiendo en esta maestría.
+Hay otros parámetros que hacen que esto sea un poquitín difícil de
+estimar, depende de una evaluación del kernel y del kernel al cuadrado, depende
+de la segunda derivada de la función de densidad, bastante
+complicadilla de estimar, y este depende de la de la densidad verdadera, y esta es la
+segunda derivada de la densidad verdadera. Estas expresiones no son
+fáciles no son fáciles de estimar, pero lo que nos
+lleva a un montón de tratar de usar algunos atajos para calcular ese trade-off
+sesgo varianza, pero sin embargo la clave es esto que estaba
+apuntando Kevin y Antonio, queremos encontrar un H de forma tal que nos
+obtenga esa mejor densidad, esa mejor densidad entre comillas implica minimizar
+el mean squared error y entonces tenemos que jugar con ese H.
+Ustedes saben que en la práctica por más que usen validación cruzada hay un montón
+de procesos de validación cruzada y uno tiene que entender que esta es la teoría,
+en la práctica a veces ciertos procedimientos de validación cruzada
+tienden a sobreajustarse, entonces van a ver que los paquetes traen distintos
+procedimientos de validación cruzada para intentar, tratando de buscar que no
+haya sobreajuste, ¿por qué? porque si sobreajustamos estamos describiendo bien
+los datos pero lo que nos interesa es la predicción fuera de muestra y tendemos a hacer un mal trabajo fuera de muestra,
+¿bien? entonces todo lo que hemos aprendido de
+machine learning nos sirve para para hoy pero al revés, entonces fíjense,
+comenzamos cómo se van cerrando círculos y esto no fue hecho a propósito chicos,
+este full circle después de años de dar esta clase me terminó de caer a mí
+también, no vayan a creer, yo como comencé a preparar esta clase nunca nunca imaginé
+ese full circle, entonces lo que voy a hacer es voy a voy a tratar de expandir
+estas ideas y lo que hice fue hacerme unos datos falsos, con tres clústeres tratando de simular la el mapa, perdón pero no me genera el mapa,
+acá está, ¿sí? y además del mapa le voy a dar como centro
+la plaza de Bolívar, entonces fíjense acá hay tres clústeres, yo me
+imaginaba este ejemplo que son restaurantes y acá tenemos la plaza de
+Bolívar, acá está la la catedral, dónde está la dónde está la casa de gobierno, no me la marca, acá están los jardines, acá está la
+casa de gobierno, que ahora está vacía, el
+palacio justicia entonces tenemos estos punticos que son
+los restaurantes ficticios, yo estoy por acá, si algún día quieren venir
+a visitar a Itelgeras, por acá está mi oficina, si no estoy perdido, por acá, acá sí, en el doble B, y tenemos tres centros,
+este del centro de la ciudad, este que está más por Teusaquillo, Chapinero, la
+zona G, claro como son ustedes me entienden, son datos simulados,
+algunos me cayeron en medio de los cerros y hay otro grupo que está más centrado en
+Usaquén, si me cayeron unos en medio imagínense que hay un restaurante chévere
+para ir a comer, entonces la idea es puedo detectar las densidades, la
+estimación de densidad, entonces lo que lo que voy a hacer primero, es pasar ese
+punto de plaza de Bolívar que tenía que tenía la amplitud y longitud a
+Geopandas, Geopandas es pandas pero para datos geográficos y lo único que tengo que
+hacer es coger el DataFrame darle dónde están las coordenadas que
+tenemos, algo clave que van a ver es en el taller, no en el taller sino en el en el cuaderno, la importancia del CRS,
+que es el sistema de referencia de coordenadas, qué es lo que nos ayuda a
+hacer? recuerden que la tierra es un elipsoide
+medio deforme, la gente dice es un elipsoide achatado en los polos y
+ensanchado en el ecuador, realmente no es tan así, hay un polo que está más achatado que
+el otro, en el ecuador es medio deforme, es decir, no tiene una forma
+redonda, definitivamente no es plana, si quieren pensar de una forma, se acerca
+más a una esfera que a algo plano, pero no es plano, pero es una
+esfera medio deforme y entonces el sistema de referencia el sistema de referencia de coordenadas lo
+que hace es tratar de representar los puntos en esa representación matemática
+que tenemos de la tierra, entonces hay un montón de sistemas de referencias y lo más
+utilizado es el WGS 86 que el que utiliza google ahora, porque google se
+volvió tan famoso, que nos permite posicionarnos con gps en cualquier punto
+de la tierra pero por ejemplo hay otros que representan
+esos planos en una representación de dos dimensiones de la
+tierra y nos permiten ubicar y calcular distancias y para Bogotá y América Latina,
+para Colombia y América Latina es el Magna Ceres, todo eso está detallado en el
+cuaderno, presten la atención, vale la pena saberlos, conocerlos bien, son
+pequeños detalles que uno conoce bien no hace falta luego después ir a la IA,
+entonces dado que esa representación es importante para poder medir distancias
+especialmente fíjense que en el ecuador no hay tanto no hay tanto problema
+porque acá cerca del ecuador la tierra es plana y además los grados en
+latitud y longitud tienen casi el mismo tamaño pero si ustedes van a
+lugares como argentino como estados unidos que están más cerca de los
+polos ya la curvatura de la tierra nos comienza
+a jugar malas pasadas y un grado de latitud y un grado de longitud
+dependiendo de la representación no miden lo mismo, entonces si usted va a
+calcular distancias en otros lugares de la tierra como en el taller en chicago,
+cómo representamos la tierra en los computadores import, entonces en bogotá un
+poquito porque estamos cerca del ecuador sin embargo tratemos de usar la
+más importante, entonces vamos a medir las distancias y para eso vamos a usar el
+paquete este geodésico, hay un montón y estos están apareciendo, este es
+el que me gusta a mí porque lo entiendo bien y por ejemplo voy a medir la coordenada entre la primera coordenada de
+la base y la segunda y por ejemplo me dice que la distancia entre estos, este
+5.92 kilómetros, 5.97, 5.49, 1.69, 0.38 y podemos describir esa distancia, tenemos
+200 restaurantes, la distancia promedio son 5.89 kilómetros con un desvío
+estándar de 4.39 algunos bien cerquita de la plaza de
+bolívar y algunos que están a 14 kilómetros entonces tengo una medida lineal y puedo
+estimar estas densidades, entonces voy a estimar esas densidades y le voy a ver,
+entonces fíjense intuitivamente qué hicimos encima de esa estimación de kernel, usando
+el KDI plot, usamos un ancho de banda de Scott, esto es uno de esos anchos
+de banda que salen de la teoría de optimizar asumiendo que la distribución
+subyacente es normal, entonces nos da un ancho de
+banda y es un clásico, este ancho de banda se llama ancho de banda de regla ay no sé cómo se traduce, rule of thumb,
+regla dedo supongo, del pulgar gracias Felipe, regla del pulgar, lo hice
+a la ceña de Felipe, regla del pulgar rule of thumb, la regla del pulgar y el
+ancho de banda es una de esas reglas del pulgar fíjense lo siguiente, cuántos picos de
+densidad me estima? 2, pero eran 3 cuando yo hice los datos, qué pasó ahí? me está juntando, está usando un ancho de
+banda probablemente muy grande que no me permite capturar ese segundo pico de
+densidad que estaba en chapinero, me está capturando el tercer pico, ese de Usaquén,
+pero el de chapinero no, pero hay otra cosa que me molesta a mí más, fíjense que
+son distancias y esto está estimando el kernel, qué
+opinan ustedes? existen las distancias negativas? es cosa rara la distancia
+negativa, no? no sé cómo ser una distancia negativa entonces estos son los pequeños detalles
+que uno tiene que tener en cuenta cuando aplica, entonces si vos venís y me
+muestras una distancia negativa, cómo es eso? acá no hay nada, pero podría ser para el
+otro lado, para el otro lado qué? izquierda derecha, norte, sur, este, este, entonces
+nosotros podríamos tener un poquitín más de cuidado y podríamos
+truncar esos límites no podríamos truncar esos límites para no mostrar cosas equivocadas, cero el
+centro de la ciudad, cero la plaza de Bolívar, entonces estamos midiendo la
+densidad en función de la distancia a este punto, a la plaza de Bolívar entonces si las distancias son todas
+positivas, acá vamos a sacar la estadística van de 0 a 14, diga exacto, necesito que haya más picos, Kevin
+fíjate, necesito que haya tres necesito que coincide, que me detecte este
+pico necesito que me detecte este pico y
+necesito que me detecte este pico, sí? lo que yo quiero es que sea capaz de
+describirme esos tres nodos de densidad lo que está haciendo ahora es que está
+agrupando estos dos y me está detectando este, sí? qué pasa si no lo sabemos? lo que estoy
+tratando de hacer es highlight la importancia de cómo elegimos el H, eso es
+lo que estoy tratando de hacer, estoy tratando de ver cuando no sepa cómo hago
+para encontrar esos picos, entonces comencé con
+la regla del pulgar de Scott y lo trunqué en cero para que no haya
+problemas, ahora voy a usar la de Silverman que es otra teórica y veamos cómo nos va
+con la de Silverman, tampoco lo detecta entonces cuál sería el tercero? el tercero
+sería encontrarlo a través de la validación cruzada, sí?
+déjame que lo hagamos vale? entonces cuál era la clave de la
+validación cruzada? es que nos permitía hacer el trade-off sesgo
+variante, entonces voy a proponer un montón, una grilla de ancho de banda,
+porque no lo sé y voy a tratar de estimarlo por validación cruzada, entonces
+cuál me da? que este es el mejor y veamos si esa grilla que yo
+propuse me anda bien, y fíjense, me está
+capturando pues está mucho mejor, claro Cristian, sí?
+entonces a esto es a lo que voy, es importante poder capturar ese ancho de banda, vale? y
+qué más puse acá? bueno no solamente un parámetro, es el ancho de banda, sino
+también el kernel que usamos y estos son tres kernel más que nosotros podríamos
+haber hecho, entonces la validación cruzada sobre qué va a ir? va a
+ir sobre usar una función gaussiana, usar el kernel de patchnikov, el top hat, me
+hace reír el top hat es simplemente la uniforme, no
+sé por qué en python le llaman top hat y usar un kernel lineal o triangular,
+vale? entonces uno podría buscar no solamente a través del ancho de banda sino
+a través de los kernels y eso es lo que hacemos en el cuaderno de esta semana, vale?
+entonces van a ver, volviendo a la pregunta de lo que me hacían, qué es lo
+que importa? lo que va a importar es la lo que más va a importar va a ser el ancho
+de banda, si? muchas veces ese ancho de banda puede ser que nos sirva las reglas de
+dedo, de pulgar, reglas del pulgar, o tengamos que buscarlo en validación
+cruzada, lo chévere de utilizar validación cruzada es que nos va a permitir mirar los encontrar el kernel up, si? dónde están
+todos los otros kernels? acá está la explicación que les hice hoy, acá están los kernels, si? entonces podemos usar el
+kernel normal, gracias aquí lo mando ah por eso tenés razón Felipe, tenemos el epachnikov que tiene esta forma,
+tenemos el top hat, claro mira ahí está nunca lo había visto como un sombrero de
+copa, el top hat, gracias Felipe me copa, ahora me va a quedar grabado,
+ahora lo veo como si fuese un top hat, o la triangular, si? que es la que decimos que
+le llama lineal, que es una cosa así, como el de harry potter, si? ah ya charlamos eso ya charlamos eso Camilo, aguantame un
+segundo vale? pero ahora, si? lo que yo realmente
+quiero hacer, yo lo único que aproveché, agarré dos
+dimensiones y lo bajé a una dimensión y miré la distancia, pero está ignorando
+otras partes y está ignorando esa distribución en el espacio, Camilo tiene
+un punto clave que ahora voy a ir y creo Camilo que te lo voy a poder responder con
+lo que voy a hablar ahora, entonces ah mira ahí tengo una oración sobre eso entonces lo que voy a hacer va a ser en el
+espacio, pero para el espacio necesito dos dimensiones, la longitud y la
+latitud, vale? y lo que voy a hacer es voy a tener que usar una doble estimación
+de densidad, uno para la latitud y otra para la longitud, entonces
+me van a decir, oh profe puedo usar distintos kernel, uno para la latitud y otro para la
+longitud, pueden usar distinto kernel, no hay ningún problema, si? pero vimos que el
+kernel, dijimos que el kernel, iban a ver en el taller, no importa tanto, si? la clave es la ancho de banda, ahora pregunte, tenemos
+que usar el mismo ancho de banda para latitud
+y longitud? no necesariamente, lo tenemos que buscar por validación cruzada, si?
+entonces lo que voy a hacer ahora la densidad, fíjense que el producto de las
+dos densidades implícitamente estamos asumiendo que son
+independientes y es un supuesto bastante fuerte, si? es un supuesto
+bastante fuerte pero bastante inocuo en la práctica, si? no cambian tanto las
+cosas en la práctica, si quieren hacer con datos dependientes, realmente se
+complica mucho computacionalmente y no ganamos nada, yo acá tengo uno, a ver
+si lo encuentro, que lo hice con lo que se llama que se llama se me fue la cabeza, cópulas, si? para
+estimar las densidades, esta es la probabilidad de la informalidad utilizando
+cópulas, si? y podemos estimar las densidades en toboota, no? entonces la probabilidad
+de estar informal, la probabilidad de no tener acueducto, la probabilidad de no
+tener alcantarillado, de tener déficit cuantitativo, de tener déficit cualitativo
+y de tener, de que el barrio esté en proceso de legalización, si? lo
+tenemos para Bogotá y para Barranquillo también, si? entonces pero la verdad que el déficit cuantitativo
+es cuando tenés hacinamiento por ejemplo Andrés, entonces
+tenés no? viven 10 personas en dos habitaciones,
+entonces de las construcciones no tienen el tamaño suficiente, si? entonces esto lo
+estimamos, realmente les digo la verdad, yo lo hice complicado
+para hacerlo complicado nomás porque realmente con esto daba igual de bien y me
+hubiese ahorrado un montón de años de vida, pero la copula es bastante
+interesante, que vamos a hacer? entonces vamos a necesitar la estimación de
+densidad multivariada, le vamos a dar nuestros datos, le vamos a decir que
+nuestras dos variables son continuas porque latitud y longitud y vamos a
+escoger el ancho de banda por validación cruzada, si? no voy a
+abrir el help para que no nos ocupe espacio, si? y
+entonces fíjense qué es lo que encontró? que los anchos de
+banda no son exactamente los mismos, si? fíjense
+que para longitud es un poquito más largo y para la latitud es un poquitito más
+pequeño, vale? entonces lo que voy a hacer es voy a dibujar mis densidades, ya les
+cuento cómo lo hice, y fíjense estoy detectando los tres centros estoy detectando las tres densidades y
+fíjense cómo el de chapinero con el centro se comienzan a fusionar porque
+están cerquita, pero aún así detecta esa esa densidad, vale? y ahora les cuento
+cómo lo hice y esto va a ir a la respuesta de de camin, vale? qué es lo que hice? yo tengo mi... de qué va a depender mi
+densidad? yo la voy a poder estimar una vez que yo tengo los anchos de banda, ya está, lo
+puedo estimar en cualquier punto qué es lo que va a hacer? qué es lo que
+hice para hacer la gráfica? generé una grilla una grilla? una grilla? creo que en
+español es un látiz, no sé cómo se dice látiz hay chicos, no saben la frustración que yo
+siento y lo mal que me siento cuando no puedo traducir las cosas al español y
+no sé las palabras en español pero usemos grilla, entonces lo que hice
+fue un meshgrid, ah esa, una cuadrícula, gracias, gracias, gracias
+Andrés, una cuadrícula, ese es el meshgrid, que lo definí sobre x y y, sí? y
+cómo lo definí? lo hice desde el mínimo de latitud y un poquito más, desde
+hasta el máximo, del mínimo de longitud al máximo de longitud y del
+mínimo de latitud al máximo de latitud un poquito más sobre 200 puntos, sí? entonces
+esto que me da, me da básicamente una cuadrícula, hay gracias
+por la palabra, una cuadrícula sobre todo Bogotá, una vez que yo tengo la cuadrícula
+sobre todo Bogotá yo puedo utilizar los centroides de esa
+cuadrícula para que me sirvan como puntos de referencia y usando la, entonces, qué van a ser esos
+puntos de referencia? van a ser estos puntos de referencia sobre lo que voy a
+calcular la densidad, tengo los anchos de banda, porque lo acabo de calcular y
+entonces puedo predecir la densidad en todo Bogotá basado en esa cuadrícula vale y
+entonces eso es lo que hice sí entonces basada en esa cuadrícula y claro no la
+grabe qué fue lo que definió el lado de las
+cuadrículas? el ancho de banda? no el lado de las cuadrículas lo definí yo Cristian
+fíjate le dije dame de la longitud es decir de los puntos que tengo
+un poquito más un 0.1 grado más hasta la máxima longitud
+más un 0 punto y hacerme 200 por qué 200? porque eso me daba una grilla
+de 200 por 200 y es lo suficientemente fina para capturar podría
+haber hecho algo más fino? sí no me hubiese demorado un poquitín más
+corriendo la estimación porque tengo mucho más punto una grilla más fina
+resulta que muchos de estos problemas con grilla de 300 por 300 suele funcionar
+bastante bien y fíjate me sale lo mismo no hay mucha
+ganancia estoy buscando los puntos es un truco computacional cuando
+ustedes ven por debajo de cuando cuando uno ve estimaciones de densidad y
+mira debajo del capó de las funciones las funciones cuando tienen muchos puntos
+realmente no estiman la densidad en todos los puntos de la muestra sino que
+suelen buscar 100 o 200 puntos target y entonces se agarra a la
+distribución de los puntos y busca solamente 200 puntos en general son 200
+hay un paquete en el que usa 300 y solamente estima la densidad en esos 300
+entonces si voy a tener un millón no estima la densidad sobre un millón sino
+que estima sobre 300 eso lo hace computacionalmente muchísimo más rápido y
+realmente los errores son negligibles vale entonces yo lo que estoy
+eligiendo son esos puntos target ¿podríamos haberlo hecho sobre todos los
+puntos Cristian? sí lo podría haber hecho sobre todos los puntos sí entonces la predicción no sería
+sobre la grilla sino que sería sobre todos los puntos de mi muestra y nos
+demoraríamos un ratillo más para para hacerlo y no nos saldría también y
+ahora va la diferencia con Divisca ahí no lo tengo el mapa interactivo, creo
+que lo tenía el mapa interactivo, se los dejo
+para ver ah creo que está en el cuaderno está el mapa interactivo por acá sí
+entonces acá está la estimación está ahí tengo que poner trust node, no sé cómo hacer eso usted sabe sin tener que correr
+eso bueno ahí tienen el mapa el mapa
+interactivo que no sé por qué Coursera no lo hace bueno usted intentenlo en su
+cuaderno sí pero yo no puedo poner este interactivo
+y ahora va la diferencia con Divisca Divisca, Camilo, te lo clasifica al punto a un clúster, sí? entonces te
+dice mira este pertenece a este clúster este pertenece a este otro clúster o es
+ruido o lo clasifica, te acordabas de ese clúster con el menos uno creo que era, que
+es el ruido, sí? esto no hace así esto qué te va a retornar Camilo? una función de densidad, exacto te va a
+decir un número vale y eso está bueno porque no me dice a cuál pertenece que por
+ahí uno puede ser malo pero tiene un valor de densidad y qué implica tener un
+valor de densidad que si yo lo integro sobre un espacio me va a retornar la
+probabilidad, sí? y vos fíjate yo esto lo definí sobre una grilla, déjenme que
+marque esto qué me permite si yo tengo una grilla de esa estimación supongamos acá vamos a hacer así no sólo en el punto sino en todo el
+espacio cuánto va a ser la probabilidad de que
+haya un punto en esta grilla según mi estimación de densidad? diría que nunca cero, cero, cercano a
+cero, y acá en esta grilla y en esta grilla más cercano a 1 o 1, más arriba, va a ser
+positiva, exacto y pero va a ser menor que acá y necesito pegarla específicamente al
+punto no, no, me va a devolver exacto don Felipe
+me va a devolver la probabilidad sobre y entonces si volvemos nosotros a pensar
+en el crimen lo que me va a definir es cuál es la
+probabilidad de que haya delitos en esta área, entonces cuál es la probabilidad,
+volvamos a esto cuál es la probabilidad, fíjense acá están
+las grillas, las ven a las grillas? cuál es la probabilidad de que vos seas
+informal en esa grilla? necesariamente hay una? no necesariamente, no? fíjense
+que es más acá por ejemplo donde hay espacio vacío, dónde hay espacio vacío?
+estación la bombonera ciudadela esto me hace acordar a Tokumoto, de la
+ciudadela son los bombones ahora mi equipo, vale? entonces si ustedes
+se fijan yo puedo sacar una estimación de densidad para todo el plano
+y como hago? estoy borrowing data que viene de acá, claro acá hay menos
+puntos entonces la estimación es menos fuerte que por acá, si? entonces para el
+crimen estoy recontra útil porque yo puedo utilizar los puntos que están en esa zona
+no necesariamente en el punto exacto y clasificarlo como un cluster o
+no, sino encontrar un área y cuál es la probabilidad estimada? recuerden que la
+probabilidad sobre toda la superficie porque toda la superficie integra uno, si?
+no es la probabilidad de ocurrencia en ese punto sino de la probabilidad de
+ocurrencia en el espacio de la ciudad, si? entonces recuerden que la probabilidad acá
+integra sobre todo Barranquilla, no? y acá es más
+probable que yo encuentre una propiedad informal, ah que capo Juan
+Antonio, perdón no sé si es Juan o J. Antonio voy a decir, no, no, no, file, trust, de
+igual forma, oh reinicio el kernel, file, trust, no, ah que mamer, que capo, se nota que yo uso Coursera
+poco, y que me da mucho dolor de cabeza chico la verdad, por eso los, ah fíjense acá
+está el mapa, que chévere que salen estos mapas,
+me encanta esa, entonces yo tengo acá la probabilidad de toda el área relativa a la
+ciudad, que capo Antonio, sos muy crack, entonces yo puedo sacar la probabilidad, y
+fíjense si yo lo traduzco para Krimen, este es un ejercicio de Airbnb, la
+probabilidad que yo encuentre Airbnb es mucho más alta
+acá relativa a esta zona de acá, si? mientras que la probabilidad acá cerca de la
+universidad es mucho más alta, y tiene sentido porque
+hay mucha gente que demanda esto, que demanda mucho esto, alguno sigue
+fútbol americano colegial, el sábado Texas le
+ganó a Ohio State un partidazo, y Illinois
+perdió, no me hagan acordar, pero entonces fíjense
+puedo estimar, exacto Camilo, estamos tratando de buscar
+unos clusters, pero acá la definición sale a
+través de probabilidades, y entonces esto nos
+retorna a probabilidades y no asignación a grupos, y nosotros podemos calcular probabilidades
+y es un poco más etéreo, pero viene de la
+estadística, no me dice está acá, sino es la
+probabilidad en este plano de que ocurre el evento,
+entonces súper útil, porque si vos te ponés a
+pensar, vas a decir bueno esto pertenece a un cluster
+de alto crimen, no me dice mucho, pero más acá la probabilidad de que ocurra el crimen es
+mucho más alto, pensando en el taller, si? este
+ejemplo es de Airbnb, y estas son las curvas de nivel
+de la densidad en dos dimensiones, si? que
+está graficada acá, en todo el taller, si?
+entonces está tratando de buscar esos puntos de
+mayor densidad, DiviScan hacía eso, pero no lo
+asignaba un cluster, si? eso, hay más probabilidad del restaurante italiano, hay mayor
+densidad del restaurante italiano, hay mayor densidad
+de comida asiática, no? entonces esto hasta
+te podrá detectar dónde está el Chinatown o
+Little Italy de Bogotá, no sé si existe Chinatown
+o Little Italy de Bogotá, pensando en Nueva York, tienen la pequeña Italia y
+Chinatown, o en Buenos Aires también hay un
+Chinatown. Visualmente son las curvas más estas, con
+el color más amarillito. Pense a las curvas de
+nivel, si? no creo que sean áreas de densidad, no,
+no, no, son las curvas de nivel, si vos pensás realmente si nosotros lo representásemos
+en dos dimensiones sería como una montaña y las
+curvas están reflejando cortes a lo largo de esa montaña, si? entonces aparece más pequeño
+porque la cumbre de la montaña tiene más densidad, entonces
+cuando se proyecta se refleja más corte, entonces aparece más pequeño porque la
+cumbre de la montaña tiene más densidad, entonces
+cuando se proyecta sobre un espacio 2D aparece como
+más chiquitito, si? así como nos dice Felipe,
+se entiende el punto Melissa? son las curvas de nivel de esa montaña de dos
+dimensiones. Bien, entonces ya tienen todo para hacer
+el taller, genial, tienen todo para hacer el
+taller, ¿cuál es una clave para el taller de esta semana? que hay que detectar delitos, hay
+dos tipos de delitos, homicidios y robos, no
+necesariamente ocurren en la misma parte de la ciudad, y por lo tanto y los números no son
+iguales y la dispersión no son iguales, entonces los anchos de banda no
+necesariamente van a ser iguales, los puntos de calor de los robos y de los homicidios no van a ser lo
+mismo, veamos Bogotá, ilustremos, que va a pasar mucho con que va a pasar mucho por... entonces
+tenemos Bogotá y veamos dónde suceden los homicidios,
+estos son los datos del SIEDCO y son los OPZ, ¿qué estoy haciendo acá? estoy haciendo
+una estimación burda de un histograma, fíjense, ¿y cómo hago el histograma? el
+número de casos por localidades, entonces fíjense
+que con esta estimación burda lo que me dice que la mayor concentración o la mayor
+probabilidad de un homicidio está en Ciudad Bolívar, ¿vale?
+pero ¿dónde se suceden por ejemplo los hurtos a personas según los datos del SIEDCO? los
+hurtos de personas están en otro lado, los hurtos
+de residencia en otro lado, los hurtos a
+carro en otro lado, de moto en otro lado, a
+comercio, fíjense el cambio entre homicidio y
+comercio, claro tiene que ver con la concentración
+de comercios, hurtos de celulares, hurtos de
+bicicleta, entonces ¿a qué va? a qué va esto? a que algo parecido va a pasar en Chicago, entonces si usted abre en Chicago
+donde van a estar los hurtos y los homicidios van a
+tener distinta ubicación geográfica, ¿sí? fíjense la violencia reportada también,
+estas son las llamadas 123 versus los hurtos
+reportados al 123, este es un proyectito mío para mi cosa mía de investigación así que son
+bienvenida todo lo que me quieran aportar y decir,
+esta es la parte de más me gusta, me bajé como un
+millón de fotos de portales y lo puse por una IA para que me detecte la riqueza percibida,
+la vista le dice no, este es el modelo clip que entonces
+uno agarra la foto, reduce los embeddings y
+predice, ¿sí? y entonces sigo juntando foticos para de toda Bogotá y eventualmente toda Colombia
+para estos modelos, entonces Chicago tiene una
+distribución interesante, van a ver que el sur y el oeste tienen mayor concentración de homicidios,
+en el centro de la ciudad están malos robos,
+etcétera, y entonces yo les pido también que miren
+si hay algunas correlaciones que expliquen el
+uso de la tierra, ¿sí? entonces muchos de esos datos que yo les
+muestro de acá, no? estos por ejemplo todos vienen de los datos abiertos o otros que los baje de de OpenStreetMap. OpenStreetMap son OpenStreetMap nos da un montón de información que la gente reporta no sé por qué. Pregúntele a la gente. Pero
+reporta restaurant en Burkina Faso restaurant Bogotá. No sé por qué se fue a
+Burkina Faso ah porque está Bogotá, no, Colombia, no ah mira me encontró un bueno son datos abiertos que la gente
+reporta y nosotros los podemos utilizar y son muy útiles, tienen un montón de
+cosas. El problema que la gente siempre entonces por ejemplo acá le pedí que me
+traiga de Bogotá todos los que sean de retail y comercial. Entonces por ejemplo
+me baja un shop me da el punto y me dice el tipo que
+utilizo y muchas veces me da más información. Por ejemplo acá me dice
+Carabajal, Plaza de los Artesanos etcétera. Entonces esto es súper útil para
+poder detectar cosas que la gente muchas veces lo que suele pasar en el
+taller yo le pido que miren la correlación con ciertos patrones de uso de
+la tierra. Entonces lo que van a ver es que lo que
+estábamos viendo en Bogotá, donde hay más comercio, donde hay más concentración,
+en la zona más afluente suele haber más hurtos. Donde la gente trabaja hay más
+hurto de celulares etcétera en cierto horario. Y
+dónde se concentran los homicidios? Generalmente los homicidios se concentran
+en zonas donde hay menos ojo en la calle, que te puedan robar, que te puedan...
+Entonces los patrones del uso de la tierra están muy correlacionados con los
+tipos de delitos que suceden. Entonces si ustedes ven la correlación
+entre el número de comercios y los robos va a ser una correlación positiva y
+probablemente con los homicidios va a ser negativa. Rara vez matan a alguien donde
+hay mucha gente. Sucede, sabemos que sucede, pero son mucho menos frecuentes.
+Generalmente suceden en áreas con poco ojo en la calle o en un área de poco ojo en la calle. Entonces qué van a pasar?
+lo que les va a pasar si ustedes en sus
+computadores no tienen el suficiente poder computacional, no van a poder bajar
+todo el mapa. Y esto solía suceder antes. Y en Chicago que van a encontrar un montón probablemente se les trabe el
+computador. Una solución es mi solución favorita, la que digo siempre como te come
+un elefante, un bocado a la vez. Entonces lo que ustedes pueden hacer es yo
+les doy en el taller los barrios definidos por la Universidad
+de Chicago de Chicago. Entonces hay 77 community areas que se
+llaman o barrios. Y entonces lo que uno puede hacer es bajarse los datos de
+barrio por barrio. Estos son mucho más pequeños. El computador puede hacer esos
+pedidos al servidor y luego uno lo puede hacer. Entonces por ejemplo acá me voy a
+bajar lo de la candelaria, me baja la candelaria. Acá cerquita de la facultad y
+puedo para esos lugares de la candelaria sacar
+los usos de la tierra de la candelaria. Entonces puedo mirar qué tipo de uso de la
+tierra se encontraron. Entonces por ejemplo en la
+candelaria se encontraron 87 césped, 12 construcción, 9 retail, 8 de parques,
+residencial, una pradera, propuesto, recreational grounds. Entonces fíjense
+residenciales, me saco estos residenciales que dicen que son
+apartamentos y algún nombre de los apartamentos. Entonces la idea para la
+taller está buenísima lo que me acaba de decir
+Melisa. Espera que lo anote. ¿Dónde lo puedo anotar para que no me
+olvide? No tengo la agenda acá. Y ya te respondo qué datos. Sí, claro. Datos de Lima. Para cielo más despejado. Qué buena esa,
+me encanta. Lo único que tengo ahora Melisa es
+contaminación que son de los... y esto lo hice con la estimación Kernel. Estas son
+estimaciones usando la densidad de Kernel y traduciéndolo al nivel de
+manzanas. ¿Por qué? Porque hay solamente 10 estaciones de calidad del aire. Gracias Felipe. Entonces
+¿cómo hago con esas 10? Puedo hacer la estimación para hacerlo. Y entonces puedo estimar
+manzana a manzana cuál es el PM 2.5 que hay en toda la ciudad. Y más
+allá de cómo lo estimo, lo que sea lo que quiero traer a la atención cuando uno
+mira Bogotá. Fíjense el numerito de la contaminación que me da. Siempre me da
+15 o arriba de 15 y el PM 2.5 de la OMS dice que son 5 miligramos. Todo
+Bogotá, cuando uno utiliza esta, está por arriba hasta tres veces los niveles.
+Estos son promedios anuales en el último año. Entonces estamos... son 20?
+Bueno 20 perdón Julián, 20. Creía que eran 10. ¿Por qué estoy pensando en 10? Gracias Juli. No sé por qué yo sigo
+repitiendo 10. Hace años que vengo repitiendo 10. Quizás
+10 eran hace un tiempo y me quedó eso grabado y ahora son 20. Claro estoy usando
+en todas las estaciones de NEMS, pero no están todas en todo Bogotá. En el sur por
+ejemplo no hay. Sí, también puedo bajar la del dato
+atmosférico. No se me había ocurrido. Claro, porque tengo óxido nitroso. Tengo
+un montón de otras que podría poner. No sé por qué me quedé con PM 2.25. Gracias Julián. Otra cosa que voy a
+agregar los otros datos que tengo del RMC. Polaris no sé ni qué. Antonio perdón mi
+ignorancia. Kevin, claro que puede usar PySpark y
+extraer todo y procesarlas. Me parece súper chévere. No me parece un poquito mucho usar
+PySpark, pero si lo puedo utilizar. Mi experiencia
+que me no sé hace rato que no uso. Yo uso mucho
+RSpark para R. El dolor de cabeza de la configuración no
+me pagaba lo que yo necesitaba hacer
+computacionalmente. Pero claro recomiendo usar Spark. Spark es
+un framework genial. Especialmente si ustedes tienen acceso a computación
+distribuida. Ayuda muchísimo. Por ejemplo yo utilizo mucho este tipo de
+herramienta en el clúster de la universidad. Y cuando hago estas cosas por
+ejemplo donde lo hice? En el clúster de la
+universidad. Esto lo procesé todo ahí y traigo los resultados y simplemente los
+pinto una vez que tengo al nivel manzana. Pero sí, esta cantidad de masía de datos conviene a veces unos
+frameworks que aprovechen esa capacidad de distribución de algunos nodos
+computacionales. Pero bueno, como nunca termine a tiempo
+chicos, la hice más cortica la clase. Traté de enfocarme en lo clave clave para
+el taller. Porque siento que todas las clases de las últimas seis semanas me
+pasé y no quiero robarle más tiempo. Me dejo anotado acá. Me encantaron
+lo que me dijeron. Todo me ayuda para seguir mejorando esto y mirando qué va pasando en nuestra ciudad. Y mi
+objetivo en algún momento es tener la suficiente cantidad para hacer todo
+Colombia para entender. Especialmente a mí me interesa entender cómo nos afecta a
+los barrios. Siempre lo que yo veo es esto. Estos son cines, teatros y
+sitios de entrenamiento por kilómetros cuadrados. Esta es la densidad en la UPZ.
+Y cuando uno piensa en la amenidad y el acceso a desigual que hay en
+la ciudad, no es trivial. Y pensando de vuelta en los
+cuentos de la semana pasada, yo lo fui a ver a Casiari el año pasado
+que vino en la Candelaria. Que estuvo muy chévere. Y
+fíjense cómo si uno vive en Ciudad Bolívar o para acá, para el norte,
+para Suba. Muchas veces llegar y tener acceso a estas cosas importa. Y sabemos
+toda la literatura que dónde vive uno y dónde crece uno tiene
+efectos a largo plazo. Parte de mi interés de conocer la ciudad y
+tener ese acceso es entender cómo los barrios donde vivimos nos afectan
+en nuestra vida. Un poquito de eso es mi research que tiene que ver mucho
+con con el trancón que nos afecta todos los
+días. Tiene que ver con la calidad de vida y con el delito, cómo se concentra en
+la ciudad. Pero bueno, como nunca, lo dejo un ratito antes.
+Julián me dejó anotado esto porque se me habían pasado un montón de cosas. Te
+agradezco infinitamente. Y lo voy a poner acá y en una pestaña distinta que sean todo lo que mide
+estas estaciones, las 20 estaciones del Urban Cap. Así que nada chicos, no sé
+si hay una pregunta, dudas, porfa, no se olviden,
+no se olviden este mapa cómo lo hice en Python. Este lo
+hice sí, lo hice en Python y lo hice con una
+librería que viene de de Uber. No me acuerdo cómo se llama, pero google a Uber Maps y lo hice con una que
+viene de Uber. Está Julián. H3. Ahí está John. Está chévere, porque además uno lo puede
+hacer plano y puede verlo, puede hacer zoom, puede ver
+relieve, puede ver la altura, podés moverte, podés moverte en las
+direcciones. Tiene algunos problemitas, obviamente,
+fíjense, pero creo que está súper chévere y te logra y uno se puede enfocar
+en el barrio, no sé, Chapinero, entonces uno lo puede ver a
+Chapinero ahí y jugar un ratico con eso, buscar la manzana de uno, etc. Entonces, nada. Chicos, un placer como siempre. Perdón,
+¿hay alguna duda o pregunta? Yo voy a dejar de grabar como siempre y por si alguien tiene
+alguna duda o pregunta y le da la vergüenza que quede grabado.
