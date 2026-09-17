@@ -1,0 +1,3 @@
+tipo_crimen,n,n_cv,kernel,bandwidth_km,score_cv,distancia_mediana_km
+homicidio,144,144,linear,1.4736842105263157,-82.95860635528827,10.717891179190833
+robo,17603,2500,linear,0.25,-1509.2817340056558,8.635716034351544

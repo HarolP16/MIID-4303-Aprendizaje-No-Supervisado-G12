@@ -1,0 +1,389 @@
+{
+  "n_delitos": 17747,
+  "n_robos": 17603,
+  "n_homicidios": 144,
+  "join_quality": {
+    "observaciones": 17747,
+    "dentro_de_un_poligono": 17675,
+    "porcentaje_dentro": 99.59429762776807,
+    "coincidencia_id": 17203,
+    "porcentaje_coincidencia": 96.934693187581
+  },
+  "concentration": {
+    "top5_share_total": 0.3168986307544937,
+    "top10_share_total": 0.4610356680002254,
+    "overlap_top10_count_rate": 9
+  },
+  "corr_crimes": {
+    "pearson": 0.17112326623618002,
+    "spearman": 0.46404951274175005,
+    "n": 77,
+    "r2": 0.029283172247338785,
+    "pendiente": 0.0018510856896903395
+  },
+  "distance_models": [
+    {
+      "tipo_crimen": "homicidio",
+      "n": 144,
+      "n_cv": 144,
+      "kernel": "linear",
+      "bandwidth_km": 1.4736842105263157,
+      "score_cv": -82.95860635528827,
+      "distancia_mediana_km": 10.717891179190833
+    },
+    {
+      "tipo_crimen": "robo",
+      "n": 17603,
+      "n_cv": 2500,
+      "kernel": "linear",
+      "bandwidth_km": 0.25,
+      "score_cv": -1509.2817340056558,
+      "distancia_mediana_km": 8.635716034351544
+    }
+  ],
+  "kde_models": [
+    {
+      "tipo_crimen": "robo",
+      "metodo": "normal_reference",
+      "n_total": 17603,
+      "n_ajuste": 600,
+      "bw_y_km": 3.2020046182214084,
+      "bw_x_km": 1.6152980727825994
+    },
+    {
+      "tipo_crimen": "robo",
+      "metodo": "cv_ml",
+      "n_total": 17603,
+      "n_ajuste": 600,
+      "bw_y_km": 1.2745074927836018,
+      "bw_x_km": 0.6061017279147215
+    },
+    {
+      "tipo_crimen": "homicidio",
+      "metodo": "normal_reference",
+      "n_total": 144,
+      "n_ajuste": 144,
+      "bw_y_km": 3.7499498232188824,
+      "bw_x_km": 2.3128568845733772
+    },
+    {
+      "tipo_crimen": "homicidio",
+      "metodo": "cv_ml",
+      "n_total": 144,
+      "n_ajuste": 144,
+      "bw_y_km": 1.5623156437724997,
+      "bw_x_km": 0.8738928843618055
+    }
+  ],
+  "stability": [
+    {
+      "tipo_crimen": "robo",
+      "areas_normal_reference": "LAKE VIEW, LINCOLN PARK, NEAR NORTH SIDE, NEAR SOUTH SIDE, WEST TOWN",
+      "areas_cv_ml": "LAKE VIEW, LINCOLN PARK, NEAR NORTH SIDE, NEAR WEST SIDE, WEST TOWN",
+      "jaccard_areas": 0.6666666666666666
+    },
+    {
+      "tipo_crimen": "homicidio",
+      "areas_normal_reference": "GREATER GRAND CROSSING, HUMBOLDT PARK, NORTH LAWNDALE, WEST GARFIELD PARK, WEST TOWN",
+      "areas_cv_ml": "AUSTIN, EAST GARFIELD PARK, GREATER GRAND CROSSING, NORTH LAWNDALE, SOUTH CHICAGO",
+      "jaccard_areas": 0.25
+    }
+  ],
+  "osm_features_total": 24885,
+  "osm_features_joined": 16225,
+  "osm_correlations": {
+    "conteo_robo": {
+      "pearson": 0.8444145854222992,
+      "spearman": 0.586013553942445,
+      "n": 77
+    },
+    "conteo_homicidio": {
+      "pearson": -0.11632251887370171,
+      "spearman": -0.10524009865952975,
+      "n": 77
+    },
+    "densidad_robo": {
+      "pearson": 0.8612874118193063,
+      "spearman": 0.5529996319470003,
+      "n": 77
+    },
+    "densidad_homicidio": {
+      "pearson": -0.21380376118101482,
+      "spearman": -0.18437893962514101,
+      "n": 77
+    }
+  },
+  "ranking": [
+    {
+      "ranking": 1,
+      "procedimiento": "KDE 2D cv_ml",
+      "granularidad": 5,
+      "comparabilidad": 3,
+      "estabilidad": 3,
+      "utilidad_operativa": 5,
+      "transparencia": 3,
+      "puntaje": 4.0
+    },
+    {
+      "ranking": 2,
+      "procedimiento": "KDE 2D normal_reference",
+      "granularidad": 4,
+      "comparabilidad": 3,
+      "estabilidad": 4,
+      "utilidad_operativa": 4,
+      "transparencia": 3,
+      "puntaje": 3.75
+    },
+    {
+      "ranking": 3,
+      "procedimiento": "Conteo por área",
+      "granularidad": 2,
+      "comparabilidad": 2,
+      "estabilidad": 5,
+      "utilidad_operativa": 4,
+      "transparencia": 5,
+      "puntaje": 3.65
+    },
+    {
+      "ranking": 4,
+      "procedimiento": "Tasa por km²",
+      "granularidad": 2,
+      "comparabilidad": 4,
+      "estabilidad": 4,
+      "utilidad_operativa": 3,
+      "transparencia": 4,
+      "puntaje": 3.3
+    },
+    {
+      "ranking": 5,
+      "procedimiento": "Distancia al centro",
+      "granularidad": 1,
+      "comparabilidad": 3,
+      "estabilidad": 3,
+      "utilidad_operativa": 1,
+      "transparencia": 3,
+      "puntaje": 2.0
+    }
+  ],
+  "top_counts": [
+    {
+      "nro_area_comunitaria": 32,
+      "community": "LOOP",
+      "robo": 1589,
+      "homicidio": 0,
+      "total": 1589,
+      "area_km2": 4.301423448060419,
+      "total_por_km2": 369.4125954319856
+    },
+    {
+      "nro_area_comunitaria": 8,
+      "community": "NEAR NORTH SIDE",
+      "robo": 1559,
+      "homicidio": 0,
+      "total": 1559,
+      "area_km2": 7.118003341570241,
+      "total_por_km2": 219.0220944257217
+    },
+    {
+      "nro_area_comunitaria": 28,
+      "community": "NEAR WEST SIDE",
+      "robo": 912,
+      "homicidio": 2,
+      "total": 914,
+      "area_km2": 14.713428325045632,
+      "total_por_km2": 62.1201245425692
+    },
+    {
+      "nro_area_comunitaria": 24,
+      "community": "WEST TOWN",
+      "robo": 798,
+      "homicidio": 1,
+      "total": 799,
+      "area_km2": 11.842194028136166,
+      "total_por_km2": 67.47060537106856
+    },
+    {
+      "nro_area_comunitaria": 6,
+      "community": "LAKE VIEW",
+      "robo": 762,
+      "homicidio": 1,
+      "total": 763,
+      "area_km2": 8.09643749965812,
+      "total_por_km2": 94.23897856708194
+    },
+    {
+      "nro_area_comunitaria": 25,
+      "community": "AUSTIN",
+      "robo": 671,
+      "homicidio": 15,
+      "total": 686,
+      "area_km2": 18.498319925243184,
+      "total_por_km2": 37.084448899809026
+    },
+    {
+      "nro_area_comunitaria": 7,
+      "community": "LINCOLN PARK",
+      "robo": 522,
+      "homicidio": 3,
+      "total": 525,
+      "area_km2": 8.198678660118679,
+      "total_por_km2": 64.03470873346808
+    },
+    {
+      "nro_area_comunitaria": 22,
+      "community": "LOGAN SQUARE",
+      "robo": 520,
+      "homicidio": 0,
+      "total": 520,
+      "area_km2": 9.288854881953746,
+      "total_por_km2": 55.98106619258834
+    },
+    {
+      "nro_area_comunitaria": 44,
+      "community": "CHATHAM",
+      "robo": 420,
+      "homicidio": 4,
+      "total": 424,
+      "area_km2": 7.641960258714635,
+      "total_por_km2": 55.48314642391455
+    },
+    {
+      "nro_area_comunitaria": 43,
+      "community": "SOUTH SHORE",
+      "robo": 397,
+      "homicidio": 6,
+      "total": 403,
+      "area_km2": 7.594657399806032,
+      "total_por_km2": 53.0636181179539
+    }
+  ],
+  "top_rates": [
+    {
+      "nro_area_comunitaria": 32,
+      "community": "LOOP",
+      "robo": 1589,
+      "homicidio": 0,
+      "total": 1589,
+      "area_km2": 4.301423448060419,
+      "total_por_km2": 369.4125954319856
+    },
+    {
+      "nro_area_comunitaria": 8,
+      "community": "NEAR NORTH SIDE",
+      "robo": 1559,
+      "homicidio": 0,
+      "total": 1559,
+      "area_km2": 7.118003341570241,
+      "total_por_km2": 219.0220944257217
+    },
+    {
+      "nro_area_comunitaria": 6,
+      "community": "LAKE VIEW",
+      "robo": 762,
+      "homicidio": 1,
+      "total": 763,
+      "area_km2": 8.09643749965812,
+      "total_por_km2": 94.23897856708194
+    },
+    {
+      "nro_area_comunitaria": 1,
+      "community": "ROGERS PARK",
+      "robo": 375,
+      "homicidio": 2,
+      "total": 377,
+      "area_km2": 4.758656228014726,
+      "total_por_km2": 79.22404601966413
+    },
+    {
+      "nro_area_comunitaria": 24,
+      "community": "WEST TOWN",
+      "robo": 798,
+      "homicidio": 1,
+      "total": 799,
+      "area_km2": 11.842194028136166,
+      "total_por_km2": 67.47060537106856
+    },
+    {
+      "nro_area_comunitaria": 7,
+      "community": "LINCOLN PARK",
+      "robo": 522,
+      "homicidio": 3,
+      "total": 525,
+      "area_km2": 8.198678660118679,
+      "total_por_km2": 64.03470873346808
+    },
+    {
+      "nro_area_comunitaria": 28,
+      "community": "NEAR WEST SIDE",
+      "robo": 912,
+      "homicidio": 2,
+      "total": 914,
+      "area_km2": 14.713428325045632,
+      "total_por_km2": 62.1201245425692
+    },
+    {
+      "nro_area_comunitaria": 22,
+      "community": "LOGAN SQUARE",
+      "robo": 520,
+      "homicidio": 0,
+      "total": 520,
+      "area_km2": 9.288854881953746,
+      "total_por_km2": 55.98106619258834
+    },
+    {
+      "nro_area_comunitaria": 44,
+      "community": "CHATHAM",
+      "robo": 420,
+      "homicidio": 4,
+      "total": 424,
+      "area_km2": 7.641960258714635,
+      "total_por_km2": 55.48314642391455
+    },
+    {
+      "nro_area_comunitaria": 43,
+      "community": "SOUTH SHORE",
+      "robo": 397,
+      "homicidio": 6,
+      "total": 403,
+      "area_km2": 7.594657399806032,
+      "total_por_km2": 53.0636181179539
+    }
+  ],
+  "outliers": [
+    {
+      "nro_area_comunitaria": 25,
+      "community": "AUSTIN",
+      "robo": 671,
+      "homicidio": 15,
+      "residuo_homicidios": 12.310969052810236
+    },
+    {
+      "nro_area_comunitaria": 29,
+      "community": "NORTH LAWNDALE",
+      "robo": 277,
+      "homicidio": 12,
+      "residuo_homicidios": 10.040296814548231
+    },
+    {
+      "nro_area_comunitaria": 23,
+      "community": "HUMBOLDT PARK",
+      "robo": 319,
+      "homicidio": 12,
+      "residuo_homicidios": 9.962551215581236
+    },
+    {
+      "nro_area_comunitaria": 69,
+      "community": "GREATER GRAND CROSSING",
+      "robo": 289,
+      "homicidio": 9,
+      "residuo_homicidios": 7.018083786271947
+    },
+    {
+      "nro_area_comunitaria": 49,
+      "community": "ROSELAND",
+      "robo": 270,
+      "homicidio": 7,
+      "residuo_homicidios": 5.053254414376063
+    }
+  ]
+}
